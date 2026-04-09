@@ -27,8 +27,8 @@ export default function Header() {
           <Image
             src="/logo.png"
             alt="Yena logo"
-            width={42}
-            height={64}
+            width={230}
+            height={70}
             className={styles.logo}
             priority
           />
