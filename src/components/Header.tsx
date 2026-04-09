@@ -12,7 +12,7 @@ const sourceSans = Source_Sans_3({
 const menuItems = [
   { href: "/", label: "Головна", pathname: "/" },
   { href: "/about", label: "Про нас", pathname: "/about" },
-  { href: "#", label: "Послуги" },
+  { href: "/services", label: "Послуги", pathname: "/services" },
   { href: "/contacts", label: "Контакти", pathname: "/contacts" },
 ];
 
