@@ -26,7 +26,7 @@ export default function Footer() {
         <div className={styles.top}>
           <div className={styles.brandColumn}>
             <Image
-              src="/logo.png"
+              src="/logo2.png"
               alt="Yena logo"
               width={90}
               height={146}
