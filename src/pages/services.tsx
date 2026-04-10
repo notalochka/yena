@@ -18,6 +18,7 @@ type ServiceCardData = {
   items: string[];
   asideTitle: string;
   asideText: ReactNode;
+  learnMoreHref: string;
 };
 
 const serviceCards: ServiceCardData[] = [
@@ -38,6 +39,7 @@ const serviceCards: ServiceCardData[] = [
     asideTitle: "Коли обрати усний переклад?",
     asideText:
       "Усний переклад варто обрати, якщо ви організовуєте міжнародний захід, переговори з партнерами та хочете забезпечити взаєморозуміння між учасниками. Ця послуга необхідна тоді, коли комунікація відбувається в реальному часі й важливо швидко та точно передати зміст без втрати деталей. Також усний переклад стане оптимальним рішенням, якщо ви працюєте з іноземними клієнтами, проводите презентації або супроводжуєте офіційні візити та потребуєте професійної міжмовної підтримки на місці або онлайн.",
+    learnMoreHref: "/interpreting",
   },
   {
     variant: "Blue",
@@ -57,6 +59,7 @@ const serviceCards: ServiceCardData[] = [
     asideTitle: "Коли обрати письмовий переклад?",
     asideText:
     "Письмовий переклад варто обрати, якщо вам потрібно перекласти договори, презентації, технічні матеріали чи маркетингові тексти для подальшого використання в роботі або публікації. Це рішення підходить у випадках, коли важлива точність формулювань і збереження стилю оригіналу.",
+    learnMoreHref: "/written-translation",
   },
   {
     variant: "Olive",
@@ -85,6 +88,7 @@ const serviceCards: ServiceCardData[] = [
       перейти за посиланням
       </a>
     </>,
+    learnMoreHref: "/official-documents",
   },
   {
     variant: "Orange",
@@ -103,6 +107,7 @@ const serviceCards: ServiceCardData[] = [
     asideTitle: "Коли обрати цей вид перекладу?",
     asideText:
       "Це вид перекладу варто обрати коли ви маєте відвідати державну установу, відомство у справах іноземців, консульство, лікаря, батьківські збори, тощо.",
+    learnMoreHref: "#",
   },
 ];
 
@@ -148,7 +153,7 @@ export default function ServicesPage() {
                   <p className={styles.cardDescription}>{card.description}</p>
                   <a
                     className={styles.cardButton}
-                    href="#"
+                    href={card.learnMoreHref}
                     style={{ color: card.buttonColor }}
                   >
                     Дізнатися більше

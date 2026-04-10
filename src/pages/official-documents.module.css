@@ -1,0 +1,299 @@
+.page {
+  background-color: #ffffff;
+}
+
+.heroSection {
+  width: 100%;
+  background-color: #ffffff;
+  margin-top: 10px;
+}
+
+.heroContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 32px 40px;
+}
+
+.heroContent {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.heroBody {
+  display: block;
+}
+
+.heroTitle {
+  margin: 0;
+  color: #BBB605;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0;
+  
+}
+
+.heroActions {
+  display: flex;
+  gap: 20px;
+  margin-top: 38px;
+  align-self: center;
+}
+
+.heroButton {
+  display: inline-flex;
+  padding: 15px 31px;
+  border: 1px solid #BBB605;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.heroButton:hover {
+  opacity: 0.85;
+}
+
+.heroButtonPrimary {
+  background-color: #BBB605;
+  color: #ffffff;
+}
+
+.heroButtonSecondary {
+  background-color: #ffffff;
+  color: var(--brand-blue);
+  border-color: var(--brand-blue);
+}
+
+.heroImageWrap {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.heroImage {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+.introSection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 32px 56px;
+}
+
+.introLead {
+  margin: 28px 0 0;
+  color: #3D3C3C;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+.introLead + .introLead {
+  margin-top: 28px;
+}
+
+.silabotLink {
+  color: #bcb705;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.silabotLink:hover {
+  opacity: 0.9;
+}
+
+/* Основні види офіційних документів */
+.docTypesSection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 32px;
+}
+
+.docTypesTitle {
+  margin: 0;
+  padding-bottom: 47px;
+  color: #bbb605;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.docTypesCard {
+  margin-bottom: 50px;
+  padding: 40px 32px;
+  border-radius: 16px;
+  background-color: #f4f4f4;
+}
+
+.docTypesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.docTypesItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.docTypesIcon {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
+.docTypesCaption {
+  margin: 16px 0 0;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 40px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.docTypesFootnote {
+  color: #797979;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+.docTypesLink {
+  color: #bcb705;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.docTypesLink:hover {
+  opacity: 0.9;
+}
+@media (max-width: 900px) {
+  .heroSection {
+    margin-top: 10px;
+  }
+
+  .heroContainer {
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px 20px 28px;
+  }
+
+  .heroContent {
+    display: contents;
+    max-width: 100%;
+  }
+
+  .heroTitle {
+    order: 1;
+    font-size: 34px;
+  }
+
+  .heroBody {
+    order: 3;
+  }
+
+  .heroActions {
+    gap: 12px;
+    margin-top: 24px;
+    flex-direction: column;
+  }
+
+  .heroButton {
+    padding: 12px 20px;
+    font-size: 18px;
+  }
+
+  .heroImageWrap {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .heroImage {
+    max-width: 520px;
+  }
+  .introSection {
+    padding: 0 20px 40px;
+  }
+  .introLead + .introLead {
+    margin-top: 18px;
+  }
+  .introLead {
+    font-size: 18px;
+  }
+
+  .docTypesSection {
+    padding: 0 20px 10px;
+  }
+
+  .docTypesTitle {
+    padding: 16px 14px;
+    font-size: clamp(22px, 5vw, 36px);
+    line-height: 1.15;
+  }
+
+  .docTypesCard {
+    padding: 28px 18px 28px;
+    border-radius: 12px;
+  }
+
+  .docTypesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .docTypesIcon {
+    height: 70px;
+    width: auto;
+  }
+
+  .docTypesCaption {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .docTypesFootnote {
+    margin-top: 32px;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+}
+
