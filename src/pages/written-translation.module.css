@@ -111,6 +111,30 @@
 .descriptionText:last-child {
   margin-bottom: 0;
 }
+.labelSection {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.labelContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 32px;
+}
+
+.labelTitle {
+  margin: 0;
+  color: var(--brand-blue);
+  font-size: 86px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0;
+  font-family: Source Sans 3;
+  font-weight: 600;
+  text-align: center;
+}
+
 @media (max-width: 900px) {
   .heroContainer {
     grid-template-columns: 1fr;
@@ -148,5 +172,11 @@
   .descriptionText {
     font-size: 16px;
     margin-bottom: 20px;
+  }
+  .labelContainer {
+    padding: 0 20px 20px;
+  }
+  .labelTitle {
+    font-size: 36px;
   }
 }

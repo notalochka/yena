@@ -1,0 +1,1057 @@
+.calculator {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 10px 0 64px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.stepper {
+  margin: 10px auto 90px;
+}
+
+/* Ряд 1: підписи */
+.stepperLabels {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  align-items: end;
+}
+
+.stepLabelCell {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.stepLabel {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 120%;
+  color: #e3e3e3;
+}
+
+.stepActive .stepLabel {
+  color: var(--brand-blue);
+}
+
+.stepCompleted .stepLabel {
+  color: var(--brand-blue);
+}
+
+.stepperMiddle {
+  position: relative;
+  width: 100%;
+  min-height: 34px;
+  margin: 14px 0 6px;
+}
+
+.stepperTrackWrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: 0;
+  height: 6px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.stepperTrackBg {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background-color: #e3e3e3;
+}
+
+.stepperProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  border-radius: 999px;
+  background-color: var(--brand-blue);
+  max-width: 100%;
+}
+
+.stepDots {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  align-items: center;
+  min-height: 34px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stepDotCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stepDot {
+  display: block;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e3e3e3;
+  box-sizing: border-box;
+}
+
+.stepActive .stepDot {
+  background: var(--brand-blue);
+}
+
+.stepCompleted .stepDot {
+  background: var(--brand-blue);
+}
+
+.sectionTitle {
+  margin: 56px 0 14px;
+  color: var(--brand-blue);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+.card {
+  background: #F2F2F2;
+  border-radius: 9px;
+  padding: 36px 28px 46px;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+}
+
+.fieldLabel {
+  display: block;
+  margin: 0 0 5px;
+  color: #454545;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.control {
+  width: 100%;
+  height: 64px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #EAEAEA;
+  padding: 0 18px;
+  color: #111111;
+  font-size: 20px;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.control::placeholder {
+  color:  #BFBFBF;
+
+}
+
+.control:hover {
+  border-color: rgba(69, 105, 153, 0.35);
+}
+
+.control:focus,
+.control:focus-visible {
+  border-color: rgba(69, 105, 153, 0.65);
+  box-shadow: 0 0 0 4px rgba(24, 89, 201, 0.12);
+}
+
+.selectControl {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 64px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2226%22%20height%3D%2216%22%20viewBox%3D%220%200%2026%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M3%203L13%2013L23%203%22%20stroke%3D%22%2300000040%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 26px 16px;
+}
+
+.selectControl:invalid {
+  color: #BFBFBF;
+}
+
+.selectControl::-ms-expand {
+  display: none;
+}
+
+/* Там, де браузер дозволяє стилі опцій */
+.selectControl option {
+  color: #111111;
+}
+
+.dateControl {
+  padding-left: 64px;
+}
+
+.dateControl:invalid {
+  color: #BFBFBF;
+}
+
+.dateFieldWrap {
+  position: relative;
+}
+
+.dateIconButton {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  padding: 0;
+  border-radius: 10px;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: #454545;
+}
+
+.dateIconButton:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.dateIconButton:focus,
+.dateIconButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(201, 81, 24, 0.12);
+}
+
+/* Прибираємо нативну праву кнопку календаря (Chromium/WebKit) */
+.dateControl::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+.dateControl::-webkit-clear-button {
+  display: none;
+}
+
+.dateControl::-webkit-inner-spin-button {
+  display: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.dateCard {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 16px 18px 18px;
+}
+
+.timeRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.radioGroup {
+  display: grid;
+  gap: 15px;
+}
+
+.radioItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #454545;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* базовий вигляд */
+.radioItem input[type="radio"]{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;            /* під макет */
+  height: 26px;
+  border-radius: 999px;
+  background: #D8D8D8;
+  border: 1px solid #737373;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+/* “крапка” всередині */
+.radioItem input[type="radio"]::before{
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  transform: scale(0);
+  transition: transform 0.12s ease;
+  background: var(--brand-blue);
+}
+
+/* стан checked: міняємо кольори */
+.radioItem input[type="radio"]:checked{
+  background: var(--brand-blue);
+}
+
+
+
+/* фокус для доступності */
+.radioItem input[type="radio"]:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(201, 81, 24, 0.12);
+}
+
+.step2SelectWrap {
+  margin: 18px 0 0;
+}
+
+.step2Summary {
+  margin: 28px 0 0;
+  display: grid;
+  gap: 18px;
+}
+
+.step2ToggleCard {
+  margin: 18px 0 0;
+  background: #F2F2F2;
+  border-radius: 9px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.step2ToggleInput {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.step2ToggleDot {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: #D8D8D8;
+  border: 1px solid #737373;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.step2ToggleDot::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  transform: scale(0);
+  transition: transform 0.12s ease;
+  background: var(--brand-blue);
+}
+
+.step2ToggleText {
+  color: #454545;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.step2ToggleInput:focus-visible + .step2ToggleDot {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(24, 89, 201, 0.12);
+}
+
+.step2ToggleInput:checked + .step2ToggleDot {
+  background: var(--brand-blue);
+  border-color: var(--brand-blue);
+}
+
+.step2ToggleInput:checked + .step2ToggleDot::before {
+  transform: scale(1);
+  background: #ffffff;
+}
+
+.step2SummaryRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.step2SummaryLabel {
+  font-size: 24px;
+  font-weight: 600;
+  color: #454545;
+}
+
+.step2SummaryValue {
+  font-size: 24px;
+  font-weight: 600;
+  color: #454545;
+}
+
+.step3TotalRow {
+  margin: 44px 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.step3TotalLabel {
+  color: var(--brand-blue);
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.step3TotalValue {
+  color: var(--brand-blue);
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.step3UploadWrap {
+  margin: 18px 0 0;
+}
+
+.step3UploadBox {
+  border: 9px dashed #6D6D6D;
+  border-radius: 10px;
+  height: 220px;
+  display: grid;
+  gap: 10px;
+  color: var(--brand-blue);
+  background: #ffffff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.step3FileInput {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.step3UploadIcon {
+  color: var(--brand-blue);
+  width: 74px;
+  height: 74px;
+  align-self: end;
+  justify-self: center;
+}
+
+.step3UploadText {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--brand-blue);
+}
+
+.step3FilesList {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.step3FileRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 2px solid #C7C7C7;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.step3FileName {
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.step3RemoveFile {
+  border: 0;
+  background: transparent;
+  color: var(--brand-blue);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 10px;
+}
+
+.step3RemoveFile:hover {
+  opacity: 0.85;
+}
+
+.step3CostRow {
+  margin: 26px 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.step3CostLabel {
+  color: var(--brand-blue);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.step3CostValue {
+  color: var(--brand-blue);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.step4Summary {
+  margin: 26px 0 0;
+  display: grid;
+  gap: 22px;
+  max-width: 900px;
+}
+
+.step4SummaryRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.step4SummaryLabel {
+  color: #454545;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.step4SummaryValue {
+  color: #454545;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.step4TotalRow {
+  margin: 44px 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.step4TotalLabel {
+  color: var(--brand-blue);
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.step4TotalValue {
+  color: var(--brand-blue);
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.step4SelectCard {
+  margin: 18px 0 0;
+  background: #F2F2F2;
+  border-radius: 9px;
+  padding: 22px 24px;
+}
+
+.step4CostRow {
+  margin: 26px 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.step4CostLabel {
+  color: var(--brand-blue);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.step4CostValue {
+  color: var(--brand-blue);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.step5Summary {
+  margin: 26px 0 0;
+  display: grid;
+  gap: 18px;
+}
+
+.step5SummaryRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.step5SummaryLabel {
+  color: #4C4C4C;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.step5SummaryValue {
+  color: #4C4C4C;
+  font-size: 28px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.step5GrandTotal {
+  margin: 69px 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 98px;
+  color: #4C4C4C;
+}
+
+.step5GrandTotalLabel {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.step5GrandTotalValue {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.step5Divider {
+  margin: 37px 0 51px;
+  height: 4px;
+  background: #e3e3e3;
+}
+
+.step5Form {
+  display: grid;
+  gap: 25px;
+}
+
+.step5Grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.step5Field {
+  display: grid;
+  gap: 10px;
+}
+
+.step5FieldLabel {
+  color: var(--brand-blue);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.step5Control {
+  width: 100%;
+  height: 74px;
+  border-radius: 28px;
+  background: #ffffff;
+  border: 2px solid #C7C7C7;
+  padding: 0 18px;
+  color: #111111;
+  font-size: 28px;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.step5Control::placeholder {
+  color:  #BFBFBF;
+
+}
+
+.step5Control:hover {
+  border-color: rgba(201, 81, 24, 0.35);
+}
+
+.step5Control:focus,
+.step5Control:focus-visible {
+  border-color: rgba(201, 81, 24, 0.65);
+  box-shadow: 0 0 0 4px rgba(201, 81, 24, 0.12);
+}
+.footerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 59px;
+}
+
+.priceWrap {
+  display: flex;
+  align-items: baseline;
+  gap: 100px;
+}
+
+.priceLabel {
+  color: var(--brand-blue);
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.priceValue {
+  color: var(--brand-blue);
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.nextButton {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 48px;
+  background: var(--brand-blue);
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.nextButton:hover {
+  opacity: 0.9;
+}
+
+.nextButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.backButton {
+  border-radius: 999px;
+  padding: 14px 48px;
+  background: #ffffff;
+  color: #6D6D6D;
+  font-size: 32px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.backButton:hover {
+  opacity: 0.9;
+}
+
+.prevButton {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 48px;
+  background: #6D6D6D;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.prevButton:hover {
+  opacity: 0.9;
+}
+
+.placeholderStep {
+  margin: 24px 0 0;
+  padding: 32px 20px;
+  border-radius: 10px;
+  background: #f4f4f4;
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .step5Grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .footerRow {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 32px;
+  }
+
+  .nextButton,
+  .backButton,
+  .prevButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .stepper {
+    margin: 10px auto 20px;
+  }
+
+  .stepLabel {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .stepperMiddle {
+    margin: 6px 0 4px;
+    min-height: 24px;
+  }
+  .stepperTrackWrap {
+    height: 4px;
+  }
+  .stepperTrackBg {
+    height: 4px;
+  }
+  .stepperProgress {
+    height: 4px;
+  }
+  .stepDot {
+    width: 18px;
+    height: 18px;
+  }
+  .sectionTitle {
+    font-size: 24px;
+    margin: 32px 0 12px;
+  }
+  .card {
+    padding: 24px 18px 34px;
+  }
+  .grid2 {
+    gap: 24px;
+  }
+  .fieldLabel {
+    font-size: 18px;
+  }
+  .control {
+    height: 48px;
+    font-size: 18px;
+  }
+  .selectControl {
+    height: 48px;
+    font-size: 18px;
+  }
+  .dateControl {
+    height: 48px;
+    font-size: 18px;
+  }
+  .dateIconButton {
+    width: 36px;
+    height: 36px;
+  }
+  .dateCard {
+    padding: 12px 14px 14px;
+  }
+  .timeRow {
+    gap: 10px;
+  }
+  .radioItem {
+    font-size: 20px;
+  }
+  .radioItem input[type="radio"] {
+    width: 22px;
+    height: 22px;
+  }
+  .radioItem input[type="radio"]::before {
+    width: 10px;
+    height: 10px;
+  }
+  .priceWrap {
+    gap: 50px;
+  }
+  .priceLabel {
+    font-size: 32px;
+  }
+  .priceValue {
+    font-size: 32px;
+  }
+  .nextButton,
+  .backButton,
+  .prevButton {
+    padding: 12px 36px;
+    font-size: 24px;
+  }
+  .placeholderStep {
+    padding: 24px 18px;
+    font-size: 14px;
+  }
+  .step2ToggleCard {
+    padding: 18px 20px;
+  }
+  .step2ToggleText {
+    font-size: 20px;
+  }
+  .step2ToggleInput:checked + .step2ToggleDot::before {
+    width: 12px;
+    height: 12px;
+  }
+  .step3UploadBox {
+    height: 160px;
+  }
+  .step3FileInput {
+    height: 160px;
+  }
+  .step3FileInput::file-selector-button {
+    height: 160px;
+  }
+  .step3UploadText {
+    font-size: 20px;
+  }
+  .step3FilesList {
+    margin-top: 10px;
+  }
+  .step3FileRow {
+    padding: 8px 12px;
+  }
+  .step3FileName {
+    font-size: 12px;
+  }
+  .step3RemoveFile {
+    font-size: 12px;
+    padding: 0;
+  }
+  .step3CostRow {
+    margin-top: 20px;
+  }
+  .step3CostLabel {
+    font-size: 24px;
+  }
+  .step3CostValue {
+    font-size: 24px;
+  }
+  .step3TotalRow {
+    margin-top: 32px;
+  }
+  .step3TotalLabel {
+    font-size: 32px;
+  }
+  .step3TotalValue {
+    font-size: 32px;
+  }
+  .step4SelectCard {
+    padding: 18px 20px;
+  }
+  .step4CostRow {
+    margin-top: 20px;
+  }
+  .step4CostLabel {
+    font-size: 24px;
+  }
+  .step4CostValue {
+    font-size: 24px;
+  }
+  .step4Summary {
+    margin-top: 32px;
+  }
+  .step4SummaryRow {
+    gap: 12px;
+  }
+  .step4SummaryLabel {
+    font-size: 20px;
+  }
+  .step4SummaryValue {
+    font-size: 20px;
+  }
+  .step4TotalRow {
+    margin-top: 32px;
+  }
+  .step4TotalLabel {
+    font-size: 32px;
+  }
+  .step4TotalValue {
+    font-size: 32px;
+  }
+  .step5Summary {
+    margin-top: 32px;
+  }
+  .step5SummaryRow {
+    gap: 12px;
+  }
+  .step5SummaryLabel {
+    font-size: 20px;
+  }
+  .step5SummaryValue {
+    font-size: 20px;
+  }
+  .step5GrandTotal {
+    margin-top: 32px;
+  }
+  .step5GrandTotalLabel {
+    font-size: 28px;
+  }
+  .step5GrandTotalValue {
+    font-size: 28px;
+  }
+  .step5Divider {
+    margin: 24px 0 32px;
+  }
+  .step5Form {
+    gap: 20px;
+  }
+  .step5Grid2 {
+    gap: 20px;
+  }
+  .step5Field {
+    gap: 5px;
+  }
+  .step5FieldLabel {
+    font-size: 22px;
+  }
+  .step5Control {
+    height: 54px;
+    font-size: 22px;
+    border-radius: 20px;
+  }
+  .step5Control::placeholder {
+    font-size: 22px;
+  }
+  .step5Control:hover {
+    font-size: 22px;
+  }
+}

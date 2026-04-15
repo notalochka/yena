@@ -7,6 +7,7 @@ import TopicsAccordion, {
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import styles from "./written-translation.module.css";
+import WrittenCalculator from "@/components/calculators/written";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
@@ -99,7 +100,12 @@ export default function WrittenTranslationPage() {
         aria-label="Напрями письмового перекладу"
         idPrefix="written-accordion"
       />
-
+      <section className={styles.labelSection}>
+        <div className={`${sourceSans.className} ${styles.labelContainer}`}>
+          <h2 className={styles.labelTitle}>Калькулятор ціни</h2>
+        </div>
+      </section>
+      <WrittenCalculator />
       <ContactSection />
       <Footer />
     </div>

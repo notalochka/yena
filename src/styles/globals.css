@@ -5,6 +5,7 @@
   --foreground: #171717;
   --brand-orange: #c95118;
   --brand-blue: #456999;
+  --brand-blue-rgb: 69, 105, 153;
 }
 
 @theme inline {

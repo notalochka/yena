@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Source_Sans_3 } from "next/font/google";
 import ContactSection from "@/components/ContactSection";
+import InterpretingCalculator from "@/components/calculators/interpreting";
 import TopicsAccordion, {
   interpretingAccordionItems,
 } from "@/components/TopicsAccordion";
@@ -66,6 +67,14 @@ export default function InterpretingPage() {
         aria-label="Послуги усного перекладу"
         idPrefix="interpreting-accordion"
       />
+
+      <section className={styles.labelSection}>
+        <div className={`${sourceSans.className} ${styles.labelContainer}`}>
+          <h2 className={styles.labelTitle}>Калькулятор ціни</h2>
+        </div>
+      </section>
+
+      <InterpretingCalculator />
 
       <ContactSection />
       <Footer />
