@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
 import styles from "./Footer.module.css";
 
@@ -25,12 +25,13 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.top}>
           <div className={styles.brandColumn}>
-            <Image
+            <ImageWithPlaceholder
               src="/logo2.png"
               alt="Yena logo"
               width={90}
               height={146}
               className={styles.logo}
+              style={{ width: "auto", height: "auto" }}
             />
             <p className={styles.brandText}>Бюро перекладів Yena Translations</p>
           </div>

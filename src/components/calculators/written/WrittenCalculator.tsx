@@ -1,7 +1,7 @@
 "use client";
 
 import { Source_Sans_3 } from "next/font/google";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./WrittenCalculator.module.css";
 import Step1 from "./steps/Step1";
 import Step2 from "./steps/Step2";
@@ -28,6 +28,19 @@ const stepsMeta: StepMeta[] = [
 
 export default function WrittenCalculator() {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const calculatorAnchorRef = useRef<HTMLDivElement>(null);
+  const skipScrollOnMount = useRef(true);
+
+  useEffect(() => {
+    if (skipScrollOnMount.current) {
+      skipScrollOnMount.current = false;
+      return;
+    }
+    calculatorAnchorRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [currentStepIndex]);
 
   const [fromLang, setFromLang] = useState("");
   const [toLang, setToLang] = useState("");
@@ -113,7 +126,10 @@ export default function WrittenCalculator() {
   }, []);
 
   return (
-    <div className={`${sourceSans.className} ${styles.calculator}`}>
+    <div
+      ref={calculatorAnchorRef}
+      className={`${sourceSans.className} ${styles.calculator}`}
+    >
       <div className={styles.container}>
         <div className={styles.stepper} aria-label="Кроки калькулятора">
           <div className={styles.stepperLabels}>

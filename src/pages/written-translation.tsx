@@ -1,11 +1,13 @@
-import { Source_Sans_3 } from "next/font/google";
-import Image from "next/image";
+import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import ContactSection from "@/components/ContactSection";
 import TopicsAccordion, {
   type TopicItem,
 } from "@/components/TopicsAccordion";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { usePageReveal } from "@/hooks/usePageReveal";
+import revealStyles from "@/styles/pageReveal.module.css";
+import { Source_Sans_3 } from "next/font/google";
 import styles from "./written-translation.module.css";
 import WrittenCalculator from "@/components/calculators/written";
 
@@ -46,46 +48,56 @@ const writtenTranslationAccordionItems: TopicItem[] = [
 ];
 
 export default function WrittenTranslationPage() {
+  usePageReveal();
+
   return (
-    <div className={styles.page}>
+    <div className={`${revealStyles.pageReveal} ${styles.page}`}>
       <Header />
 
       <section className={styles.heroSection}>
-        <div className={`${sourceSans.className} ${styles.heroContainer}`}>
-          <div className={styles.heroImageCol}>
-            <Image
-              src="/writen.png"
-              alt="Ілюстрація: конференц-переклад"
-              width={650}
-              height={430}
-              className={styles.heroImage}
-              priority
-            />
-            <div className={styles.heroActions}>
-              <a
-                className={`${styles.heroButton} ${styles.heroButtonPrimary}`}
-                href="#"
-              >
-                Замовити переклад
-              </a>
-              <a
-                className={`${styles.heroButton} ${styles.heroButtonSecondary}`}
-                href="#"
-              >
-                Дізнатися більше
-              </a>
+        <div
+          data-page-reveal
+          className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
+        >
+          <div className={`${sourceSans.className} ${styles.heroContainer}`}>
+            <div className={styles.heroImageCol}>
+              <ImageWithPlaceholder
+                src="/writen.png"
+                alt="Ілюстрація: конференц-переклад"
+                width={650}
+                height={430}
+                className={styles.heroImage}
+                priority
+              />
+              <div className={styles.heroActions}>
+                <a
+                  className={`${styles.heroButton} ${styles.heroButtonPrimary}`}
+                  href="#"
+                >
+                  Замовити переклад
+                </a>
+                <a
+                  className={`${styles.heroButton} ${styles.heroButtonSecondary}`}
+                  href="#"
+                >
+                  Дізнатися більше
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>Письмовий переклад</h1>
-            <p className={styles.heroDescription}>
-            В сучасному світі мало хто не користується Гугл перекладачем, DeepL або іншими подібними інструментами машинного перекладу. Здебільшого, також з власному досвіду, більшості відомо про те, яким хибним, формалістичним, дослівним і тому оманливим «правильним» може бути машинний переклад. Я як фахівець з перекладу глибоко переконана у життєздатності людського перекладу і відтоді моєї професії перекладача. Звісно що, якщо ви довірите переклад вашого виписного епікризу з лікарні, або кошторис стоматолога до медичної страховки, або конфіденційну угоду про купівлю бізнесу Гуглу або DeepL, це – ваше рішення, ваша відповідальність і вам же нести наслідки подібного вашого рішення.
-            </p>
+            <div className={styles.heroContent}>
+              <h1 className={styles.heroTitle}>Письмовий переклад</h1>
+              <p className={styles.heroDescription}>
+              В сучасному світі мало хто не користується Гугл перекладачем, DeepL або іншими подібними інструментами машинного перекладу. Здебільшого, також з власному досвіду, більшості відомо про те, яким хибним, формалістичним, дослівним і тому оманливим «правильним» може бути машинний переклад. Я як фахівець з перекладу глибоко переконана у життєздатності людського перекладу і відтоді моєї професії перекладача. Звісно що, якщо ви довірите переклад вашого виписного епікризу з лікарні, або кошторис стоматолога до медичної страховки, або конфіденційну угоду про купівлю бізнесу Гуглу або DeepL, це – ваше рішення, ваша відповідальність і вам же нести наслідки подібного вашого рішення.
+              </p>
+            </div>
           </div>
         </div>
       </section>
-      <section className={styles.descriptionSection}>
+      <section
+        data-page-reveal
+        className={`${styles.descriptionSection} ${revealStyles.reveal}`}
+      >
         <p className={styles.descriptionText}>
         З іншого боку, переклад виконаний кваліфікованим перекладачем – це не лише точність, вичерпність та влучна передача змісту, це також і збереження медичної, чи комерційної таємниці, використання, або свідоме уникання певних серверних потужностей, це захист персональних даних і належне видалення текстів після стікання строку їх зберігання. 
         </p>
@@ -94,19 +106,37 @@ export default function WrittenTranslationPage() {
         </p>
       </section>
 
-      <TopicsAccordion
-        items={writtenTranslationAccordionItems}
-        variant="blue"
-        aria-label="Напрями письмового перекладу"
-        idPrefix="written-accordion"
-      />
-      <section className={styles.labelSection}>
+      <div
+        data-page-reveal
+        className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
+      >
+        <TopicsAccordion
+          items={writtenTranslationAccordionItems}
+          variant="blue"
+          aria-label="Напрями письмового перекладу"
+          idPrefix="written-accordion"
+        />
+      </div>
+      <section
+        data-page-reveal
+        className={`${styles.labelSection} ${revealStyles.reveal}`}
+      >
         <div className={`${sourceSans.className} ${styles.labelContainer}`}>
           <h2 className={styles.labelTitle}>Калькулятор ціни</h2>
         </div>
       </section>
-      <WrittenCalculator />
-      <ContactSection />
+      <div
+        data-page-reveal
+        className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
+      >
+        <WrittenCalculator />
+      </div>
+      <div
+        data-page-reveal
+        className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
+      >
+        <ContactSection />
+      </div>
       <Footer />
     </div>
   );

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import { Source_Sans_3 } from "next/font/google";
 import { useState } from "react";
 import styles from "./Contact.module.css";
@@ -93,7 +93,7 @@ export default function ContactSection() {
           </form>
 
           <aside className={styles.contactAside}>
-            <Image
+            <ImageWithPlaceholder
               src="/main_photo1.jpg"
               alt="Ілюстрація Yena Translations"
               width={450}

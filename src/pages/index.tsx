@@ -1,9 +1,12 @@
 import Header from "@/components/Header";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import Image from "next/image";
 import { Source_Sans_3 } from "next/font/google";
+import { usePageReveal } from "@/hooks/usePageReveal";
 import { useState, type ReactNode } from "react";
+import revealStyles from "@/styles/pageReveal.module.css";
 import styles from "./index.module.css";
 
 const sourceSans = Source_Sans_3({
@@ -22,6 +25,7 @@ const serviceCards = [
     imageAlt: "Усний переклад",
     colorClass: "serviceCardOrange",
     accentClass: "serviceAccentOrange",
+    href: "/interpreting",
   },
   {
     title: "Письмовий переклад",
@@ -33,6 +37,7 @@ const serviceCards = [
     imageAlt: "Письмовий переклад",
     colorClass: "serviceCardBlue",
     accentClass: "serviceAccentBlue",
+    href: "/written-translation",
   },
   {
     title: "Переклад офіційних документів",
@@ -54,6 +59,7 @@ const serviceCards = [
     imageAlt: "Переклад офіційних документів",
     colorClass: "serviceCardOlive",
     accentClass: "serviceAccentOlive",
+    href: "/official-documents",
   },
   
 ];
@@ -229,10 +235,10 @@ const processFlows: ProcessFlow[] = [
 ];
 
 const benefitsItems = [
-  { image: "/translate1.png", alt: "Кваліфіковані перекладачі", text: "Кваліфіковані перекладачі", extraText: "Мої понад 35 років професійного досвіду у перекладі дозволяють мені набрати найбільш кваліфікованих і талановитих перекладачів робочих мов мого бюро перекладу. Якість перекладу – для нас це є основний важіль нашої праці. " },
-  { image: "/translate2.png", alt: "Судовий присяжний перекладач", text: "Судовий присяжний перекладач", extraText: "Я працюю у сфері судового перекладу з початку двохтисячних років. Через мій портал Силабот, моє бюро перекладів надає послуги у сфері присяжного перекладу. Присяжний переклад найчастіше використовується для офіційних документів, переклад яких потребує засвідчення, а інколи ще і легалізації, наприклад, у формі одержання апостилю на переклад." },
-  { image: "/translate3.png", alt: "Конфіденційність", text: "Конфіденційність", extraText: "Дотримання конфіденційності у перекладі є таким же важливим фундаментальним чинником як дотримання таємниці банками, поштою, лікарями та адвокатами. Тут перекладачі успішно конкурують з машинним перекладом, і виграють. Машинний переклад не лише часто містить приховані помилки, він також зберігається на серверах, які контролюють інші. Він не може по своїй природі гарантувати захист персональної інформації як це може зробити людина. Окрім того, не забуваймо про авторське право, яке є і у машинного перекладу. " },
-  { image: "/translate4.png", alt: "Дотримання термінів", text: "Дотримання термінів", extraText: "Поряд з якістю перекладеного тексту, другим вагомим фактором нашої роботи є неухильне дотримання строків виконання перекладу. Ми прагнемо надати бездоганно виконаний переклад не лише вчасно, а інколи навіть до узгодженого строку виконання перекладу." },
+  { image: "/translate1.svg", alt: "Кваліфіковані перекладачі", text: "Кваліфіковані перекладачі", extraText: "Мої понад 35 років професійного досвіду у перекладі дозволяють мені набрати найбільш кваліфікованих і талановитих перекладачів робочих мов мого бюро перекладу. Якість перекладу – для нас це є основний важіль нашої праці. " },
+  { image: "/translate2.svg", alt: "Судовий присяжний перекладач", text: "Судовий присяжний перекладач", extraText: "Я працюю у сфері судового перекладу з початку двохтисячних років. Через мій портал Силабот, моє бюро перекладів надає послуги у сфері присяжного перекладу. Присяжний переклад найчастіше використовується для офіційних документів, переклад яких потребує засвідчення, а інколи ще і легалізації, наприклад, у формі одержання апостилю на переклад." },
+  { image: "/translate3.svg", alt: "Конфіденційність", text: "Конфіденційність", extraText: "Дотримання конфіденційності у перекладі є таким же важливим фундаментальним чинником як дотримання таємниці банками, поштою, лікарями та адвокатами. Тут перекладачі успішно конкурують з машинним перекладом, і виграють. Машинний переклад не лише часто містить приховані помилки, він також зберігається на серверах, які контролюють інші. Він не може по своїй природі гарантувати захист персональної інформації як це може зробити людина. Окрім того, не забуваймо про авторське право, яке є і у машинного перекладу. " },
+  { image: "/translate4.svg", alt: "Дотримання термінів", text: "Дотримання термінів", extraText: "Поряд з якістю перекладеного тексту, другим вагомим фактором нашої роботи є неухильне дотримання строків виконання перекладу. Ми прагнемо надати бездоганно виконаний переклад не лише вчасно, а інколи навіть до узгодженого строку виконання перекладу." },
 ];
 
 const faqItems: { question: string; answer: ReactNode }[] = [
@@ -278,14 +284,19 @@ const faqItems: { question: string; answer: ReactNode }[] = [
 export default function Home() {
   const [activeTabIndex, setActiveTabIndex] = useState(1);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const heroReveal = usePageReveal();
 
   const activeFlow = processFlows[activeTabIndex] ?? processFlows[0];
 
   return (
-    <div className={styles.page}>
+    <div className={`${revealStyles.pageReveal} ${styles.page}`}>
       <Header />
 
-      <section className={styles.heroSection}>
+      <section
+        className={`${styles.heroSection} ${revealStyles.reveal} ${
+          heroReveal ? revealStyles.revealVisible : ""
+        }`}
+      >
         <div className={styles.heroContainer}>
           <div className={`${sourceSans.className} ${styles.heroContent}`}>
             <h1 className={styles.heroTitle}>
@@ -303,13 +314,13 @@ export default function Home() {
               <div className={styles.heroActions}>
                 <a
                   className={`${styles.heroButton} ${styles.heroButtonPrimary}`}
-                  href="#"
+                  href="/services"
                 >
                   Замовити переклад
                 </a>
                 <a
                   className={`${styles.heroButton} ${styles.heroButtonSecondary}`}
-                  href="#"
+                  href="#about-preview"
                 >
                   Дізнатися більше
                 </a>
@@ -318,7 +329,7 @@ export default function Home() {
           </div>
 
           <div className={styles.heroImageWrap}>
-            <Image
+            <ImageWithPlaceholder
               src="/main_photo1.jpg"
               alt="Yena translations illustration"
               width={650}
@@ -330,10 +341,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.aboutPreviewSection}>
+      <section
+        id="about-preview"
+        data-page-reveal
+        className={`${styles.aboutPreviewSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.aboutPreviewContainer}>
           <div className={styles.aboutPreviewImageWrap}>
-            <Image
+            <ImageWithPlaceholder
               src="/main_photo2.jpg"
               alt="Мовна експертка Yena Translations"
               width={560}
@@ -350,14 +365,17 @@ export default function Home() {
             Якщо вам потрібні рішення з міжмовної комунікації, то ви звернулися за правильною адресою, надто коли йдеться про наші основні мови: німецьку, українську та англійську.
             </p>
 
-            <a className={styles.aboutPreviewButton} href="#">
+            <a className={styles.aboutPreviewButton} href="/about">
               Про нас
             </a>
           </div>
         </div>
       </section>
 
-      <section className={`${sourceSans.className} ${styles.statsSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.statsSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.statsContainer}>
           <article className={styles.statsItem}>
             <p className={styles.statsNumber}>10+</p>
@@ -380,7 +398,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`${sourceSans.className} ${styles.servicesSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.servicesSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.servicesContainer}>
           <h2 className={styles.servicesTitle}>Послуги</h2>
           <p className={styles.servicesLead}>
@@ -404,13 +425,15 @@ export default function Home() {
                   >
                     <h3 className={styles.serviceCardTitle}>{service.title}</h3>
                     <p className={styles.serviceCardText}>{service.description}</p>
-                    <Image
-                      src={service.image}
-                      alt={service.imageAlt}
-                      width={270}
-                      height={170}
-                      className={styles.serviceCardImage}
-                    />
+                    <div className={styles.serviceCardImageWrap}>
+                      <ImageWithPlaceholder
+                        src={service.image}
+                        alt={service.imageAlt}
+                        width={270}
+                        height={170}
+                        className={styles.serviceCardImage}
+                      />
+                    </div>
                   </div>
 
                   <div
@@ -433,7 +456,7 @@ export default function Home() {
                     </p>
                     <a
                       className={`${styles.serviceCardBackButton} ${styles[service.accentClass]}`}
-                      href="#"
+                      href={service.href}
                     >
                       Дізнатися більше
                     </a>
@@ -443,13 +466,16 @@ export default function Home() {
             ))}
           </div>
 
-          <a className={styles.servicesCta} href="#">
+          <a className={styles.servicesCta} href="/services">
             Переглянути всі послуги
           </a>
         </div>
       </section>
 
-      <section className={`${sourceSans.className} ${styles.processSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.processSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.processContainer}>
           <h2 className={styles.processTitle}>Як це працює?</h2>
 
@@ -488,7 +514,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`${sourceSans.className} ${styles.benefitsSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.benefitsSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.benefitsContainer}>
           {benefitsItems.map((item) => (
             <article key={item.text} className={styles.benefitCard}>
@@ -506,7 +535,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={`${sourceSans.className} ${styles.faqSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.faqSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.faqContainer}>
           <h2 className={styles.faqTitle}>Відповіді на часті запитання</h2>
 
@@ -542,7 +574,12 @@ export default function Home() {
         </div>
       </section>
 
-      <ContactSection />
+      <div
+        data-page-reveal
+        className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
+      >
+        <ContactSection />
+      </div>
       <Footer />
     </div>
   );

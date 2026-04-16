@@ -108,6 +108,9 @@
   opacity: 0.55;
   cursor: not-allowed;
 }
+.contactSubmit:hover {
+  background-color: #36547b;
+}
 
 .contactAside {
   display: flex;
@@ -149,6 +152,9 @@
   text-decoration: none;
 }
 
+.contactAsideButton:hover {
+  background-color: #e0e0e050;
+}
 @media (max-width: 768px) {
   .contactSection {
     padding: 28px 0 40px;

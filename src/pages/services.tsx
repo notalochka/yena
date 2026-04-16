@@ -1,7 +1,9 @@
-import { Source_Sans_3 } from "next/font/google";
-import type { ReactNode } from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { usePageReveal } from "@/hooks/usePageReveal";
+import revealStyles from "@/styles/pageReveal.module.css";
+import { Source_Sans_3 } from "next/font/google";
+import type { ReactNode } from "react";
 import styles from "./services.module.css";
 
 const sourceSans = Source_Sans_3({
@@ -118,11 +120,16 @@ const cardVariantClass = {
 } as const;
 
 export default function ServicesPage() {
+  usePageReveal();
+
   return (
-    <div className={styles.page}>
+    <div className={`${revealStyles.pageReveal} ${styles.page}`}>
       <Header />
 
-      <section className={`${sourceSans.className} ${styles.introSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.introSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.introContainer}>
           <h1 className={styles.introTitle}>Послуги</h1>
           <p className={styles.introLead}>
@@ -136,7 +143,8 @@ export default function ServicesPage() {
       </section>
 
       <section
-        className={`${sourceSans.className} ${styles.showcaseSection}`}
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.showcaseSection} ${revealStyles.reveal}`}
         aria-label="Перелік послуг"
       >
         <div className={styles.showcaseBackdrop} aria-hidden />

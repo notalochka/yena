@@ -90,10 +90,16 @@
   color: #ffffff;
 }
 
+.heroButtonPrimary:hover {
+  background-color: #36547b;
+}
 .heroButtonSecondary {
   background-color: #ffffff;
   color: var(--brand-orange);
   border-color: var(--brand-orange);
+}
+.heroButtonSecondary:hover {
+  background-color: #e0e0e050;
 }
 .descriptionSection {
   max-width: 1200px;

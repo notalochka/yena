@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import { Source_Sans_3 } from "next/font/google";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -9,12 +9,23 @@ const sourceSans = Source_Sans_3({
   weight: ["400"],
 });
 
+const serviceDetailPaths = [
+  "/interpreting",
+  "/written-translation",
+  "/official-documents",
+] as const;
+
 const menuItems = [
   { href: "/", label: "Головна", pathname: "/" },
   { href: "/about", label: "Про нас", pathname: "/about" },
-  { href: "/services", label: "Послуги", pathname: "/services" },
+  {
+    href: "/services",
+    label: "Послуги",
+    pathname: "/services",
+    additionalActivePaths: [...serviceDetailPaths],
+  },
   { href: "/contacts", label: "Контакти", pathname: "/contacts" },
-];
+] as const;
 
 export default function Header() {
   const router = useRouter();
@@ -24,7 +35,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logoWrap}>
-          <Image
+          <ImageWithPlaceholder
             src="/logo.png"
             alt="Yena logo"
             width={230}
@@ -53,13 +64,20 @@ export default function Header() {
           className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}
         >
           <ul className={`${sourceSans.className} ${styles.menuList}`}>
-            {menuItems.map((item) => (
+            {menuItems.map((item) => {
+              const isActive =
+                (item.pathname !== undefined &&
+                  router.pathname === item.pathname) ||
+                ("additionalActivePaths" in item &&
+                  item.additionalActivePaths?.includes(
+                    router.pathname as (typeof serviceDetailPaths)[number],
+                  ));
+
+              return (
               <li key={item.label}>
                 <a
                   className={`${styles.menuLink} ${
-                    item.pathname && router.pathname === item.pathname
-                      ? styles.menuLinkActive
-                      : ""
+                    isActive ? styles.menuLinkActive : ""
                   }`}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
@@ -67,7 +85,8 @@ export default function Header() {
                   {item.label}
                 </a>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </nav>
       </div>

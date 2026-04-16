@@ -70,10 +70,16 @@
   color: #ffffff;
 }
 
+.heroButtonPrimary:hover {
+  background-color: #bb4c18;
+}
 .heroButtonSecondary {
   background-color: #ffffff;
   color: var(--brand-blue);
   border-color: var(--brand-blue);
+}
+.heroButtonSecondary:hover {
+  background-color: #e0e0e050;
 }
 
 .heroImageWrap {
@@ -307,7 +313,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.questionButton:hover {
+  background-color: #bb4c18;
+}
 .videoSection {
   width: 100%;
   padding: 84px 0 100px;

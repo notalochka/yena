@@ -63,19 +63,23 @@
   transition: opacity 0.2s ease;
 }
 
-.heroButton:hover {
-  opacity: 0.85;
-}
-
 .heroButtonPrimary {
   background-color: #BBB605;
   color: #ffffff;
+}
+
+.heroButtonPrimary:hover {
+  background-color: #a49f05;
 }
 
 .heroButtonSecondary {
   background-color: #ffffff;
   color: var(--brand-blue);
   border-color: var(--brand-blue);
+}
+
+.heroButtonSecondary:hover {
+  background-color: #e0e0e050;
 }
 
 .heroImageWrap {

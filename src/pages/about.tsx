@@ -1,7 +1,9 @@
-import Image from "next/image";
-import { DM_Sans, Source_Sans_3 } from "next/font/google";
+import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { usePageReveal } from "@/hooks/usePageReveal";
+import revealStyles from "@/styles/pageReveal.module.css";
+import { DM_Sans, Source_Sans_3 } from "next/font/google";
 import styles from "./about.module.css";
 
 const sourceSans = Source_Sans_3({
@@ -38,11 +40,17 @@ const expertiseCards = [
 ];
 
 export default function AboutPage() {
+  const heroReveal = usePageReveal();
+
   return (
-    <div className={styles.page}>
+    <div className={`${revealStyles.pageReveal} ${styles.page}`}>
       <Header />
 
-      <section className={styles.heroSection}>
+      <section
+        className={`${styles.heroSection} ${revealStyles.reveal} ${
+          heroReveal ? revealStyles.revealVisible : ""
+        }`}
+      >
         <div className={styles.heroContainer}>
           <div className={`${sourceSans.className} ${styles.heroContent}`}>
             <h1 className={styles.heroTitle}>
@@ -63,7 +71,7 @@ export default function AboutPage() {
           </div>
 
           <div className={styles.heroImageWrap}>
-            <Image
+            <ImageWithPlaceholder
               src="/main_photo1.jpg"
               alt="Yena translations illustration"
               width={650}
@@ -73,10 +81,10 @@ export default function AboutPage() {
             />
 
             <div className={styles.heroActions}>
-              <a className={`${styles.heroButton} ${styles.heroButtonPrimary}`} href="#">
+              <a className={`${styles.heroButton} ${styles.heroButtonPrimary}`} href="/services">
                 Замовити переклад
               </a>
-              <a className={`${styles.heroButton} ${styles.heroButtonSecondary}`} href="#">
+              <a className={`${styles.heroButton} ${styles.heroButtonSecondary}`} href="#expertise">
                 Дізнатися більше
               </a>
             </div>
@@ -84,7 +92,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={`${sourceSans.className} ${styles.expertiseSection}`}>
+      <section
+        id="expertise"
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.expertiseSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.expertiseContainer}>
           <h2 className={styles.expertiseTitle}>Професійна експертиза</h2>
           <p className={styles.expertiseDescription}>
@@ -100,12 +112,13 @@ export default function AboutPage() {
           <div className={styles.expertiseGrid}>
             {expertiseCards.map((card) => (
               <article key={card.text} className={styles.expertiseCard}>
-                <Image
+                <ImageWithPlaceholder
                   src={card.icon}
                   alt={card.alt}
                   width={110}
                   height={110}
                   className={styles.expertiseIcon}
+                  inline
                 />
                 <p className={styles.expertiseCardText}>{card.text}</p>
               </article>
@@ -113,7 +126,10 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section className={`${sourceSans.className} ${styles.questionSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.questionSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.questionContainer}>
           <div className={styles.questionContent}>
             <h2 className={styles.questionTitle}>Є запитання?</h2>
@@ -125,7 +141,10 @@ export default function AboutPage() {
           </a>
         </div>
       </section>
-      <section className={`${sourceSans.className} ${styles.experienceSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.experienceSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.experienceContainer}>
           <h2 className={styles.experienceTitle}>Досвід та освіта</h2>
 
@@ -161,7 +180,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={styles.videoSection}>
+      <section
+        data-page-reveal
+        className={`${styles.videoSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.videoContainer}>
           <div className={styles.videoPlaceholder}>
             <button
@@ -174,7 +196,10 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section className={`${sourceSans.className} ${styles.statsSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.statsSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.statsContainer}>
           <article className={styles.statsItem}>
             <p className={styles.statsNumber}>10+</p>
@@ -197,7 +222,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={`${sourceSans.className} ${styles.teamworkSection}`}>
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.teamworkSection} ${revealStyles.reveal}`}
+      >
         <div className={styles.teamworkContainer}>
           <h2 className={styles.teamworkTitle}>Командна робота</h2>
 
