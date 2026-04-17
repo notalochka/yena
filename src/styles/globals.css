@@ -26,6 +26,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Горизонтальний скрол через 100vw / transform — hidden як fallback, clip де підтримується */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {

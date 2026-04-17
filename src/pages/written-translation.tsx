@@ -1,11 +1,14 @@
 import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import ContactSection from "@/components/ContactSection";
-import TopicsAccordion, {
-  type TopicItem,
-} from "@/components/TopicsAccordion";
+import TopicsAccordion from "@/components/TopicsAccordion";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { Seo } from "@/components/Seo";
 import { usePageReveal } from "@/hooks/usePageReveal";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { writtenTranslationCopyByLang } from "@/i18n/writtenTranslation";
+import { writtenTranslationAccordionItemsByLang } from "@/i18n/writtenTranslationAccordion";
+import { getSeo } from "@/i18n/seoPages";
 import revealStyles from "@/styles/pageReveal.module.css";
 import { Source_Sans_3 } from "next/font/google";
 import styles from "./written-translation.module.css";
@@ -16,42 +19,15 @@ const sourceSans = Source_Sans_3({
   weight: ["400", "600"],
 });
 
-const writtenTranslationAccordionItems: TopicItem[] = [
-  {
-    title: "Спеціалізовані тексти",
-    bodyStyle: "written",
-    paragraphs: [
-      "Ми виконуємо переклад спеціалізованих текстів в різних галузях техніки, промисловості та інформаційних технологій. Ми перекладаємо конструкторську документацію, специфікації, фахову та наукову літературу, інструкції з експлуатації та іншу технічну документацію. Для перекладацького проекту я зазвичай створюю команду з декількох перекладачів, верстальника та редактора. Кожен має свою сферу відповідальності та повністю зосереджується саме на ній. Я як керівник групи здійснюю координацію та необхідні узгодження всередині команди та з замовником. Перевага такого підходу полягає в тому, що перекладачі мають змогу ефективно працювати, не відволікаючись, наприклад, на форматування текстів.",
-      "Ще одну перевагу забезпечує правильний вибір перекладача для проекту. Ми запрошуємо лише професійних перекладачів, які мають відповідну спеціалізацію в певних галузях. До перекладу текстів з технічної тематики залучаються багатомовні інженери. Наприклад, проекти з фахового напряму кераміки виконують перекладачі, які спеціалізуються на кераміці, тощо. Як готовий продукт ми постачаємо зверстаний документ цільовою мовою із усіма зображеннями та графіками.",
-    ],
-  },
-  {
-    title: "Договори",
-    description:
-      "Юридично значущі тексти: договори купівлі-продажу, оренди, ліцензійні угоди, NDA та супутня кореспонденція. Увага до формулювань, відповідності між мовами та збереження логіки правових конструкцій.",
-  },
-  {
-    title: "Тексти для друку",
-    description:
-      "Брошури, каталоги, звіти, книги та інші матеріали для поліграфії: враховуємо обмеження верстки, переноси та обсяг, щоб готовий текст коректно лягав у макет і читався природно.",
-  },
-  {
-    title: "Реклама",
-    description:
-      "Слогани, тексти для банерів, соцмереж і кампаній: передаємо настрій і заклик, адаптуємо культурні асоціації й довжину рядків під носій мови без втрати маркетингової мети.",
-  },
-  {
-    title: "Локалізація веб-сайтів",
-    description:
-      "Переклад інтерфейсу, метаданих і контенту сайту з урахуванням різних CMS, кнопок і обмежень по символах. Допомагаємо вирівняти тон бренду й термінологію на всіх сторінках ресурсу.",
-  },
-];
-
 export default function WrittenTranslationPage() {
   usePageReveal();
+  const { language } = useLanguage();
+  const seo = getSeo("writtenTranslation", language);
+  const copy = writtenTranslationCopyByLang[language];
 
   return (
     <div className={`${revealStyles.pageReveal} ${styles.page}`}>
+      <Seo title={seo.title} description={seo.description} path={seo.path} />
       <Header />
 
       <section className={styles.heroSection}>
@@ -63,7 +39,7 @@ export default function WrittenTranslationPage() {
             <div className={styles.heroImageCol}>
               <ImageWithPlaceholder
                 src="/writen.png"
-                alt="Ілюстрація: конференц-переклад"
+                alt={copy.heroImageAlt}
                 width={650}
                 height={430}
                 className={styles.heroImage}
@@ -74,22 +50,24 @@ export default function WrittenTranslationPage() {
                   className={`${styles.heroButton} ${styles.heroButtonPrimary}`}
                   href="#"
                 >
-                  Замовити переклад
+                  {copy.ctaOrder}
                 </a>
                 <a
                   className={`${styles.heroButton} ${styles.heroButtonSecondary}`}
                   href="#"
                 >
-                  Дізнатися більше
+                  {copy.ctaMore}
                 </a>
               </div>
             </div>
 
             <div className={styles.heroContent}>
-              <h1 className={styles.heroTitle}>Письмовий переклад</h1>
-              <p className={styles.heroDescription}>
-              В сучасному світі мало хто не користується Гугл перекладачем, DeepL або іншими подібними інструментами машинного перекладу. Здебільшого, також з власному досвіду, більшості відомо про те, яким хибним, формалістичним, дослівним і тому оманливим «правильним» може бути машинний переклад. Я як фахівець з перекладу глибоко переконана у життєздатності людського перекладу і відтоді моєї професії перекладача. Звісно що, якщо ви довірите переклад вашого виписного епікризу з лікарні, або кошторис стоматолога до медичної страховки, або конфіденційну угоду про купівлю бізнесу Гуглу або DeepL, це – ваше рішення, ваша відповідальність і вам же нести наслідки подібного вашого рішення.
-              </p>
+              <h1 className={styles.heroTitle}>{copy.heroTitle}</h1>
+              {copy.heroParagraphs.map((p) => (
+                <p key={p} className={styles.heroDescription}>
+                  {p}
+                </p>
+              ))}
             </div>
           </div>
         </div>
@@ -98,12 +76,11 @@ export default function WrittenTranslationPage() {
         data-page-reveal
         className={`${styles.descriptionSection} ${revealStyles.reveal}`}
       >
-        <p className={styles.descriptionText}>
-        З іншого боку, переклад виконаний кваліфікованим перекладачем – це не лише точність, вичерпність та влучна передача змісту, це також і збереження медичної, чи комерційної таємниці, використання, або свідоме уникання певних серверних потужностей, це захист персональних даних і належне видалення текстів після стікання строку їх зберігання. 
-        </p>
-        <p className={styles.descriptionText}>
-        Переклад, виконаний перекладачем, не лише дорожчий, він триває довше аніж машинний переклад. Інколи може виникнути на перший погляд абсурдна ситуація, коли редагування машинного перекладу триває довше, аніж виконання з нуля фахівцем. Тоді постає умісне запитання: навіщо робити обхід через машинний переклад, якщо виконання і, особливо, редагування займає більше часу і зусиль. Таким чином, переклад, виконаний кваліфікованим перекладачем, попри його начебто «дороговизну» і довшу тривалість виконання, вже ж таки передає думку, а не окремі слова, відображає метафори, а не викидає їх з тексту, узгоджує і синхронізує термінологію, а не використовує кожного разу новий синонім, а то і просто однозвучне слово. Всі пам’ятаємо про «бавовну». З огляду на вищезазначене, Yena Translations і надалі пропонує професійний письмовий переклад як одну з ключових послуг.
-        </p>
+        {copy.descriptionParagraphs.map((p) => (
+          <p key={p} className={styles.descriptionText}>
+            {p}
+          </p>
+        ))}
       </section>
 
       <div
@@ -111,9 +88,9 @@ export default function WrittenTranslationPage() {
         className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
       >
         <TopicsAccordion
-          items={writtenTranslationAccordionItems}
+          items={writtenTranslationAccordionItemsByLang[language]}
           variant="blue"
-          aria-label="Напрями письмового перекладу"
+          aria-label={copy.accordionAriaLabel}
           idPrefix="written-accordion"
         />
       </div>
@@ -122,7 +99,7 @@ export default function WrittenTranslationPage() {
         className={`${styles.labelSection} ${revealStyles.reveal}`}
       >
         <div className={`${sourceSans.className} ${styles.labelContainer}`}>
-          <h2 className={styles.labelTitle}>Калькулятор ціни</h2>
+          <h2 className={styles.labelTitle}>{copy.priceCalculatorTitle}</h2>
         </div>
       </section>
       <div

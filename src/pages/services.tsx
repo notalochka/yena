@@ -1,9 +1,13 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { Seo } from "@/components/Seo";
+import Link from "next/link";
 import { usePageReveal } from "@/hooks/usePageReveal";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { getSeo } from "@/i18n/seoPages";
+import { renderServicesAsideText, servicesCopyByLang } from "@/i18n/services";
 import revealStyles from "@/styles/pageReveal.module.css";
 import { Source_Sans_3 } from "next/font/google";
-import type { ReactNode } from "react";
 import styles from "./services.module.css";
 
 const sourceSans = Source_Sans_3({
@@ -11,119 +15,15 @@ const sourceSans = Source_Sans_3({
   weight: ["400", "600"],
 });
 
-type ServiceCardData = {
-  variant: "Orange" | "Blue" | "Olive";
-  buttonColor: string;
-  title: string;
-  description: string;
-  listTitle: string;
-  items: string[];
-  asideTitle: string;
-  asideText: ReactNode;
-  learnMoreHref: string;
-};
-
-const serviceCards: ServiceCardData[] = [
-  {
-    variant: "Orange",
-    buttonColor: "#c95118",
-    title: "Усний переклад",
-    description:
-      "Я надаю професійні послуги усного перекладу з фокусом на конференц-перекладі, багатомовних заходах та офіційних контекстах. Працюю з англійської, німецької, української та російської мов у різних форматах – синхронному, послідовному, віддаленому та переговорному.",
-    listTitle: "Що входить в усний переклад",
-    items: [
-      "Аналіз потреби у робочих мовах та інших вимог заходу – оцінюємо, які саме типи перекладу потрібні (синхронний, послідовний, нашіптування, віддалений) залежно від формату та аудиторії",
-      "Оцінка тематики та складності  – визначаємо рівень термінологічної насиченості для підготовки перекладачів та точної подачі змісту",
-      "Підбір перекладачів – формуємо команду з потрібними міжмовними парами та досвідом",
-      "Підтримка техніки (за потреби) – радіо-гід, кабіни, обладнання для віддаленого синхронного перекладу",
-      "Рекомендації щодо формату та організації перекладу – поради, як краще побудувати багатомовну підтримку заходу для максимальної чіткості й комфорту",
-    ],
-    asideTitle: "Коли обрати усний переклад?",
-    asideText:
-      "Усний переклад варто обрати, якщо ви організовуєте міжнародний захід, переговори з партнерами та хочете забезпечити взаєморозуміння між учасниками. Ця послуга необхідна тоді, коли комунікація відбувається в реальному часі й важливо швидко та точно передати зміст без втрати деталей. Також усний переклад стане оптимальним рішенням, якщо ви працюєте з іноземними клієнтами, проводите презентації або супроводжуєте офіційні візити та потребуєте професійної міжмовної підтримки на місці або онлайн.",
-    learnMoreHref: "/interpreting",
-  },
-  {
-    variant: "Blue",
-    buttonColor: "#456999",
-    title: "Письмовий переклад",
-    description:
-      "Ми надаємо професійні послуги письмового перекладу спеціалізованих, юридичних, технічних та медичних текстів. Працюємо з документацією для промисловості й ІТ, договорами, фаховими, науково-популярними виданнями, рекламними матеріалами та контентом для веб-сайтів.",
-    listTitle: "Що входить у письмовий переклад",
-    items: [
-      "Аналіз тематики, обсягу та вимог до тексту",
-      "Підбір перекладача відповідної спеціалізації",
-      "Формування та узгодження термінології, за потреби укладення глосарію",
-      "Переклад із дотриманням стилю та структури оригіналу",
-      "Редагування й коректура готового тексту",
-      "Формування документа відповідно до вимог",
-    ],
-    asideTitle: "Коли обрати письмовий переклад?",
-    asideText:
-    "Письмовий переклад варто обрати, якщо вам потрібно перекласти договори, презентації, технічні матеріали чи маркетингові тексти для подальшого використання в роботі або публікації. Це рішення підходить у випадках, коли важлива точність формулювань і збереження стилю оригіналу.",
-    learnMoreHref: "/written-translation",
-  },
-  {
-    variant: "Olive",
-    buttonColor: "#7e7b08",
-    title: "Переклад офіційних документів",
-    description:
-    "Я є присяжним перекладачем української та російської мов, а також уповноваженою на виконання засвідчених перекладів з та на англійську мову на підставі британського диплому з перекладу для державних і муніципальних служб. Я  маю право посвідчувати точність та повноту мого перекладу; засвідчені переклади визнаються державними установами в Німеччині та за кордоном.",
-    listTitle: "Що входить у переклад офіційних документів",
-    items: [
-      "Перевірка вимог до оформлення для подання в установи",
-      "Точний і вичерпний переклад із збереженням юридичних формулювань",
-      "Дотримання структури оригіналу",
-      "Засвідчення перекладу (аналогова та/або цифрове)",
-      "Одержання апостилю (за потреби)",
-      "Максимально наближене до оригіналу форматування",
-    ],
-    asideTitle: "Коли обрати переклад офіційних документів?",
-    asideText:
-    <>
-    Цю послугу варто обрати, якщо вам потрібно подати документи до 
-    державних органів, консульства, навчального закладу чи роботодавця у 
-    Німеччині або за кордоном. Переклад офіційних документів необхідний тоді, 
-    коли важлива юридична точність і відповідність формальним вимогам, і коли переклад 
-    потребує засвідчення. Цю послугу ми надаємо через наш профільний портал Силабот,{" "}
-      <a className={styles.servicesLink} target="_blank" href="https://silabot.de/uk/homepage/">
-      перейти за посиланням
-      </a>
-    </>,
-    learnMoreHref: "/official-documents",
-  },
-  {
-    variant: "Orange",
-    buttonColor: "#c95118",
-    title: "Віддалений переклад по телефону",
-    description:
-      "Ми підтримуємо людей, які через війну були змушені залишити Україну та звертаються до німецьких установ. Як кваліфікований перекладач, я і моя команда, допомагаємо там, де це найбільш необхідно – через віддалений переклад по телефону і професійним перекладом офіційних документів.",
-    listTitle: "Що входить в переклад для біженців війни",
-    items: [
-      "Аналіз формату заходу та визначення потрібних мов",
-      "Підбір перекладача",
-      "Координація роботи перекладача, організація логістики",
-      "За потреби, організація технічного обладнання (телефон, кабіна, гарнітура)",
-      "Забезпечення перекладу в режимі реального часу",
-    ],
-    asideTitle: "Коли обрати цей вид перекладу?",
-    asideText:
-      "Це вид перекладу варто обрати коли ви маєте відвідати державну установу, відомство у справах іноземців, консульство, лікаря, батьківські збори, тощо.",
-    learnMoreHref: "#",
-  },
-];
-
-const cardVariantClass = {
-  orange: styles.cardOrange,
-  blue: styles.cardBlue,
-  olive: styles.cardOlive,
-} as const;
-
 export default function ServicesPage() {
   usePageReveal();
+  const { language } = useLanguage();
+  const seo = getSeo("services", language);
+  const copy = servicesCopyByLang[language];
 
   return (
     <div className={`${revealStyles.pageReveal} ${styles.page}`}>
+      <Seo title={seo.title} description={seo.description} path={seo.path} />
       <Header />
 
       <section
@@ -131,26 +31,20 @@ export default function ServicesPage() {
         className={`${sourceSans.className} ${styles.introSection} ${revealStyles.reveal}`}
       >
         <div className={styles.introContainer}>
-          <h1 className={styles.introTitle}>Послуги</h1>
-          <p className={styles.introLead}>
-            Я – професійний кваліфікований перекладач. Крім того, як досвідчений
-            старший перекладач я надаю консультації з конференц-перекладу. Я
-            організовую команди перекладачів, консультую з питань проведення
-            конференцій та підбираю технічні засоби для перекладу. Крім того, я
-            є судовим присяжним перекладачем.
-          </p>
+          <h1 className={styles.introTitle}>{copy.introTitle}</h1>
+          <p className={styles.introLead}>{copy.introLead}</p>
         </div>
       </section>
 
       <section
         data-page-reveal
         className={`${sourceSans.className} ${styles.showcaseSection} ${revealStyles.reveal}`}
-        aria-label="Перелік послуг"
+        aria-label={copy.listAriaLabel}
       >
         <div className={styles.showcaseBackdrop} aria-hidden />
         <div className={styles.showcaseBackdrop2} aria-hidden />
         <div className={styles.showcaseInner}>
-          {serviceCards.map((card) => (
+          {copy.cards.map((card) => (
             <article
               key={card.title}
               className={`${styles.serviceCard} ${styles[`card${card.variant}`]}`}
@@ -159,13 +53,13 @@ export default function ServicesPage() {
                 <div className={styles.cardCol}>
                   <h2 className={styles.cardTitle}>{card.title}</h2>
                   <p className={styles.cardDescription}>{card.description}</p>
-                  <a
+                  <Link
                     className={styles.cardButton}
                     href={card.learnMoreHref}
                     style={{ color: card.buttonColor }}
                   >
-                    Дізнатися більше
-                  </a>
+                    {copy.learnMore}
+                  </Link>
                 </div>
 
                 <div className={styles.cardCol}>
@@ -182,7 +76,9 @@ export default function ServicesPage() {
                 <div className={styles.cardCol}>
                   <div className={`${styles.cardAside} ${styles[`cardAside${card.variant}`]}`}>
                     <h3 className={styles.cardAsideTitle}>{card.asideTitle}</h3>
-                    <p className={styles.cardAsideText}>{card.asideText}</p>
+                    <p className={styles.cardAsideText}>
+                      {renderServicesAsideText(card.asideText, styles.servicesLink)}
+                    </p>
                   </div>
                 </div>
               </div>

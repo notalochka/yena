@@ -2,6 +2,8 @@
 
 import { Source_Sans_3 } from "next/font/google";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { interpretingCalculatorCopyByLang } from "@/i18n/interpretingCalculator";
 import styles from "./InterpretingCalculator.module.css";
 import Step1 from "./steps/Step1";
 import Step2 from "./steps/Step2";
@@ -18,15 +20,11 @@ type StepMeta = {
   label: string;
 };
 
-const stepsMeta: StepMeta[] = [
-  { label: "Сторінка 1" },
-  { label: "Сторінка 2" },
-  { label: "Сторінка 3" },
-  { label: "Сторінка 4" },
-  { label: "Фініш" },
-];
-
 export default function InterpretingCalculator() {
+  const { language } = useLanguage();
+  const copy = interpretingCalculatorCopyByLang[language];
+  const stepsMeta: StepMeta[] = copy.steps.map((label) => ({ label }));
+
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const calculatorAnchorRef = useRef<HTMLDivElement>(null);
   const skipScrollOnMount = useRef(true);
@@ -134,7 +132,7 @@ export default function InterpretingCalculator() {
       className={`${sourceSans.className} ${styles.calculator}`}
     >
       <div className={styles.container}>
-        <div className={styles.stepper} aria-label="Кроки калькулятора">
+        <div className={styles.stepper} aria-label={copy.stepperAriaLabel}>
           <div className={styles.stepperLabels}>
             {stepsMeta.map((step, idx) => (
               <div
@@ -182,6 +180,7 @@ export default function InterpretingCalculator() {
 
         {currentStepIndex === 0 && (
           <Step1
+            copy={copy}
             fromLang={fromLang}
             setFromLang={setFromLang}
             toLang={toLang}
@@ -209,16 +208,17 @@ export default function InterpretingCalculator() {
           />
         )}
         {currentStepIndex === 1 && (
-          <Step2 training={training} setTraining={setTraining} />
+          <Step2 copy={copy} training={training} setTraining={setTraining} />
         )}
         {currentStepIndex === 2 && (
-          <Step3 location={location} setLocation={setLocation} />
+          <Step3 copy={copy} location={location} setLocation={setLocation} />
         )}
         {currentStepIndex === 3 && (
-          <Step4 recording={recording} setRecording={setRecording} />
+          <Step4 copy={copy} recording={recording} setRecording={setRecording} />
         )}
         {currentStepIndex === 4 && (
           <Step5
+            copy={copy}
             firstName={firstName}
             setFirstName={setFirstName}
             lastName={lastName}
@@ -239,7 +239,7 @@ export default function InterpretingCalculator() {
               className={styles.prevButton}
               onClick={goBack}
             >
-              Попередня сторінка
+              {copy.nav.prev}
             </button>
             {currentStepIndex < stepsMeta.length - 1 ? (
               <button
@@ -251,7 +251,7 @@ export default function InterpretingCalculator() {
                   goNext();
                 }}
               >
-                Наступна сторінка
+                {copy.nav.next}
               </button>
             ) : (
               <button
@@ -263,7 +263,7 @@ export default function InterpretingCalculator() {
                   // TODO: submit / request quote
                 }}
               >
-                Запит цінової пропозиції
+                {copy.nav.quote}
               </button>
             )}
           </div>

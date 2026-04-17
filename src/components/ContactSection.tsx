@@ -1,4 +1,6 @@
 import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { contactCopyByLang } from "@/i18n/contact";
 import { Source_Sans_3 } from "next/font/google";
 import { useState } from "react";
 import styles from "./ContactSection.module.css";
@@ -9,6 +11,8 @@ const sourceSans = Source_Sans_3({
 });
 
 export default function ContactSection() {
+  const { language } = useLanguage();
+  const copy = contactCopyByLang[language].contactSection;
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactRequest, setContactRequest] = useState("");
@@ -23,12 +27,12 @@ export default function ContactSection() {
   return (
     <section className={`${sourceSans.className} ${styles.contactSection}`}>
       <div className={styles.contactContainer}>
-        <h2 className={styles.contactTitle}>Маєте запитання?</h2>
+        <h2 className={styles.contactTitle}>{copy.title}</h2>
 
         <div className={styles.contactGrid}>
           <form className={styles.contactForm} action="#">
             <label className={styles.contactLabel} htmlFor="contact-name">
-              ІМ’Я *
+              {copy.nameLabel}
             </label>
             <input
               className={styles.contactInput}
@@ -40,7 +44,7 @@ export default function ContactSection() {
             />
 
             <label className={styles.contactLabel} htmlFor="contact-email">
-              EMAIL *
+              {copy.emailLabel}
             </label>
             <input
               className={styles.contactInput}
@@ -52,7 +56,7 @@ export default function ContactSection() {
             />
 
             <label className={styles.contactLabel} htmlFor="contact-request">
-              ВАШ ЗАПИТ *
+              {copy.requestLabel}
             </label>
             <textarea
               className={styles.contactInput}
@@ -62,7 +66,7 @@ export default function ContactSection() {
               value={contactRequest}
               onChange={(event) => setContactRequest(event.target.value)}
             />
-            <p className={styles.contactHint}>Що ви хочете дізнатися/замовити?</p>
+            <p className={styles.contactHint}>{copy.requestHint}</p>
 
             <label className={styles.contactConsent}>
               <input
@@ -72,13 +76,13 @@ export default function ContactSection() {
                 onChange={(event) => setIsConsentChecked(event.target.checked)}
               />
               <span>
-                Продовжуючи, я приймаю умови{" "}
+                {copy.consentPrefix}{" "}
                 <a className={styles.contactConsentLink} href="">
-                  Публічної оферти
+                  {copy.consentOffer}
                 </a>{" "}
-                та надаю згоду на обробку своїх персональних даних відповідно до{" "}
+                {copy.consentMiddle}{" "}
                 <a className={styles.contactConsentLink} href="">
-                  Політики конфіденційності
+                  {copy.consentPrivacy}
                 </a>
               </span>
             </label>
@@ -88,26 +92,26 @@ export default function ContactSection() {
               type="submit"
               disabled={!isContactFormValid}
             >
-              Написати
+              {copy.submit}
             </button>
           </form>
 
           <aside className={styles.contactAside}>
             <ImageWithPlaceholder
               src="/main_photo1.jpg"
-              alt="Ілюстрація Yena Translations"
+              alt={copy.asideAlt}
               width={450}
               height={300}
               className={styles.contactImage}
             />
             <p className={styles.contactAsideText}>
-              Хочете спитати ще щось? Пишіть на{" "}
+              {copy.asideTextBeforeEmail}{" "}
               <a className={styles.contactEmail} href="mailto:contact@yena.de">
                 contact@yena.de
               </a>
             </p>
             <a className={styles.contactAsideButton} href="#">
-              ПРОКОНСУЛЬТУЙТЕ МЕНЕ
+              {copy.consultMe}
             </a>
           </aside>
         </div>

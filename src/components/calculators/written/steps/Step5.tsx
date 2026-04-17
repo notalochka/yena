@@ -1,6 +1,8 @@
+import type { WrittenCalculatorCopy } from "@/i18n/writtenTranslationCalculator";
 import styles from "../WrittenCalculator.module.css";
 
 export type WrittenStep5Props = {
+  copy: WrittenCalculatorCopy;
   firstName: string;
   setFirstName: (v: string) => void;
   lastName: string;
@@ -15,6 +17,7 @@ export type WrittenStep5Props = {
 
 /** Останній крок («Фініш») — підсумок + контактні дані. */
 export default function Step5({
+  copy,
   firstName,
   setFirstName,
   lastName,
@@ -26,91 +29,74 @@ export default function Step5({
   address,
   setAddress,
 }: WrittenStep5Props) {
+  const s = copy.step5;
   return (
     <>
       <div className={styles.step5Summary}>
         <div className={styles.step5SummaryRow}>
+          <span className={styles.step5SummaryLabel}>{s.recalculation}</span>
+          <span className={styles.step5SummaryValue}>0.00 €</span>
+        </div>
+        <div className={styles.step5SummaryRow}>
+          <span className={styles.step5SummaryLabel}>{s.editingCost}</span>
+          <span className={styles.step5SummaryValue}>0.00 €</span>
+        </div>
+        <div className={styles.step5SummaryRow}>
+          <span className={styles.step5SummaryLabel}>{s.formattingCost}</span>
+          <span className={styles.step5SummaryValue}>0.00 €</span>
+        </div>
+        <div className={styles.step5SummaryRow}>
+          <span className={styles.step5SummaryLabel}>{s.deliveryCost}</span>
+          <span className={styles.step5SummaryValue}>0.00 €</span>
+        </div>
+        <div className={styles.step5SummaryRow}>
+          <span className={styles.step5SummaryLabel}>{s.estimatedNoVat}</span>
+          <span className={styles.step5SummaryValue}>0.00 €</span>
+        </div>
+        <div className={styles.step5SummaryRow}>
           <span className={styles.step5SummaryLabel}>
-          Перерахунок вартості
+            {s.apostilleTranslation}
           </span>
           <span className={styles.step5SummaryValue}>0.00 €</span>
         </div>
         <div className={styles.step5SummaryRow}>
           <span className={styles.step5SummaryLabel}>
-          Вартість редагування або виправлення тексту
+            {s.apostilleDocument}
           </span>
           <span className={styles.step5SummaryValue}>0.00 €</span>
         </div>
         <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-          Форматування витрат
-          </span>
+          <span className={styles.step5SummaryLabel}>{s.certification}</span>
+          <span className={styles.step5SummaryValue}>0.00 €</span>
+        </div>
+        <div className={styles.step5SummaryRow}>
+          <span className={styles.step5SummaryLabel}>{s.officeFee}</span>
+          <span className={styles.step5SummaryValue}>0.00 €</span>
+        </div>
+        <div className={styles.step5SummaryRow}>
+          <span className={styles.step5SummaryLabel}>{s.orderTotalNoVat}</span>
           <span className={styles.step5SummaryValue}>0.00 €</span>
         </div>
         <div className={styles.step5SummaryRow}>
           <span className={styles.step5SummaryLabel}>
-          Вартість доставки
+            {s.shippingPackaging}
           </span>
           <span className={styles.step5SummaryValue}>0.00 €</span>
         </div>
         <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-          Оціненна вартість (без ПДВ)
-          </span>
+          <span className={styles.step5SummaryLabel}>{s.vat}</span>
           <span className={styles.step5SummaryValue}>0.00 €</span>
         </div>
         <div className={styles.step5SummaryRow}>
           <span className={styles.step5SummaryLabel}>
-          Поставить апостоль на перекладі
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-          Поставить апостоль на документі
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-          Засвідчення
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-          Канцелярський збір
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-          Загальна вартість замовлення (без ПДВ)
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-          Доставка та упаковка
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-          ПДВ
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-          Загальна оціненна вартість замовлення (з ПДВ)
+            {s.grandEstimatedWithVat}
           </span>
           <span className={styles.step5SummaryValue}>0.00 €</span>
         </div>
       </div>
 
-      <div className={styles.step5GrandTotal} aria-label="Всього">
-        <span className={styles.step5GrandTotalLabel}>Всього</span>
+      <div className={styles.step5GrandTotal} aria-label={s.grandTotalAria}>
+        <span className={styles.step5GrandTotalLabel}>{s.grandTotalLabel}</span>
         <span className={styles.step5GrandTotalValue}>0.00 €</span>
       </div>
 
@@ -120,7 +106,7 @@ export default function Step5({
         <div className={styles.step5Grid2}>
           <div className={styles.step5Field}>
             <label className={styles.step5FieldLabel} htmlFor="calc-first-name">
-              Ім’я
+              {s.firstName}
             </label>
             <input
               id="calc-first-name"
@@ -131,7 +117,7 @@ export default function Step5({
           </div>
           <div className={styles.step5Field}>
             <label className={styles.step5FieldLabel} htmlFor="calc-last-name">
-              Прізвище
+              {s.lastName}
             </label>
             <input
               id="calc-last-name"
@@ -144,7 +130,7 @@ export default function Step5({
 
         <div className={styles.step5Field}>
           <label className={styles.step5FieldLabel} htmlFor="calc-phone">
-            Номер телефону
+            {s.phone}
           </label>
           <input
             id="calc-phone"
@@ -157,7 +143,7 @@ export default function Step5({
 
         <div className={styles.step5Field}>
           <label className={styles.step5FieldLabel} htmlFor="calc-email">
-            Адреса електронної пошти
+            {s.email}
           </label>
           <input
             id="calc-email"
@@ -170,7 +156,7 @@ export default function Step5({
 
         <div className={styles.step5Field}>
           <label className={styles.step5FieldLabel} htmlFor="calc-address">
-            Адреса
+            {s.address}
           </label>
           <input
             id="calc-address"

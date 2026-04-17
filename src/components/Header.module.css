@@ -28,15 +28,24 @@
   object-fit: contain;
 }
 
-.nav {
+.rightSide {
   display: flex;
   flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 60px;
+}
+
+.nav {
+  display: flex;
   justify-content: right;
   align-items: center;
+  order: 1;
 }
 
 .burgerButton {
   display: none;
+  order: 3;
 }
 
 .burgerButtonOpen {
@@ -75,6 +84,101 @@
   opacity: 0.8;
 }
 
+.langWrap {
+  position: relative;
+  display: inline-flex;
+  order: 2;
+}
+
+.langButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--brand-orange);
+  background: #ffffff;
+  color: var(--brand-orange);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.langButton:hover {
+  opacity: 0.9;
+}
+
+.langButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--brand-blue-rgb), 0.35);
+}
+
+.langCode {
+  line-height: 1;
+}
+
+.langChevron {
+  flex: 0 0 auto;
+  transition: transform 0.2s ease;
+}
+
+.langChevronOpen {
+  transform: rotate(180deg);
+}
+
+.langMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 210px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(201, 81, 24, 0.35);
+  box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  z-index: 35;
+}
+
+.langOption {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 8px;
+  align-items: center;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #1d1d1d;
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.langOption:hover {
+  border: 1px solid var(--brand-orange);
+}
+
+.langOptionActive {
+  background: rgba(201, 81, 24, 0.12);
+}
+
+.langOptionCode {
+  font-weight: 700;
+  color: var(--brand-orange);
+}
+
+.langOptionLabel {
+  color: #2b2b2b;
+}
+
 @media (max-width: 768px) {
   .container {
     height: 64px;
@@ -98,6 +202,20 @@
     justify-content: center;
     gap: 5px;
     cursor: pointer;
+  }
+
+  .rightSide {
+    flex: 0;
+    gap: 10px;
+  }
+
+  .langWrap {
+    z-index: 30;
+  }
+
+  .langButton {
+    height: 34px;
+    padding: 0 10px;
   }
 
   .burgerLine {
@@ -130,9 +248,11 @@
   .nav {
     position: fixed;
     top: 0;
+    left: 0;
     right: 0;
-    width: 100vw;
+    width: auto;
     height: 100vh;
+    max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

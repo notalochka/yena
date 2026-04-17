@@ -61,23 +61,24 @@
 
 @media (max-width: 768px) {
   .pageReveal {
-    --home-reveal-duration: 2000ms;
+    /* На мобільних вимикаємо анімації повністю */
+    --home-reveal-duration: 0ms;
   }
 
   .heroSection.reveal {
-    --home-reveal-duration: 1700ms;
+    --home-reveal-duration: 0ms;
   }
 
-  .heroSection.reveal:not(.revealVisible) .heroContent {
-    transform: translate3d(0, 1.1rem, 0);
-  }
-
-  .heroSection.reveal:not(.revealVisible) .heroImageWrap {
-    transform: translate3d(0, 1.35rem, 0) scale(0.972);
-  }
-
-  .reveal {
-    transform: translate3d(0, 2rem, 0) scale(0.945);
+  .reveal,
+  [data-page-reveal].reveal,
+  .heroSection.reveal:not(.revealVisible) .heroContent,
+  .heroSection.reveal:not(.revealVisible) .heroImageWrap,
+  .heroSection.revealVisible .heroContent,
+  .heroSection.revealVisible .heroImageWrap {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    filter: none;
   }
 }
 

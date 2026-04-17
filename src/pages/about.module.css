@@ -152,7 +152,6 @@
 
 .expertiseCard {
   display: flex;
-  min-height: 300px;
   flex-direction: column;
   align-items: center;
   padding: 24px 20px;
@@ -163,7 +162,6 @@
   width: auto;
   object-fit: contain;
   padding: 20px;
-  height: 60%;
 }
 
 .expertiseCardText {
@@ -174,7 +172,6 @@
   line-height: 100%;
   letter-spacing: 0;
   text-align: center;
-  height: 40%;
 }
 
 .experienceSection {
@@ -711,20 +708,17 @@
   }
 
   .expertiseCard {
-    min-height: 220px;
     padding: 16px 12px;
   }
 
   .expertiseIcon {
     padding: 12px;
-    height: 50%;
   }
 
   .expertiseCardText {
     margin-top: 12px;
     font-size: 14px;
     line-height: 1.2;
-    height: 50%;
   }
 
   .questionSection {

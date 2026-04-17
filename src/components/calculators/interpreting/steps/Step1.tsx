@@ -1,7 +1,9 @@
 import { useCallback, useRef } from "react";
+import type { InterpretingCalculatorCopy } from "@/i18n/interpretingCalculator";
 import styles from "../InterpretingCalculator.module.css";
 
 export type InterpretingStep1Props = {
+  copy: InterpretingCalculatorCopy;
   fromLang: string;
   setFromLang: (v: string) => void;
   toLang: string;
@@ -29,6 +31,7 @@ export type InterpretingStep1Props = {
 };
 
 export default function Step1({
+  copy,
   fromLang,
   setFromLang,
   toLang,
@@ -75,12 +78,12 @@ export default function Step1({
 
   return (
     <>
-      <h3 className={styles.sectionTitle}>Мова</h3>
+      <h3 className={styles.sectionTitle}>{copy.step1.sectionLanguage}</h3>
       <div className={styles.card}>
         <div className={styles.grid2}>
           <div className={styles.row}>
             <label className={styles.fieldLabel} htmlFor="calc-from-lang">
-              Перекласти з
+              {copy.step1.fromLabel}
             </label>
             <select
               id="calc-from-lang"
@@ -94,25 +97,25 @@ export default function Step1({
               }}
             >
               <option value="" disabled hidden>
-                Оберіть мову
+                {copy.step1.chooseLanguage}
               </option>
               <option value="uk" disabled={toLang === "uk"}>
-                Українська
+                {copy.step1.languages.uk}
               </option>
               <option value="de" disabled={toLang === "de"}>
-                Німецька
+                {copy.step1.languages.de}
               </option>
               <option value="en" disabled={toLang === "en"}>
-                Англійська
+                {copy.step1.languages.en}
               </option>
               <option value="ru" disabled={toLang === "ru"}>
-                Російська
+                {copy.step1.languages.ru}
               </option>
             </select>
           </div>
           <div className={styles.row}>
             <label className={styles.fieldLabel} htmlFor="calc-to-lang">
-              Перекласти на
+              {copy.step1.toLabel}
             </label>
             <select
               id="calc-to-lang"
@@ -126,19 +129,19 @@ export default function Step1({
               }}
             >
               <option value="" disabled hidden>
-                Оберіть мову
+                {copy.step1.chooseLanguage}
               </option>
               <option value="uk" disabled={fromLang === "uk"}>
-                Українська
+                {copy.step1.languages.uk}
               </option>
               <option value="de" disabled={fromLang === "de"}>
-                Німецька
+                {copy.step1.languages.de}
               </option>
               <option value="en" disabled={fromLang === "en"}>
-                Англійська
+                {copy.step1.languages.en}
               </option>
               <option value="ru" disabled={fromLang === "ru"}>
-                Російська
+                {copy.step1.languages.ru}
               </option>
             </select>
           </div>
@@ -147,16 +150,16 @@ export default function Step1({
 
       <div className={styles.grid2}>
         <div>
-          <h3 className={styles.sectionTitle}>Початок події</h3>
+          <h3 className={styles.sectionTitle}>{copy.step1.sectionStart}</h3>
           <div className={styles.dateCard}>
             <label className={styles.fieldLabel} htmlFor="calc-start-date">
-              Дата
+              {copy.step1.dateLabel}
             </label>
             <div className={styles.dateFieldWrap}>
               <button
                 type="button"
                 className={styles.dateIconButton}
-                aria-label="Обрати дату початку"
+                aria-label={copy.step1.pickStartDateAria}
                 onClick={() => openDatePicker(startDateRef)}
               >
                 <svg
@@ -187,13 +190,13 @@ export default function Step1({
             <div className={styles.timeRow}>
               <div className={styles.row}>
                 <label className={styles.fieldLabel} htmlFor="calc-start-hour">
-                  Час
+                  {copy.step1.timeLabel}
                 </label>
                 <input
                   id="calc-start-hour"
                   className={styles.control}
                   inputMode="numeric"
-                  placeholder="Години (напр. 08)"
+                  placeholder={copy.step1.hoursPlaceholder}
                   value={startHour}
                   onChange={(e) => setStartHour(e.target.value)}
                 />
@@ -206,7 +209,7 @@ export default function Step1({
                   id="calc-start-min"
                   className={styles.control}
                   inputMode="numeric"
-                  placeholder="Хвилини (напр. 00)"
+                  placeholder={copy.step1.minutesPlaceholder}
                   value={startMin}
                   onChange={(e) => setStartMin(e.target.value)}
                 />
@@ -216,16 +219,16 @@ export default function Step1({
         </div>
 
         <div>
-          <h3 className={styles.sectionTitle}>Кінець події</h3>
+          <h3 className={styles.sectionTitle}>{copy.step1.sectionEnd}</h3>
           <div className={styles.dateCard}>
             <label className={styles.fieldLabel} htmlFor="calc-end-date">
-              Дата
+              {copy.step1.dateLabel}
             </label>
             <div className={styles.dateFieldWrap}>
               <button
                 type="button"
                 className={styles.dateIconButton}
-                aria-label="Обрати дату завершення"
+                aria-label={copy.step1.pickEndDateAria}
                 onClick={() => openDatePicker(endDateRef)}
               >
                 <svg
@@ -256,13 +259,13 @@ export default function Step1({
             <div className={styles.timeRow}>
               <div className={styles.row}>
                 <label className={styles.fieldLabel} htmlFor="calc-end-hour">
-                  Час
+                  {copy.step1.timeLabel}
                 </label>
                 <input
                   id="calc-end-hour"
                   className={styles.control}
                   inputMode="numeric"
-                  placeholder="Години (напр. 08)"
+                  placeholder={copy.step1.hoursPlaceholder}
                   value={endHour}
                   onChange={(e) => setEndHour(e.target.value)}
                 />
@@ -275,7 +278,7 @@ export default function Step1({
                   id="calc-end-min"
                   className={styles.control}
                   inputMode="numeric"
-                  placeholder="Хвилини (напр. 00)"
+                  placeholder={copy.step1.minutesPlaceholder}
                   value={endMin}
                   onChange={(e) => setEndMin(e.target.value)}
                 />
@@ -285,26 +288,30 @@ export default function Step1({
         </div>
       </div>
 
-      <h3 className={styles.sectionTitle}>Рівень складності тексту</h3>
+      <h3 className={styles.sectionTitle}>{copy.step1.complexityTitle}</h3>
       <select
         className={`${styles.control} ${styles.selectControl}`}
         required
         value={complexity}
         onChange={(e) => setComplexity(e.target.value)}
-        aria-label="Оберіть мету перекладу"
+        aria-label={copy.step1.complexityAria}
       >
         <option value="" disabled hidden>
-          Оберіть мету перекладу
+          {copy.step1.complexityPlaceholder}
         </option>
-        <option value="general">Загальна тематика</option>
-        <option value="business">Бізнес / переговори</option>
-        <option value="technical">Технічна тематика</option>
-        <option value="medical">Медична тематика</option>
-        <option value="legal">Юридична тематика</option>
+        <option value="general">{copy.step1.complexityOptions.general}</option>
+        <option value="business">{copy.step1.complexityOptions.business}</option>
+        <option value="technical">{copy.step1.complexityOptions.technical}</option>
+        <option value="medical">{copy.step1.complexityOptions.medical}</option>
+        <option value="legal">{copy.step1.complexityOptions.legal}</option>
       </select>
 
-      <h3 className={styles.sectionTitle}>Тип</h3>
-      <div className={styles.radioGroup} role="radiogroup" aria-label="Тип перекладу">
+      <h3 className={styles.sectionTitle}>{copy.step1.typeTitle}</h3>
+      <div
+        className={styles.radioGroup}
+        role="radiogroup"
+        aria-label={copy.step1.typeAria}
+      >
         <label className={styles.radioItem}>
           <input
             type="radio"
@@ -312,7 +319,7 @@ export default function Step1({
             checked={type === "sync"}
             onChange={() => setType("sync")}
           />
-          Синхронний
+          {copy.step1.typeSync}
         </label>
         <label className={styles.radioItem}>
           <input
@@ -321,23 +328,23 @@ export default function Step1({
             checked={type === "cons"}
             onChange={() => setType("cons")}
           />
-          Консекутивний
+          {copy.step1.typeCons}
         </label>
       </div>
 
-      <h3 className={styles.sectionTitle}>Перекладачі</h3>
+      <h3 className={styles.sectionTitle}>{copy.step1.interpretersTitle}</h3>
       <input
         className={styles.control}
         type="number"
         min={0}
         value={interpreters}
         onChange={(e) => setInterpreters(e.target.value)}
-        aria-label="Кількість перекладачів"
+        aria-label={copy.step1.interpretersAria}
       />
 
       <div className={styles.footerRow}>
-        <div className={styles.priceWrap} aria-label="Ціна">
-          <span className={styles.priceLabel}>Ціна</span>
+        <div className={styles.priceWrap} aria-label={copy.step1.priceAria}>
+          <span className={styles.priceLabel}>{copy.step1.priceLabel}</span>
           <span className={styles.priceValue}>0.00 €</span>
         </div>
         <button
@@ -346,7 +353,7 @@ export default function Step1({
           disabled={!canGoNext}
           onClick={onNext}
         >
-          Наступна сторінка
+          {copy.nav.next}
         </button>
       </div>
     </>

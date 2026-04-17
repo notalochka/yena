@@ -2,6 +2,8 @@
 
 import { Source_Sans_3 } from "next/font/google";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { writtenTranslationCalculatorCopyByLang } from "@/i18n/writtenTranslationCalculator";
 import styles from "./WrittenCalculator.module.css";
 import Step1 from "./steps/Step1";
 import Step2 from "./steps/Step2";
@@ -18,15 +20,12 @@ type StepMeta = {
   label: string;
 };
 
-const stepsMeta: StepMeta[] = [
-  { label: "Сторінка 1" },
-  { label: "Сторінка 2" },
-  { label: "Сторінка 3" },
-  { label: "Сторінка 4" },
-  { label: "Фініш" },
-];
-
 export default function WrittenCalculator() {
+  const { language } = useLanguage();
+  const calculatorCopy = writtenTranslationCalculatorCopyByLang[language];
+  const stepsMeta: StepMeta[] = calculatorCopy.steps.map((label) => ({
+    label,
+  }));
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const calculatorAnchorRef = useRef<HTMLDivElement>(null);
   const skipScrollOnMount = useRef(true);
@@ -117,9 +116,10 @@ export default function WrittenCalculator() {
     currentStepIndex,
   ]);
 
+  const stepCount = stepsMeta.length;
   const goNext = useCallback(() => {
-    setCurrentStepIndex((i) => Math.min(i + 1, stepsMeta.length - 1));
-  }, []);
+    setCurrentStepIndex((i) => Math.min(i + 1, stepCount - 1));
+  }, [stepCount]);
 
   const goBack = useCallback(() => {
     setCurrentStepIndex((i) => Math.max(i - 1, 0));
@@ -131,7 +131,10 @@ export default function WrittenCalculator() {
       className={`${sourceSans.className} ${styles.calculator}`}
     >
       <div className={styles.container}>
-        <div className={styles.stepper} aria-label="Кроки калькулятора">
+        <div
+          className={styles.stepper}
+          aria-label={calculatorCopy.stepperAriaLabel}
+        >
           <div className={styles.stepperLabels}>
             {stepsMeta.map((step, idx) => (
               <div
@@ -179,6 +182,7 @@ export default function WrittenCalculator() {
 
         {currentStepIndex === 0 && (
           <Step1
+            copy={calculatorCopy}
             fromLang={fromLang}
             setFromLang={setFromLang}
             toLang={toLang}
@@ -194,10 +198,15 @@ export default function WrittenCalculator() {
           />
         )}
         {currentStepIndex === 1 && (
-          <Step2 needsEditing={needsEditing} setNeedsEditing={setNeedsEditing} />
+          <Step2
+            copy={calculatorCopy}
+            needsEditing={needsEditing}
+            setNeedsEditing={setNeedsEditing}
+          />
         )}
         {currentStepIndex === 2 && (
           <Step3
+            copy={calculatorCopy}
             files={files}
             setFiles={setFiles}
             addFormatting={addFormatting}
@@ -205,10 +214,15 @@ export default function WrittenCalculator() {
           />
         )}
         {currentStepIndex === 3 && (
-          <Step4 deliveryTime={deliveryTime} setDeliveryTime={setDeliveryTime} />
+          <Step4
+            copy={calculatorCopy}
+            deliveryTime={deliveryTime}
+            setDeliveryTime={setDeliveryTime}
+          />
         )}
         {currentStepIndex === 4 && (
           <Step5
+            copy={calculatorCopy}
             firstName={firstName}
             setFirstName={setFirstName}
             lastName={lastName}
@@ -229,7 +243,7 @@ export default function WrittenCalculator() {
               className={styles.prevButton}
               onClick={goBack}
             >
-              Попередня сторінка
+              {calculatorCopy.nav.prev}
             </button>
             {currentStepIndex < stepsMeta.length - 1 ? (
               <button
@@ -241,7 +255,7 @@ export default function WrittenCalculator() {
                   goNext();
                 }}
               >
-                Наступна сторінка
+                {calculatorCopy.nav.next}
               </button>
             ) : (
               <button
@@ -253,7 +267,7 @@ export default function WrittenCalculator() {
                   // TODO: submit / request quote
                 }}
               >
-                Запит цінової пропозиції
+                {calculatorCopy.nav.quote}
               </button>
             )}
           </div>

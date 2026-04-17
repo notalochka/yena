@@ -1,12 +1,15 @@
 import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import ContactSection from "@/components/ContactSection";
 import InterpretingCalculator from "@/components/calculators/interpreting";
-import TopicsAccordion, {
-  interpretingAccordionItems,
-} from "@/components/TopicsAccordion";
+import TopicsAccordion from "@/components/TopicsAccordion";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { Seo } from "@/components/Seo";
 import { usePageReveal } from "@/hooks/usePageReveal";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { interpretingCopyByLang } from "@/i18n/interpreting";
+import { interpretingAccordionItemsByLang } from "@/i18n/interpretingAccordion";
+import { getSeo } from "@/i18n/seoPages";
 import revealStyles from "@/styles/pageReveal.module.css";
 import { Source_Sans_3 } from "next/font/google";
 import styles from "./interpreting.module.css";
@@ -18,9 +21,13 @@ const sourceSans = Source_Sans_3({
 
 export default function InterpretingPage() {
   usePageReveal();
+  const { language } = useLanguage();
+  const seo = getSeo("interpreting", language);
+  const copy = interpretingCopyByLang[language];
 
   return (
     <div className={`${revealStyles.pageReveal} ${styles.page}`}>
+      <Seo title={seo.title} description={seo.description} path={seo.path} />
       <Header />
 
       <section className={styles.heroSection}>
@@ -32,7 +39,7 @@ export default function InterpretingPage() {
             <div className={styles.heroImageCol}>
               <ImageWithPlaceholder
                 src="/verbal.jpg"
-                alt="Ілюстрація: конференц-переклад"
+                alt={copy.heroImageAlt}
                 width={650}
                 height={430}
                 className={styles.heroImage}
@@ -43,28 +50,24 @@ export default function InterpretingPage() {
                   className={`${styles.heroButton} ${styles.heroButtonPrimary}`}
                   href="#"
                 >
-                  Замовити переклад
+                  {copy.ctaOrder}
                 </a>
                 <a
                   className={`${styles.heroButton} ${styles.heroButtonSecondary}`}
                   href="#"
                 >
-                  Дізнатися більше
+                  {copy.ctaMore}
                 </a>
               </div>
             </div>
 
             <div className={styles.heroContent}>
-              <h1 className={styles.heroTitle}>Усний переклад</h1>
-              <p className={styles.heroDescription}>
-              Моєю головною спеціалізацією є усне міжмовне посередництво, переклад, а ще точніше – конференц-переклад. Переважно я перекладаю з моєї пасивної (англійської) на мої активні мови (українську або російську). З німецької мови я перекладаю на українську або російську і навпаки.
-              </p>
-              <p className={styles.heroDescription}>
-              Проте дедалі більше моєю активною мовою стає не тільки німецька, але також і англійська, тому вже кілька років я перекладаю з української на англійську. Я пропоную професійні послуги з перекладу як кваліфікований перекладач.
-              </p>
-              <p className={styles.heroDescription}>
-              Я набула освіти конференц-перекладача в найкращих школах перекладу України та Німеччини. Крім того, я вчилась у Великобританії, країні однієї з провідних моїх робочих мов.
-              </p>
+              <h1 className={styles.heroTitle}>{copy.heroTitle}</h1>
+              {copy.heroParagraphs.map((text, index) => (
+                <p key={`hero-${index}`} className={styles.heroDescription}>
+                  {text}
+                </p>
+              ))}
             </div>
           </div>
         </div>
@@ -75,9 +78,9 @@ export default function InterpretingPage() {
         className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
       >
         <TopicsAccordion
-          items={interpretingAccordionItems}
+          items={interpretingAccordionItemsByLang[language]}
           variant="orange"
-          aria-label="Послуги усного перекладу"
+          aria-label={copy.accordionAriaLabel}
           idPrefix="interpreting-accordion"
         />
       </div>
@@ -87,7 +90,7 @@ export default function InterpretingPage() {
         className={`${styles.labelSection} ${revealStyles.reveal}`}
       >
         <div className={`${sourceSans.className} ${styles.labelContainer}`}>
-          <h2 className={styles.labelTitle}>Калькулятор ціни</h2>
+          <h2 className={styles.labelTitle}>{copy.priceCalculatorTitle}</h2>
         </div>
       </section>
 

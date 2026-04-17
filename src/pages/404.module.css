@@ -1,0 +1,51 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.card {
+  max-width: 28rem;
+  text-align: center;
+}
+
+.code {
+  margin: 0 0 0.5rem;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #c95118;
+}
+
+.title {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.description {
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  background: #c95118;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.button:hover {
+  filter: brightness(1.05);
+}

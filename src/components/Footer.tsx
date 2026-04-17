@@ -1,4 +1,6 @@
 import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { layoutCopyByLang } from "@/i18n/layout";
 import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
 import styles from "./Footer.module.css";
 
@@ -12,14 +14,10 @@ const plusJakarta = Plus_Jakarta_Sans({
   weight: ["400", "600"],
 });
 
-const services = [
-  "Усний переклад",
-  "Віддалений синхронний переклад у воєнний час",
-  "Переклад офіційних документів",
-  "Письмовий переклад",
-];
-
 export default function Footer() {
+  const { language } = useLanguage();
+  const copy = layoutCopyByLang[language].footer;
+
   return (
     <footer className={`${sourceSans.className} ${styles.footer}`}>
       <div className={styles.container}>
@@ -33,33 +31,33 @@ export default function Footer() {
               className={styles.logo}
               style={{ width: "auto", height: "auto" }}
             />
-            <p className={styles.brandText}>Бюро перекладів Yena Translations</p>
+            <p className={styles.brandText}>{copy.brandLine}</p>
           </div>
 
           <div className={styles.linksColumn}>
-            <h3 className={styles.columnTitle}>Послуги</h3>
+            <h3 className={styles.columnTitle}>{copy.servicesTitle}</h3>
             <ul className={styles.servicesList}>
-              {services.map((item) => (
+              {copy.services.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
 
           <div className={styles.contactsColumn}>
-            <h3 className={styles.columnTitle}>Контакти</h3>
-            <p>Yena Translations</p>
-            <p>Власник Наталія Єна</p>
-            <p>Дармштадтер Ландштрассе 199</p>
-            <p>60598 Франкфурт-на-Майні</p>
-            <p>Німеччина</p>
-            <a href="mailto:contact@yena.de">contact@yena.de</a>
+            <h3 className={styles.columnTitle}>{copy.contactsTitle}</h3>
+            <p>{copy.contacts.company}</p>
+            <p>{copy.contacts.ownerLine}</p>
+            <p>{copy.contacts.addressLine1}</p>
+            <p>{copy.contacts.addressLine2}</p>
+            <p>{copy.contacts.country}</p>
+            <a href={`mailto:${copy.contacts.email}`}>{copy.contacts.email}</a>
           </div>
         </div>
 
         <div className={styles.bottom}>
           <p className={plusJakarta.className}>
-            ©2026 <span className={styles.bottomBrandLight}>Yena Translations</span>. All
-            rights reserved
+            ©2026 <span className={styles.bottomBrandLight}>Yena Translations</span>.{" "}
+            {copy.rightsReserved}
           </p>
         </div>
       </div>

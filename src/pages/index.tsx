@@ -3,10 +3,16 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import Image from "next/image";
+import Link from "next/link";
 import { Source_Sans_3 } from "next/font/google";
 import { usePageReveal } from "@/hooks/usePageReveal";
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import revealStyles from "@/styles/pageReveal.module.css";
+import { Seo } from "@/components/Seo";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { homeCopyByLang } from "@/i18n/home";
+import { getSeo } from "@/i18n/seoPages";
+import { homePageSectionsByLang, renderFaqAnswer } from "@/i18n/homePageContent";
 import styles from "./index.module.css";
 
 const sourceSans = Source_Sans_3({
@@ -14,282 +20,21 @@ const sourceSans = Source_Sans_3({
   weight: ["400", "500", "600", "800"],
 });
 
-const serviceCards = [
-  {
-    title: "Усний переклад",
-    description:
-      "Я надаю професійні послуги усного перекладу з фокусом на конференц-перекладі, багатомовних заходах та офіційних контекстах. Я працюю з англійської на українську або російську, з німецької на українську або російську і навпаки у різних форматах – синхронному, послідовному, віддаленому та переговорному. До усного перекладу я залюбки долучаю досвідчених і перевірених колег, з декотрими я знайома більше 30 років.",
-    extraDescription:
-      "Маю спеціалізовану освіту конференц-перекладача, багаторічний практичний досвід та міжнародну підготовку в країнах моїх робочих мов. Супроводжую заходи повністю: від консультацій щодо формату перекладу, формування команди та підбору технічних рішень — до координації роботи перекладачів під час події.",
-    image: "/main_photo3.png",
-    imageAlt: "Усний переклад",
-    colorClass: "serviceCardOrange",
-    accentClass: "serviceAccentOrange",
-    href: "/interpreting",
-  },
-  {
-    title: "Письмовий переклад",
-    description:
-      "Я і моя команда кваліфікованих перекладачів надаємо професійні послуги письмового перекладу спеціалізованих, юридичних, технічних, медичних та художніх текстів. Ми працюємо з документацією для промисловості, ІТ, договорами, фаховими та науково-популярними виданнями, рекламою та контентом для веб-сайтів. Локалізація веб-сайтів виконується досвідченими фахівцями, які добре знайомі з різними системами управління контенту та мають практичні навички у цій сфері.",
-    extraDescription:
-      "На бажання замовника, ми можемо не використовувати машинний переклад. У такому випадку переклад виконується виключно людськими ресурсами. Однак, йдучи в ногу з технікою, ми пропонуємо редагування машинного перекладу як окремий вид послуг.",
-    image: "/main_photo4.png",
-    imageAlt: "Письмовий переклад",
-    colorClass: "serviceCardBlue",
-    accentClass: "serviceAccentBlue",
-    href: "/written-translation",
-  },
-  {
-    title: "Переклад офіційних документів",
-    description:
-      "Я є присяжним перекладачем української та російської мов, а також уповноваженою на виконання засвідчених перекладів з англійської та на англійську мову на підставі британського диплому з перекладу для державних і муніципальних служб. Я маю право посвідчувати точність та повноту перекладу.",
-    extraDescription:
-    <>
-    Засвідчені мною як присяжним перекладачам переклади 
-    визнаються державними установами Німеччині та у інших країнах. 
-    У певних випадках засвідчений переклад може потребувати подальшої 
-    легалізації, наприклад, через одержання апостилю на нього. 
-    Більше про цей вид перекладу ви можете дізнатись на окремому порталі 
-    мого бюро перекладів, який називається Силабот,{" "}
-      <a className={styles.servicesLink} target="_blank" href="https://silabot.de/uk/homepage/">
-      перейти за посиланням
-      </a>
-    </>,
-    image: "/main_photo5.png",
-    imageAlt: "Переклад офіційних документів",
-    colorClass: "serviceCardOlive",
-    accentClass: "serviceAccentOlive",
-    href: "/official-documents",
-  },
-  
-];
-
-type ProcessStep = {
-  number: string;
-  title: string;
-  text: string;
-};
-
-type ProcessFlow = {
-  label: string;
-  steps: ProcessStep[];
-};
-
-const processFlows: ProcessFlow[] = [
-  {
-    label: "Усно",
-    steps: [
-      {
-        number: "1",
-        title: "Залишаєте\nзаявку",
-        text: "Заявку на усний переклад залишаєте на нашому сайті. В онлайн-формі, яку ви заповнюєте, надаєте інформацію про захід, а саме дату та місце проведення, кількість мов, графік, тип перекладу, потребу у техніці та її тип. Окремо узгоджуємо питання запису та подальшого використання перекладу.",
-      },
-      {
-        number: "2",
-        title: "Проводимо\nаналіз заявки",
-        text: "Наш діловод одержує інформацію з форми запиту, аналізує її та готує кошторис. Кошторис може буде наданим як на сам усний переклад, так включати техніку і переклад письмових матеріалів.",
-      },
-      {
-        number: "3",
-        title: "Підбираємо\nкоманду і техніку",
-        text: "Після прийняття кошторису підбираємо команду перекладачів і техніку. Перекладачі можуть працювати удвох або утрьох, в залежності від тривалості і термінологічної насиченості заходу. Техніка може бути стаціонарною або пересувною, в залежності від перебігу програми.",
-      },
-      {
-        number: "4",
-        title: "Надаєте\nпідготовчі матеріали",
-        text: "Для успіху заходу необхідно надати підготовчі матеріали. Кожен професійний синхроніст ретельно готується до роботи. Для цього треба заздалегідь не тільки надати програму, презентації, відео- та аудіо-матеріали, які будуть використані під час конференції, а також наявні глосарії і загальні ознайомчі матеріали на тему конференції.",
-      },
-      {
-        number: "5",
-        title: "Швидкість\nмовлення",
-        text: "В задачі організатора входить інформування учасників про те, що буде вестись синхронний (або послідовний) переклад. Усі виступаючі мають знати, що швидкість мовлення під час виступу має приблизно складати 100 слів за хвилину, або 1 сторінка формату А4 за приблизно 3 хвилини. Ця швидкість найближче відповідає природньому ритму усного мовлення і дає можливість забезпечити якісний переклад на цільову мову з збереженням власних назв, правильним відтворенням цифр, порівнянь, метафор та інших фігур мови.",
-      },
-      {
-        number: "6",
-        title: "Трансляція,\nабо запис перекладу",
-        text: "Сучасний світ характеризується множинними типами багатомовної комунікації, а саме аналоговими, цифровими та гібридними. Синхронний переклад призначений для встановлення комунікативного зв’язку тут і зараз. Це – його основне призначення. Додаткові види комунікації на бажання замовника узгоджуються заздалегідь, наприклад, аудіо- чи відео-запис перекладу, стрімінг, трансляція на телебаченні, використання для документування або у якості навчальних матеріалів, у рекламі, іміджевих фільмах, тощо.",
-      },
-      {
-        number: "7",
-        title: "Реалізуємо\nбагатомовну комунікацію на заході",
-        text: "Наша ціль – забезпечити бездоганну комунікативну взаємодію учасників заходу. Усі підготовчі кроки зводяться до кульмінації – власне самого надання синхронного перекладу. Ми працюємо з повною викладкою, на базі солідної підготовки кожного перекладача завдяки наданим матеріалам замовника та виступаючих.",
-      },
-      {
-        number: "8",
-        title: "Одержуємо\nзворотній зв’язок",
-        text: "За вашим бажанням ви нам надаєте зворотній зв’язок, за який ми наперед вам дуже вдячні. Тому що таким чином ми можемо найкраще рости і покращувати нашу роботу для вас. Зворотній зв’язок для нас дуже цінний.",
-      },
-    ],
-  },
-  {
-    label: "Письмово",
-    steps: [
-      {
-        number: "1",
-        title: "Залишаєте\nзаявку",
-        text: "Заявку на письмовий переклад ви залишаєте через наш сайт. В онлайн-формі, яку ви заповнюєте, надаєте висхідний текст та інформацію про призначення перекладу і строки виконання. У декотріх випадках можна замовити терміновий переклад. У решті випадків строк виконання встановлюється як стандартний, переклад виконується по мірі виконання прийнятих замовлень у свою чергу.",
-      },
-      {
-        number: "2",
-        title: "Проводимо\nаналіз тексту",
-        text: "Наш діловод одержує інформацію з форми запиту, аналізує складність тексту і на підставі параметрів складності, обсягу та строків готує кошторис.",
-      },
-      {
-        number: "3",
-        title: "Починаємо\nпереклад",
-        text: "Кошторис, який ви одержуєте, містить основні параметри виконання замовлення. Після ознайомлення ви його або приймаєте, або ні. У разі прийняття кошторису, ви нас про це повідомляєте. Після цього ми починаємо виконання перекладу.",
-      },
-      {
-        number: "4",
-        title: "Редагуємо\nта корегуємо",
-        text: "Цей пункт особливо стосується складних фахових технічних, медичних та галузевих текстів. У подібних випадках ми можемо залучати досвідченого редактора даної сфери спеціалізації у цільовій мові. Звісно, це дорожче та коштує більше часу – але ми робимо наголос на якості перекладу, тому після узгодження з вами ми зазвичай включаємо цю позицію у обсяг робіт.",
-      },
-      {
-        number: "5",
-        title: "Верстаємо і\nготуємо до видачі",
-        text: "Верстка перекладу відбувається і є необхідною для висхідних текстів, які не були надані у відкритому форматі. Зазвичай виконується верстальником і оплачується як окремий вид робіт. Переклади, які потребують засвідчення та легалізації, виконуємо через наш портал Силабот.",
-      },
-      {
-        number: "6",
-        title: "Отримуєте\nпереклад",
-        text: "Готовий переклад надаємо як у електронному вигляді, за бажанням з або без цифрового підпису, так і у аналогову вигляді з власноручним підписом присяжного перекладача та відбитком печатки. Останній надсилаємо поштою. Засвідчені та легалізовані переклади надаємо через Силабот.",
-      },
-    ],
-  },
-  {
-    label: "ТБ",
-    steps: [
-      {
-        number: "1",
-        title: "Залишаєте\nзаявку",
-        text: "У заявці, яку ви залишаєте у нас на сайті, вказуєте, коли і де відбувається переклад. Додаєте тему і тривалість заходу. Окрім того, нам треба знати, чи перекладач працює в студії замовника, чи віддалено, наприклад, з свого офісу чи перекладацького хабу.",
-      },
-      {
-        number: "2",
-        title: "Проводимо\nаналіз заходу",
-        text: "Аналізуємо надану інформацію і узгоджуємо логістику. Після аналізу запиту надаємо кошторис.",
-      },
-      {
-        number: "3",
-        title: "Здійснюємо\nпереклад",
-        text: "Перекладач або виїздить в студію до замовника, або готується перекладати зі свого офісу. Проводиться тестування зв’язку та звуку. В зазначений час здійснюється синхронний переклад заходу на телебаченні. Переклад може бути наданим або у прямому ефірі, або під запис з наступним редагуванням.",
-      },
-      {
-        number: "4",
-        title: "Одержуємо\nзворотній зв’язок",
-        text: "Ми завжди вдячні за зворотній зв’язок. Так ми ростимо!",
-      },
-    ],
-  },
-  {
-    label: "Voice-Over",
-    steps: [
-      {
-        number: "1",
-        title: "Залишаєте\nзаявку",
-        text: "У заявці, яку ви залишаєте у нас на сайті, вказуєте, коли і де відбувається переклад. Додаєте тему і тривалість перекладу.",
-      },
-      {
-        number: "2",
-        title: "Проводимо\nаналіз заходу",
-        text: "Аналізуємо надану інформацію і узгоджуємо логістику. Після аналізу запиту надаємо кошторис.",
-      },
-      {
-        number: "3",
-        title: "Робота\nв студії",
-        text: "Перекладач виїздить в студію замовника. Проводиться тестування зв’язку та звуку. В зазначений час здійснюється або синхронний переклад наживо в студії, або переклад під запис з наступним редагуванням до виходу в ефір.",
-      },
-      {
-        number: "4",
-        title: "Одержуємо\nзворотній зв’язок",
-        text: "Ми завжди вдячні за зворотній зв’язок. Так ми ростимо!",
-      },
-    ],
-  },
-  {
-    label: "Schriftdolmetschen",
-    steps: [
-      {
-        number: "1",
-        title: "Залишаєте\nзаявку",
-        text: "У заявці, яку ви залишаєте у нас на сайті, вказуєте, коли і де відбувається відтворення усного мовлення у письмовій формі з його одночасним перекладом на цільову мову. Додаєте тему і тривалість заходу. Вказуєте кількість задіяних перекладачів.",
-      },
-      {
-        number: "2",
-        title: "Проводимо\nаналіз заходу",
-        text: "Аналізуємо надану інформацію і узгоджуємо логістику. Після аналізу запиту надаємо кошторис.",
-      },
-      {
-        number: "3",
-        title:
-          "Здійснюємо\nпереклад",
-        text: "Перекладач виїздить на захід замовника. Проводиться тестування зв’язку та звуку. В зазначений час здійснюється перенесення усного виступу у письмову форму з одночасним перекладом на цільову мову. Цей вид перекладу потрібен у випадках, коли серед учасників заходу є люди з обмеженими можливостями, наприклад, слуху. Для них здійснюється перенесення у текстову форму з одночасним перекладом на цільову мову і навпаки, щоб вони в режимі реального часу могли б слідкувати за перебігом заходу.",
-      },
-      {
-        number: "4",
-        title: "Одержуємо\nзворотній зв’язок",
-        text: "Ми завжди вдячні за зворотній зв’язок. Так ми ростимо!",
-      },
-    ],
-  },
-];
-
-const benefitsItems = [
-  { image: "/translate1.svg", alt: "Кваліфіковані перекладачі", text: "Кваліфіковані перекладачі", extraText: "Мої понад 35 років професійного досвіду у перекладі дозволяють мені набрати найбільш кваліфікованих і талановитих перекладачів робочих мов мого бюро перекладу. Якість перекладу – для нас це є основний важіль нашої праці. " },
-  { image: "/translate2.svg", alt: "Судовий присяжний перекладач", text: "Судовий присяжний перекладач", extraText: "Я працюю у сфері судового перекладу з початку двохтисячних років. Через мій портал Силабот, моє бюро перекладів надає послуги у сфері присяжного перекладу. Присяжний переклад найчастіше використовується для офіційних документів, переклад яких потребує засвідчення, а інколи ще і легалізації, наприклад, у формі одержання апостилю на переклад." },
-  { image: "/translate3.svg", alt: "Конфіденційність", text: "Конфіденційність", extraText: "Дотримання конфіденційності у перекладі є таким же важливим фундаментальним чинником як дотримання таємниці банками, поштою, лікарями та адвокатами. Тут перекладачі успішно конкурують з машинним перекладом, і виграють. Машинний переклад не лише часто містить приховані помилки, він також зберігається на серверах, які контролюють інші. Він не може по своїй природі гарантувати захист персональної інформації як це може зробити людина. Окрім того, не забуваймо про авторське право, яке є і у машинного перекладу. " },
-  { image: "/translate4.svg", alt: "Дотримання термінів", text: "Дотримання термінів", extraText: "Поряд з якістю перекладеного тексту, другим вагомим фактором нашої роботи є неухильне дотримання строків виконання перекладу. Ми прагнемо надати бездоганно виконаний переклад не лише вчасно, а інколи навіть до узгодженого строку виконання перекладу." },
-];
-
-const faqItems: { question: string; answer: ReactNode }[] = [
-  {
-    question: "Скільки часу займає переклад?",
-    answer:
-      "У середньому перекладач виконує приблизно 3 сторінки тексту середньої складності за день. Одна сторінка тексту має 30 рядків, це приблизно 1.500 знаків з пробілами. Звісно що, редагування та корегування тексту виконується у додатковий час. Великі за обсягом тексти рекомендуємо виконувати одним перекладачем. Для подібних текстів на бажання замовника можемо укладати спеціалізовані глосарії. У певних випадках можемо запропонувати термінове виконання перекладу, однак це потребує окремого узгодження і залежить від складності, читабельності та обсягу висхідного тексту.",
-  },
-  {
-    question: "Які документи ви приймаєте?",
-    answer:
-      "Ми приймаємо тексти у відкритому форматі. Зазвичай це формат Word. Тексти, які надаються у PDF, або інших форматах, потребують узгодження з нами. Розпізнавання та форматування тексту вважаються окремою послугою і виконуються зазвичай верстальником.",
-  },
-  {
-    question: "Чи можливий терміновий переклад?",
-    answer:
-      "Так, за певних умов ми можемо запропонувати термінове виконання перекладу. Як зазначено вище, умови термінового перекладу залежать від складності, обсягу, термінологічної насиченості та інших параметрів.",
-  },
-  {
-    question: "З якими мовами працюємо?",
-    answer:
-      "Наші основні мови – німецька, українська та англійська. Однак, ми можемо запропонувати і інші мови по запиту.",
-  },
-  {
-    question: "У якому форматі я отримаю готовий переклад?",
-    answer: (
-      <>
-        Формат перекладу визначається замовленням. Ми можемо надавати як відкритий формат, це зазвичай Word, так і захищені формати, як то PDF та інші. Засвідчений переклад, який ми надаємо через наш портал Силабот,{" "}
-        <a className={styles.faqAnswerLink} target="_blank" href="https://silabot.de/uk/homepage/">
-          перейти за посиланням
-        </a>
-        , надається як у аналоговому форматі (роздруковані з підписом та печаткою присяжного перекладача), так і у цифровому форматі, а саме з кваліфікованим цифровим підписом.
-      </>
-    ),
-  },
-  {
-    question: "Чи зберігаються мої дані після виконання замовлення?",
-    answer:
-      "Так, виконаний переклад ми зазвичай зберігаємо протягом 10 років. Після цього переклад як правило видаляється. Професійна архівація перекладів здійснюється нами на сервері, розташованому у Німеччині з дотриманням вимог захисту даних.",
-  },
-];
-
 export default function Home() {
   const [activeTabIndex, setActiveTabIndex] = useState(1);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const heroReveal = usePageReveal();
+  const { language } = useLanguage();
+  const seo = getSeo("home", language);
+  const copy = homeCopyByLang[language];
+  const sections = homePageSectionsByLang[language];
 
-  const activeFlow = processFlows[activeTabIndex] ?? processFlows[0];
+  const activeFlow =
+    sections.processFlows[activeTabIndex] ?? sections.processFlows[0];
 
   return (
     <div className={`${revealStyles.pageReveal} ${styles.page}`}>
+      <Seo title={seo.title} description={seo.description} path={seo.path} />
       <Header />
 
       <section
@@ -300,30 +45,30 @@ export default function Home() {
         <div className={styles.heroContainer}>
           <div className={`${sourceSans.className} ${styles.heroContent}`}>
             <h1 className={styles.heroTitle}>
-              Ласкаво просимо до бюро перекладів Yena&nbsp;Translations!
+              {copy.heroTitle}
             </h1>
 
             <div className={styles.heroBody}>
               <p className={styles.heroDescription}>
-              Переклади на німецьку, англійську, українську та інші мови
+                {copy.heroLine1}
               </p>
               <p className={styles.heroDescription}>
-              Якщо вам потрібні рішення з міжмовної комунікації, то вам саме до нас! 
+                {copy.heroLine2}
               </p>
 
               <div className={styles.heroActions}>
-                <a
+                <Link
                   className={`${styles.heroButton} ${styles.heroButtonPrimary}`}
                   href="/services"
                 >
-                  Замовити переклад
-                </a>
-                <a
+                  {copy.ctaOrder}
+                </Link>
+                <Link
                   className={`${styles.heroButton} ${styles.heroButtonSecondary}`}
-                  href="#about-preview"
+                  href="/#about-preview"
                 >
-                  Дізнатися більше
-                </a>
+                  {copy.ctaMore}
+                </Link>
               </div>
             </div>
           </div>
@@ -359,15 +104,15 @@ export default function Home() {
 
           <div className={`${sourceSans.className} ${styles.aboutPreviewContent}`}>
             <p className={styles.aboutPreviewText}>
-            Ваш міжмовний експерт для німецької, англійської, української та інших мов в регіоні Рейн-Майн!
+              {copy.aboutPreviewLine1}
             </p>
             <p className={styles.aboutPreviewText}>
-            Якщо вам потрібні рішення з міжмовної комунікації, то ви звернулися за правильною адресою, надто коли йдеться про наші основні мови: німецьку, українську та англійську.
+              {copy.aboutPreviewLine2}
             </p>
 
-            <a className={styles.aboutPreviewButton} href="/about">
-              Про нас
-            </a>
+            <Link className={styles.aboutPreviewButton} href="/about">
+              {copy.aboutButton}
+            </Link>
           </div>
         </div>
       </section>
@@ -379,21 +124,21 @@ export default function Home() {
         <div className={styles.statsContainer}>
           <article className={styles.statsItem}>
             <p className={styles.statsNumber}>10+</p>
-            <p className={styles.statsLabel}>штатних та позаштатних співробітників</p>
+            <p className={styles.statsLabel}>{copy.stats.staff}</p>
           </article>
 
           <article className={styles.statsItem}>
             <p className={styles.statsNumber}>20+</p>
-            <p className={styles.statsLabel}>ПЕРЕКЛАДІВ щотижня </p>
+            <p className={styles.statsLabel}>{copy.stats.weekly}</p>
           </article>
 
           <article className={styles.statsItem}>
             <p className={styles.statsNumber}>150+</p>
-            <p className={styles.statsLabel}>задоволених клієнтів з 1991 року</p>
+            <p className={styles.statsLabel}>{copy.stats.clients}</p>
           </article>
           <article className={styles.statsItem}>
             <p className={styles.statsNumber}>35+</p>
-            <p className={styles.statsLabel}>років на ринку</p>
+            <p className={styles.statsLabel}>{copy.stats.years}</p>
           </article>
         </div>
       </section>
@@ -403,20 +148,15 @@ export default function Home() {
         className={`${sourceSans.className} ${styles.servicesSection} ${revealStyles.reveal}`}
       >
         <div className={styles.servicesContainer}>
-          <h2 className={styles.servicesTitle}>Послуги</h2>
+          <h2 className={styles.servicesTitle}>{copy.servicesTitle}</h2>
           <p className={styles.servicesLead}>
-          Мене звати Наталія Єна, я власник бюро перекладів і 
-          сама кваліфікований професійний перекладач. Як досвідчений старший 
-          перекладач я надаю консультації з конференц-перекладу, організовую 
-          команди перекладачів, консультую з питань проведення конференцій та 
-          підбираю технічні засоби для перекладу. Крім того, я є судовим 
-          присяжним перекладачем. 
+            {copy.servicesLead}
           </p>
 
           <div className={styles.servicesGrid}>
-            {serviceCards.map((service) => (
+            {sections.serviceCards.map((service) => (
               <article
-                key={service.title}
+                key={service.href}
                 className={styles.serviceCard}
               >
                 <div className={styles.serviceCardInner}>
@@ -452,23 +192,38 @@ export default function Home() {
                     <p
                       className={`${styles.serviceCardBackText} ${styles[service.accentClass]}`}
                     >
-                      {service.extraDescription}
+                      {typeof service.extraDescription === "string" ? (
+                        service.extraDescription
+                      ) : (
+                        <>
+                          {service.extraDescription.before}{" "}
+                          <a
+                            className={styles.servicesLink}
+                            target="_blank"
+                            href={service.extraDescription.href}
+                            rel="noreferrer"
+                          >
+                            {service.extraDescription.linkLabel}
+                          </a>
+                          {service.extraDescription.after}
+                        </>
+                      )}
                     </p>
-                    <a
+                    <Link
                       className={`${styles.serviceCardBackButton} ${styles[service.accentClass]}`}
                       href={service.href}
                     >
-                      Дізнатися більше
-                    </a>
+                      {sections.learnMore}
+                    </Link>
                   </div>
                 </div>
               </article>
             ))}
           </div>
 
-          <a className={styles.servicesCta} href="/services">
-            Переглянути всі послуги
-          </a>
+          <Link className={styles.servicesCta} href="/services">
+            {sections.servicesCta}
+          </Link>
         </div>
       </section>
 
@@ -477,16 +232,20 @@ export default function Home() {
         className={`${sourceSans.className} ${styles.processSection} ${revealStyles.reveal}`}
       >
         <div className={styles.processContainer}>
-          <h2 className={styles.processTitle}>Як це працює?</h2>
+          <h2 className={styles.processTitle}>{sections.processTitle}</h2>
 
-          <div className={styles.processTabs} role="tablist" aria-label="Тип перекладу">
+          <div
+            className={styles.processTabs}
+            role="tablist"
+            aria-label={sections.processTabsAriaLabel}
+          >
             <span
               aria-hidden="true"
               className={styles.processTabSlider}
               style={{ transform: `translateX(${activeTabIndex * 100}%)` }}
             />
 
-            {processFlows.map((tab, index) => (
+            {sections.processFlows.map((tab, index) => (
               <button
                 key={tab.label}
                 type="button"
@@ -519,8 +278,8 @@ export default function Home() {
         className={`${sourceSans.className} ${styles.benefitsSection} ${revealStyles.reveal}`}
       >
         <div className={styles.benefitsContainer}>
-          {benefitsItems.map((item) => (
-            <article key={item.text} className={styles.benefitCard}>
+          {sections.benefitsItems.map((item) => (
+            <article key={item.image} className={styles.benefitCard}>
               <Image
                 src={item.image}
                 alt={item.alt}
@@ -540,10 +299,10 @@ export default function Home() {
         className={`${sourceSans.className} ${styles.faqSection} ${revealStyles.reveal}`}
       >
         <div className={styles.faqContainer}>
-          <h2 className={styles.faqTitle}>Відповіді на часті запитання</h2>
+          <h2 className={styles.faqTitle}>{sections.faqTitle}</h2>
 
           <div className={styles.faqList}>
-            {faqItems.map((item, index) => {
+            {sections.faqItems.map((item, index) => {
               const isOpen = openFaqIndex === index;
               const panelId = `faq-answer-${index}`;
 
@@ -564,7 +323,7 @@ export default function Home() {
 
                   {isOpen && (
                     <div id={panelId} className={styles.faqAnswer}>
-                      {item.answer}
+                      {renderFaqAnswer(item.answer, styles.faqAnswerLink)}
                     </div>
                   )}
                 </article>

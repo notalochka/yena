@@ -1,6 +1,8 @@
+import type { WrittenCalculatorCopy } from "@/i18n/writtenTranslationCalculator";
 import styles from "../WrittenCalculator.module.css";
 
 export type WrittenStep1Props = {
+  copy: WrittenCalculatorCopy;
   fromLang: string;
   setFromLang: (v: string) => void;
   toLang: string;
@@ -16,6 +18,7 @@ export type WrittenStep1Props = {
 };
 
 export default function Step1({
+  copy,
   fromLang,
   setFromLang,
   toLang,
@@ -29,14 +32,16 @@ export default function Step1({
   canGoNext,
   onNext,
 }: WrittenStep1Props) {
+  const s = copy.step1;
+  const L = s.languages;
   return (
     <>
-      <h3 className={styles.sectionTitle}>Мова</h3>
+      <h3 className={styles.sectionTitle}>{s.sectionLanguage}</h3>
       <div className={styles.card}>
         <div className={styles.grid2}>
           <div className={styles.row}>
             <label className={styles.fieldLabel} htmlFor="calc-from-lang">
-              Перекласти з
+              {s.fromLabel}
             </label>
             <select
               id="calc-from-lang"
@@ -50,25 +55,25 @@ export default function Step1({
               }}
             >
               <option value="" disabled hidden>
-                Оберіть мову
+                {s.chooseLanguage}
               </option>
               <option value="uk" disabled={toLang === "uk"}>
-                Українська
+                {L.uk}
               </option>
               <option value="de" disabled={toLang === "de"}>
-                Німецька
+                {L.de}
               </option>
               <option value="en" disabled={toLang === "en"}>
-                Англійська
+                {L.en}
               </option>
               <option value="ru" disabled={toLang === "ru"}>
-                Російська
+                {L.ru}
               </option>
             </select>
           </div>
           <div className={styles.row}>
             <label className={styles.fieldLabel} htmlFor="calc-to-lang">
-              Перекласти на
+              {s.toLabel}
             </label>
             <select
               id="calc-to-lang"
@@ -82,30 +87,30 @@ export default function Step1({
               }}
             >
               <option value="" disabled hidden>
-                Оберіть мову
+                {s.chooseLanguage}
               </option>
               <option value="uk" disabled={fromLang === "uk"}>
-                Українська
+                {L.uk}
               </option>
               <option value="de" disabled={fromLang === "de"}>
-                Німецька
+                {L.de}
               </option>
               <option value="en" disabled={fromLang === "en"}>
-                Англійська
+                {L.en}
               </option>
               <option value="ru" disabled={fromLang === "ru"}>
-                Російська
+                {L.ru}
               </option>
             </select>
           </div>
         </div>
       </div>
 
-      <h3 className={styles.sectionTitle}>Об’єм</h3>
+      <h3 className={styles.sectionTitle}>{s.sectionVolume}</h3>
       <div className={styles.card}>
         <div className={styles.row}>
           <label className={styles.fieldLabel} htmlFor="calc-written-complexity">
-            Рівень складності тексту
+            {s.complexityLabel}
           </label>
           <select
             id="calc-written-complexity"
@@ -115,19 +120,23 @@ export default function Step1({
             onChange={(e) => setComplexity(e.target.value)}
           >
             <option value="" disabled hidden>
-              Оберіть складність
+              {s.complexityPlaceholder}
             </option>
-            <option value="general">Загальна тематика</option>
-            <option value="business">Бізнес / переговори</option>
-            <option value="technical">Технічна тематика</option>
-            <option value="medical">Медична тематика</option>
-            <option value="legal">Юридична тематика</option>
+            <option value="general">{s.complexityOptions.general}</option>
+            <option value="business">{s.complexityOptions.business}</option>
+            <option value="technical">{s.complexityOptions.technical}</option>
+            <option value="medical">{s.complexityOptions.medical}</option>
+            <option value="legal">{s.complexityOptions.legal}</option>
           </select>
         </div>
 
         <div className={styles.row} style={{ marginTop: 22 }}>
-          <div className={styles.fieldLabel}>Варіанти</div>
-          <div className={styles.radioGroup} role="radiogroup" aria-label="Варіанти обʼєму">
+          <div className={styles.fieldLabel}>{s.optionsLabel}</div>
+          <div
+            className={styles.radioGroup}
+            role="radiogroup"
+            aria-label={s.volumeAria}
+          >
             <label className={styles.radioItem}>
               <input
                 type="radio"
@@ -135,7 +144,7 @@ export default function Step1({
                 checked={volumeUnit === "words"}
                 onChange={() => setVolumeUnit("words")}
               />
-              Слова
+              {s.words}
             </label>
             <label className={styles.radioItem}>
               <input
@@ -144,7 +153,7 @@ export default function Step1({
                 checked={volumeUnit === "symbols"}
                 onChange={() => setVolumeUnit("symbols")}
               />
-              Символи
+              {s.symbols}
             </label>
             <label className={styles.radioItem}>
               <input
@@ -153,14 +162,14 @@ export default function Step1({
                 checked={volumeUnit === "pages"}
                 onChange={() => setVolumeUnit("pages")}
               />
-              Сторінки
+              {s.pages}
             </label>
           </div>
         </div>
 
         <div className={styles.row} style={{ marginTop: 22 }}>
           <label className={styles.fieldLabel} htmlFor="calc-written-goal">
-            Мета перекладу
+            {s.goalLabel}
           </label>
           <select
             id="calc-written-goal"
@@ -170,19 +179,19 @@ export default function Step1({
             onChange={(e) => setGoal(e.target.value)}
           >
             <option value="" disabled hidden>
-              Оберіть мету перекладу
+              {s.goalPlaceholder}
             </option>
-            <option value="personal">Особисте використання</option>
-            <option value="business">Бізнес</option>
-            <option value="website">Сайт / маркетинг</option>
-            <option value="official">Офіційні документи</option>
+            <option value="personal">{s.goalOptions.personal}</option>
+            <option value="business">{s.goalOptions.business}</option>
+            <option value="website">{s.goalOptions.website}</option>
+            <option value="official">{s.goalOptions.official}</option>
           </select>
         </div>
       </div>
 
       <div className={styles.footerRow}>
-        <div className={styles.priceWrap} aria-label="Ціна">
-          <span className={styles.priceLabel}>Ціна</span>
+        <div className={styles.priceWrap} aria-label={s.priceAria}>
+          <span className={styles.priceLabel}>{s.priceLabel}</span>
           <span className={styles.priceValue}>0.00 €</span>
         </div>
         <button
@@ -191,7 +200,7 @@ export default function Step1({
           disabled={!canGoNext}
           onClick={onNext}
         >
-          Наступна сторінка
+          {s.next}
         </button>
       </div>
     </>
