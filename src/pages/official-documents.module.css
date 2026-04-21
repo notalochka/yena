@@ -111,6 +111,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px 32px 56px;
+  scroll-margin-top: 80px;
 }
 
 .introLead {
@@ -258,6 +259,7 @@
   }
   .introSection {
     padding: 0 20px 40px;
+    scroll-margin-top: 70px;
   }
   .introLead + .introLead {
     margin-top: 18px;

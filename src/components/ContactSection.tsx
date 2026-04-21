@@ -110,7 +110,7 @@ export default function ContactSection() {
                 contact@yena.de
               </a>
             </p>
-            <a className={styles.contactAsideButton} href="#">
+            <a className={styles.contactAsideButton} href="mailto:contact@yena.de">
               {copy.consultMe}
             </a>
           </aside>

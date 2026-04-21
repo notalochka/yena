@@ -2,6 +2,7 @@ import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { layoutCopyByLang } from "@/i18n/layout";
 import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
+import Link from "next/link";
 import styles from "./Footer.module.css";
 
 const sourceSans = Source_Sans_3({
@@ -17,6 +18,8 @@ const plusJakarta = Plus_Jakarta_Sans({
 export default function Footer() {
   const { language } = useLanguage();
   const copy = layoutCopyByLang[language].footer;
+  const services = copy.services;
+  const orderedServices = [services[0], services[3], services[2], services[1]];
 
   return (
     <footer className={`${sourceSans.className} ${styles.footer}`}>
@@ -37,9 +40,18 @@ export default function Footer() {
           <div className={styles.linksColumn}>
             <h3 className={styles.columnTitle}>{copy.servicesTitle}</h3>
             <ul className={styles.servicesList}>
-              {copy.services.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
+              <li>
+                <Link href="/interpreting">{orderedServices[0]}</Link>
+              </li>
+              <li>
+                <Link href="/written-translation">{orderedServices[1]}</Link>
+              </li>
+              <li>
+                <Link href="/official-documents">{orderedServices[2]}</Link>
+              </li>
+              <li>
+                <Link href="/services">{orderedServices[3]}</Link>
+              </li>
             </ul>
           </div>
 

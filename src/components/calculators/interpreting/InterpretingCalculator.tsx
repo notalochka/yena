@@ -28,12 +28,15 @@ export default function InterpretingCalculator() {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const calculatorAnchorRef = useRef<HTMLDivElement>(null);
   const skipScrollOnMount = useRef(true);
+  const shouldScrollAfterNav = useRef(false);
 
   useEffect(() => {
     if (skipScrollOnMount.current) {
       skipScrollOnMount.current = false;
       return;
     }
+    if (!shouldScrollAfterNav.current) return;
+    shouldScrollAfterNav.current = false;
     calculatorAnchorRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -119,10 +122,12 @@ export default function InterpretingCalculator() {
   ]);
 
   const goNext = useCallback(() => {
+    shouldScrollAfterNav.current = true;
     setCurrentStepIndex((i) => Math.min(i + 1, stepsMeta.length - 1));
   }, []);
 
   const goBack = useCallback(() => {
+    shouldScrollAfterNav.current = true;
     setCurrentStepIndex((i) => Math.max(i - 1, 0));
   }, []);
 

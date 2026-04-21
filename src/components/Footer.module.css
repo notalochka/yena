@@ -65,6 +65,16 @@
   display: list-item;
 }
 
+.servicesList a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.servicesList a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .contactsColumn p,
 .contactsColumn a {
   margin: 0;

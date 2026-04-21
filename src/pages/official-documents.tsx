@@ -41,13 +41,13 @@ export default function OfficialDocumentsPage() {
                 <div className={styles.heroActions}>
                   <a
                     className={`${styles.heroButton} ${styles.heroButtonPrimary}`}
-                    href="#"
+                    href="#contact"
                   >
                     {copy.ctaOrder}
                   </a>
                   <a
                     className={`${styles.heroButton} ${styles.heroButtonSecondary}`}
-                    href="#"
+                    href="#details"
                   >
                     {copy.ctaMore}
                   </a>
@@ -72,6 +72,7 @@ export default function OfficialDocumentsPage() {
       <section
         data-page-reveal
         className={`${sourceSans.className} ${styles.introSection} ${revealStyles.reveal}`}
+        id="details"
       >
         {copy.introParagraphs.map((text, index) => (
           <p key={`intro-${index}`} className={styles.introLead}>
@@ -135,6 +136,7 @@ export default function OfficialDocumentsPage() {
       <div
         data-page-reveal
         className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
+        id="contact"
       >
         <ContactSection />
       </div>

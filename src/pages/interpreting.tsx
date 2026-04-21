@@ -48,13 +48,13 @@ export default function InterpretingPage() {
               <div className={styles.heroActions}>
                 <a
                   className={`${styles.heroButton} ${styles.heroButtonPrimary}`}
-                  href="#"
+                  href="#price-calculator"
                 >
                   {copy.ctaOrder}
                 </a>
                 <a
                   className={`${styles.heroButton} ${styles.heroButtonSecondary}`}
-                  href="#"
+                  href="#topics"
                 >
                   {copy.ctaMore}
                 </a>
@@ -73,21 +73,10 @@ export default function InterpretingPage() {
         </div>
       </section>
 
-      <div
-        data-page-reveal
-        className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
-      >
-        <TopicsAccordion
-          items={interpretingAccordionItemsByLang[language]}
-          variant="orange"
-          aria-label={copy.accordionAriaLabel}
-          idPrefix="interpreting-accordion"
-        />
-      </div>
-
       <section
         data-page-reveal
         className={`${styles.labelSection} ${revealStyles.reveal}`}
+        id="price-calculator"
       >
         <div className={`${sourceSans.className} ${styles.labelContainer}`}>
           <h2 className={styles.labelTitle}>{copy.priceCalculatorTitle}</h2>
@@ -99,6 +88,19 @@ export default function InterpretingPage() {
         className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
       >
         <InterpretingCalculator />
+      </div>
+
+      <div
+        data-page-reveal
+        className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
+        id="topics"
+      >
+        <TopicsAccordion
+          items={interpretingAccordionItemsByLang[language]}
+          variant="orange"
+          aria-label={copy.accordionAriaLabel}
+          idPrefix="interpreting-accordion"
+        />
       </div>
 
       <div
