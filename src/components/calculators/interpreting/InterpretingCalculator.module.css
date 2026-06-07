@@ -138,6 +138,10 @@
   gap: 48px;
 }
 
+.grid2 > * {
+  min-width: 0;
+}
+
 .fieldLabel {
   display: block;
   margin: 0 0 5px;
@@ -204,7 +208,21 @@
 }
 
 .dateControl {
+  box-sizing: border-box;
+  display: block;
+  max-width: 100%;
+  min-width: 0;
   padding-left: 64px;
+}
+
+.dateControl::-webkit-date-and-time-value {
+  min-width: 0;
+  text-align: left;
+}
+
+.dateControl::-webkit-datetime-edit,
+.dateControl::-webkit-datetime-edit-fields-wrapper {
+  min-width: 0;
 }
 
 .dateControl:invalid {
@@ -213,6 +231,10 @@
 
 .dateFieldWrap {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .dateIconButton {
@@ -265,6 +287,8 @@
   background: #f4f4f4;
   border-radius: 10px;
   padding: 16px 18px 18px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .timeRow {
@@ -840,6 +864,7 @@
   .dateControl {
     height: 48px;
     font-size: 18px;
+    padding-left: 52px;
   }
   .dateIconButton {
     width: 36px;
