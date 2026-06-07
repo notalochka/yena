@@ -14,53 +14,62 @@ export default function Step4({
 }: InterpretingStep4Props) {
   return (
     <>
-      <h3 className={styles.sectionTitle}>{copy.step4.title}</h3>
-
-      <div
-        className={styles.radioGroup}
-        role="radiogroup"
-        aria-label={copy.step4.aria}
-      >
-        <label className={styles.radioItem}>
-          <input
-            type="radio"
-            name="calc-recording"
-            checked={recording === "yes"}
-            onChange={() => setRecording("yes")}
-          />
-          {copy.step4.yes}
-        </label>
-        <label className={styles.radioItem}>
-          <input
-            type="radio"
-            name="calc-recording"
-            checked={recording === "no"}
-            onChange={() => setRecording("no")}
-          />
-          {copy.step4.no}
-        </label>
+      <div className={styles.step1ChoiceSection}>
+        <h3 className={styles.sectionTitle}>{copy.step4.title}</h3>
+        <div
+          className={styles.choiceButtonRow}
+          role="radiogroup"
+          aria-label={copy.step4.aria}
+        >
+          <button
+            type="button"
+            role="radio"
+            aria-checked={recording === "yes"}
+            className={`${styles.choiceButton} ${
+              recording === "yes" ? styles.choiceButtonSelected : ""
+            }`}
+            onClick={() => setRecording("yes")}
+          >
+            {copy.step4.yes}
+          </button>
+          <button
+            type="button"
+            role="radio"
+            aria-checked={recording === "no"}
+            className={`${styles.choiceButton} ${
+              recording === "no" ? styles.choiceButtonSelected : ""
+            }`}
+            onClick={() => setRecording("no")}
+          >
+            {copy.step4.no}
+          </button>
+        </div>
       </div>
 
       <div className={styles.step4Summary}>
         <div className={styles.step4SummaryRow}>
           <span className={styles.step4SummaryLabel}>
-            {copy.step4.summaryWithRecording}
+            {copy.step4.withRecordingOrBroadcast}
           </span>
           <span className={styles.step4SummaryValue}>0.00 €</span>
         </div>
         <div className={styles.step4SummaryRow}>
-          <span className={styles.step4SummaryLabel}>{copy.step4.organisation}</span>
-          <span className={styles.step4SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step4SummaryRow}>
-          <span className={styles.step4SummaryLabel}>
-            {copy.step4.totalWithOrganisation}
+          <span
+            className={`${styles.step4SummaryLabel} ${styles.step4SummaryLabelAccent}`}
+          >
+            {copy.step4.projectFee}
           </span>
           <span className={styles.step4SummaryValue}>0.00 €</span>
         </div>
         <div className={styles.step4SummaryRow}>
           <span className={styles.step4SummaryLabel}>
-            {copy.step4.summaryWithRecording}
+            {copy.step4.withProjectFee}
+          </span>
+          <span className={styles.step4SummaryValue}>0.00 €</span>
+        </div>
+        <div className={styles.step4SummaryRow}>
+          <span className={styles.step4SummaryLabel}>
+            {copy.step4.withRecordingAndProjectFee}
           </span>
           <span className={styles.step4SummaryValue}>0.00 €</span>
         </div>

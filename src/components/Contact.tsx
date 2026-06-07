@@ -98,7 +98,7 @@ export default function ContactSection() {
 
           <aside className={styles.contactAside}>
             <ImageWithPlaceholder
-              src="/main_photo1.jpg"
+              src="/main_photo1.png"
               alt={copy.asideAlt}
               width={450}
               height={300}

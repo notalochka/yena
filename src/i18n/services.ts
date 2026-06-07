@@ -10,9 +10,13 @@ export type ServicesAsideText =
       href: string;
     };
 
+export type ServicesSilabotNote = {
+  before: string;
+  linkText: string;
+};
+
 export type ServicesCard = {
   variant: "Orange" | "Blue" | "Olive";
-  buttonColor: string;
   title: string;
   description: string;
   listTitle: string;
@@ -20,17 +24,24 @@ export type ServicesCard = {
   asideTitle: string;
   asideText: ServicesAsideText;
   learnMoreHref: string;
+  calculateHref: string;
+  showSilabotNote?: boolean;
 };
 
 export type ServicesCopy = {
   introTitle: string;
   introLead: string;
+  servicesBadge: string;
   listAriaLabel: string;
   learnMore: string;
+  calculateCost: string;
+  silabotNote: ServicesSilabotNote;
   cards: ServicesCard[];
 };
 
 const silabotUrl = "https://silabot.de/uk/homepage/";
+
+export { silabotUrl };
 
 export function renderServicesAsideText(
   asideText: ServicesAsideText,
@@ -53,15 +64,20 @@ export function renderServicesAsideText(
 
 export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
   UA: {
-    introTitle: "Послуги",
+    introTitle: "Послуги перекладу для бізнесу та громадян",
     introLead:
       "Я – професійний кваліфікований перекладач. Крім того, як досвідчений старший перекладач я надаю консультації з конференц-перекладу. Я організовую команди перекладачів, консультую з питань проведення конференцій та підбираю технічні засоби для перекладу. Крім того, я є судовим присяжним перекладачем.",
     listAriaLabel: "Перелік послуг",
     learnMore: "Дізнатися більше",
+    calculateCost: "Розрахувати вартість",
+    servicesBadge: "Послуги",
+    silabotNote: {
+      before: "Послуга надається через портал Силабот,",
+      linkText: "перейти за посиланням",
+    },
     cards: [
       {
         variant: "Orange",
-        buttonColor: "#c95118",
         title: "Усний переклад",
         description:
           "Я надаю професійні послуги усного перекладу з фокусом на конференц-перекладі, багатомовних заходах та офіційних контекстах. Працюю з англійської, німецької, української та російської мов у різних форматах – синхронному, послідовному, віддаленому та переговорному.",
@@ -77,14 +93,14 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideText:
           "Усний переклад варто обрати, якщо ви організовуєте міжнародний захід, переговори з партнерами та хочете забезпечити взаєморозуміння між учасниками. Ця послуга необхідна тоді, коли комунікація відбувається в реальному часі й важливо швидко та точно передати зміст без втрати деталей. Також усний переклад стане оптимальним рішенням, якщо ви працюєте з іноземними клієнтами, проводите презентації або супроводжуєте офіційні візити та потребуєте професійної міжмовної підтримки на місці або онлайн.",
         learnMoreHref: "/interpreting",
+        calculateHref: "/interpreting",
       },
       {
         variant: "Blue",
-        buttonColor: "#456999",
         title: "Письмовий переклад",
         description:
-          "Ми надаємо професійні послуги письмового перекладу спеціалізованих, юридичних, технічних та медичних текстів. Працюємо з документацією для промисловості й ІТ, договорами, фаховими, науково-популярними виданнями, рекламними матеріалами та контентом для веб-сайтів.",
-        listTitle: "Що входить у письмовий переклад",
+          "Ми надаємо професійні послуги письмового перекладу спеціалізованих, юридичних, технічних та медичних текстів. Працюємо з документацією для промисловості та ІТ, договорами, фаховими, науково-популярними виданнями, рекламними матеріалами та контентом для веб-сайтів.",
+        listTitle: "Що входить в Письмовий переклад?",
         items: [
           "Аналіз тематики, обсягу та вимог до тексту",
           "Підбір перекладача відповідної спеціалізації",
@@ -97,10 +113,10 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideText:
           "Письмовий переклад варто обрати, якщо вам потрібно перекласти договори, презентації, технічні матеріали чи маркетингові тексти для подальшого використання в роботі або публікації. Це рішення підходить у випадках, коли важлива точність формулювань і збереження стилю оригіналу.",
         learnMoreHref: "/written-translation",
+        calculateHref: "/written-translation",
       },
       {
         variant: "Olive",
-        buttonColor: "#7e7b08",
         title: "Переклад офіційних документів",
         description:
           "Я є присяжним перекладачем української та російської мов, а також уповноваженою на виконання засвідчених перекладів з та на англійську мову на підставі британського диплому з перекладу для державних і муніципальних служб. Я маю право посвідчувати точність та повноту мого перекладу; засвідчені переклади визнаються державними установами в Німеччині та за кордоном.",
@@ -122,10 +138,11 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
           href: silabotUrl,
         },
         learnMoreHref: "/official-documents",
+        calculateHref: silabotUrl,
+        showSilabotNote: true,
       },
       {
         variant: "Orange",
-        buttonColor: "#c95118",
         title: "Віддалений переклад по телефону",
         description:
           "Ми підтримуємо людей, які через війну були змушені залишити Україну та звертаються до німецьких установ. Як кваліфікований перекладач, я і моя команда, допомагаємо там, де це найбільш необхідно – через віддалений переклад по телефону і професійним перекладом офіційних документів.",
@@ -140,20 +157,27 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideTitle: "Коли обрати цей вид перекладу?",
         asideText:
           "Це вид перекладу варто обрати коли ви маєте відвідати державну установу, відомство у справах іноземців, консульство, лікаря, батьківські збори, тощо.",
-        learnMoreHref: "#",
+        learnMoreHref: silabotUrl,
+        calculateHref: silabotUrl,
+        showSilabotNote: true,
       },
     ],
   },
   RU: {
-    introTitle: "Услуги",
+    introTitle: "Услуги перевода для бизнеса и граждан",
     introLead:
       "Я — квалифицированный профессиональный переводчик. Кроме того, как опытный старший переводчик я консультирую по конференц-переводу: организую команды переводчиков, помогаю с организацией конференций и подбираю технические решения. Также я являюсь судебным присяжным переводчиком.",
     listAriaLabel: "Список услуг",
     learnMore: "Узнать больше",
+    calculateCost: "Рассчитать стоимость",
+    servicesBadge: "Услуги",
+    silabotNote: {
+      before: "Услуга предоставляется через портал Silabot,",
+      linkText: "перейти по ссылке",
+    },
     cards: [
       {
         variant: "Orange",
-        buttonColor: "#c95118",
         title: "Устный перевод",
         description:
           "Я оказываю профессиональные услуги устного перевода с фокусом на конференц-переводе, многоязычных мероприятиях и официальных контекстах. Работаю с английского, немецкого, украинского и русского языков в разных форматах — синхронном, последовательном, удалённом и переговорном.",
@@ -169,10 +193,10 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideText:
           "Выбирайте устный перевод, если организуете международное мероприятие, переговоры или хотите обеспечить взаимопонимание участников в реальном времени. Он нужен, когда важны скорость и точность передачи смысла без потери деталей — на месте или онлайн.",
         learnMoreHref: "/interpreting",
+        calculateHref: "/interpreting",
       },
       {
         variant: "Blue",
-        buttonColor: "#456999",
         title: "Письменный перевод",
         description:
           "Мы выполняем профессиональный письменный перевод специализированных, юридических, технических и медицинских текстов: документации для промышленности и IT, договоров, профессиональных и научно-популярных изданий, рекламы и контента для сайтов.",
@@ -189,10 +213,10 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideText:
           "Письменный перевод подходит для договоров, презентаций, технических материалов и маркетинговых текстов для работы или публикации — когда важны точность формулировок и стиль оригинала.",
         learnMoreHref: "/written-translation",
+        calculateHref: "/written-translation",
       },
       {
         variant: "Olive",
-        buttonColor: "#7e7b08",
         title: "Перевод официальных документов",
         description:
           "Я являюсь присяжным переводчиком украинского и русского языков, а также уполномочена выполнять заверенные переводы с и на английский на основании британского диплома для государственных и муниципальных служб. Заверенные переводы признаются в Германии и за рубежом.",
@@ -214,10 +238,11 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
           href: silabotUrl,
         },
         learnMoreHref: "/official-documents",
+        calculateHref: silabotUrl,
+        showSilabotNote: true,
       },
       {
         variant: "Orange",
-        buttonColor: "#c95118",
         title: "Удалённый перевод по телефону",
         description:
           "Мы поддерживаем людей, которые из‑за войны вынуждены были покинуть Украину и обращаются в немецкие учреждения. Как квалифицированный переводчик, я и моя команда помогаем там, где это наиболее нужно — через удалённый перевод по телефону и профессиональный перевод официальных документов.",
@@ -232,20 +257,27 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideTitle: "Когда выбрать этот вид перевода?",
         asideText:
           "Подходит, когда нужно посетить госучреждение, ведомство по делам иностранцев, консульство, врача, родительское собрание и т. п.",
-        learnMoreHref: "#",
+        learnMoreHref: silabotUrl,
+        calculateHref: silabotUrl,
+        showSilabotNote: true,
       },
     ],
   },
   EN: {
-    introTitle: "Services",
+    introTitle: "Translation services for business and citizens",
     introLead:
       "I’m a qualified professional translator. As an experienced senior linguist I also advise on conference interpreting: I build interpreting teams, consult on event organisation and select technical solutions. I am also a sworn court translator.",
     listAriaLabel: "Services list",
     learnMore: "Learn more",
+    calculateCost: "Calculate cost",
+    servicesBadge: "Services",
+    silabotNote: {
+      before: "This service is provided through the Silabot portal,",
+      linkText: "follow the link",
+    },
     cards: [
       {
         variant: "Orange",
-        buttonColor: "#c95118",
         title: "Interpreting",
         description:
           "Professional interpreting with a focus on conference interpreting, multilingual events and official settings. I work with English, German, Ukrainian and Russian in simultaneous, consecutive, remote and liaison formats.",
@@ -261,10 +293,10 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideText:
           "Choose interpreting for international meetings, negotiations and events when communication happens in real time and accuracy matters — on-site or online.",
         learnMoreHref: "/interpreting",
+        calculateHref: "/interpreting",
       },
       {
         variant: "Blue",
-        buttonColor: "#456999",
         title: "Written translation",
         description:
           "Professional written translation of specialised, legal, technical and medical texts: industry and IT documentation, contracts, publications, advertising materials and website content.",
@@ -281,10 +313,10 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideText:
           "Ideal for contracts, presentations, technical documentation and marketing texts — when wording accuracy and style consistency are important.",
         learnMoreHref: "/written-translation",
+        calculateHref: "/written-translation",
       },
       {
         variant: "Olive",
-        buttonColor: "#7e7b08",
         title: "Certified translation of official documents",
         description:
           "I am a sworn translator for Ukrainian and Russian and authorised to provide certified translations to/from English based on a UK diploma for public authorities. Certified translations are recognised in Germany and abroad.",
@@ -306,10 +338,11 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
           href: silabotUrl,
         },
         learnMoreHref: "/official-documents",
+        calculateHref: silabotUrl,
+        showSilabotNote: true,
       },
       {
         variant: "Orange",
-        buttonColor: "#c95118",
         title: "Remote phone interpreting",
         description:
           "We support people displaced by the war who need help with German institutions. My team provides remote phone interpreting and professional translation of official documents where it’s most needed.",
@@ -324,20 +357,27 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideTitle: "When to choose this service?",
         asideText:
           "Useful for visits to public offices, immigration authorities, consulates, doctors, parent meetings, etc.",
-        learnMoreHref: "#",
+        learnMoreHref: silabotUrl,
+        calculateHref: silabotUrl,
+        showSilabotNote: true,
       },
     ],
   },
   DE: {
-    introTitle: "Leistungen",
+    introTitle: "Übersetzungsdienste für Unternehmen und Bürger",
     introLead:
       "Ich bin qualifizierte professionelle Übersetzerin. Als erfahrene Senior-Linguistin berate ich zudem zum Konferenzdolmetschen: Ich stelle Teams zusammen, unterstütze bei der Veranstaltungsorganisation und wähle passende technische Lösungen. Außerdem bin ich beeidigte Gerichtsdolmetscherin.",
     listAriaLabel: "Leistungsübersicht",
     learnMore: "Mehr erfahren",
+    calculateCost: "Kosten berechnen",
+    servicesBadge: "Leistungen",
+    silabotNote: {
+      before: "Diese Leistung wird über das Portal Silabot angeboten,",
+      linkText: "Link folgen",
+    },
     cards: [
       {
         variant: "Orange",
-        buttonColor: "#c95118",
         title: "Dolmetschen",
         description:
           "Professionelles Dolmetschen mit Schwerpunkt Konferenzdolmetschen, mehrsprachige Veranstaltungen und offizielle Kontexte — simultan, konsekutiv, remote und Verhandlungsdolmetschen (Deutsch/Englisch/Ukrainisch/Russisch).",
@@ -353,10 +393,10 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideText:
           "Für internationale Meetings, Verhandlungen und Events, wenn Kommunikation in Echtzeit stattfindet und Präzision wichtig ist — vor Ort oder online.",
         learnMoreHref: "/interpreting",
+        calculateHref: "/interpreting",
       },
       {
         variant: "Blue",
-        buttonColor: "#456999",
         title: "Schriftliche Übersetzung",
         description:
           "Professionelle Übersetzungen fachlicher, juristischer, technischer und medizinischer Texte: Industriedokumentation, IT, Verträge, Publikationen, Werbematerialien und Web-Content.",
@@ -373,10 +413,10 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideText:
           "Für Verträge, Präsentationen, technische Unterlagen und Marketingtexte — wenn genaue Formulierungen und Stiltreue zählen.",
         learnMoreHref: "/written-translation",
+        calculateHref: "/written-translation",
       },
       {
         variant: "Olive",
-        buttonColor: "#7e7b08",
         title: "Beglaubigte Übersetzung amtlicher Dokumente",
         description:
           "Als beeidigte Übersetzerin (UA/RU) und autorisiert für beglaubigte Übersetzungen aus/ins Englische liefere ich beglaubigte Übersetzungen, die in Deutschland und im Ausland anerkannt werden.",
@@ -398,10 +438,11 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
           href: silabotUrl,
         },
         learnMoreHref: "/official-documents",
+        calculateHref: silabotUrl,
+        showSilabotNote: true,
       },
       {
         variant: "Orange",
-        buttonColor: "#c95118",
         title: "Telefon-Dolmetschen (remote)",
         description:
           "Wir unterstützen Menschen, die kriegsbedingt die Ukraine verlassen mussten und sich an deutsche Stellen wenden. Mein Team hilft dort, wo es am nötigsten ist — per Telefon-Dolmetschen und professioneller Übersetzung amtlicher Dokumente.",
@@ -416,7 +457,9 @@ export const servicesCopyByLang: Record<UiLanguage, ServicesCopy> = {
         asideTitle: "Wann diese Leistung wählen?",
         asideText:
           "Für Termine bei Behörden, Ausländerbehörde, Konsulat, Arzt, Elternabenden usw.",
-        learnMoreHref: "#",
+        learnMoreHref: silabotUrl,
+        calculateHref: silabotUrl,
+        showSilabotNote: true,
       },
     ],
   },

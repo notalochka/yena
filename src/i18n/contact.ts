@@ -1,5 +1,11 @@
 import type { UiLanguage } from "./language";
 
+export type ContactQuestionCopy = {
+  questionTitle: string;
+  questionText: string;
+  questionButton: string;
+};
+
 export type ContactCopy = {
   title: string;
   subtitle?: string;
@@ -22,11 +28,12 @@ export const contactCopyByLang: Record<
   {
     contact: ContactCopy;
     contactSection: ContactCopy;
+    contactQuestion: ContactQuestionCopy;
   }
 > = {
   UA: {
     contact: {
-      title: "Контакти для з’єднання",
+      title: "Контакти для співпраці",
       subtitle: "Напишіть нам якщо маєте якесь запитання",
       nameLabel: "ІМ’Я *",
       emailLabel: "EMAIL *",
@@ -56,10 +63,15 @@ export const contactCopyByLang: Record<
       asideTextBeforeEmail: "Хочете спитати ще щось? Пишіть на",
       consultMe: "ПРОКОНСУЛЬТУЙТЕ МЕНЕ",
     },
+    contactQuestion: {
+      questionTitle: "Є запитання?",
+      questionText: "Ми допоможемо визначитися з перекладом!",
+      questionButton: "НАПИСАТИ НАМ",
+    },
   },
   RU: {
     contact: {
-      title: "Контакты для связи",
+      title: "Контакты для сотрудничества",
       subtitle: "Напишите нам, если у вас есть вопрос",
       nameLabel: "ИМЯ *",
       emailLabel: "EMAIL *",
@@ -91,10 +103,15 @@ export const contactCopyByLang: Record<
       asideTextBeforeEmail: "Хотите спросить ещё? Пишите на",
       consultMe: "ПРОКОНСУЛЬТИРУЙТЕ МЕНЯ",
     },
+    contactQuestion: {
+      questionTitle: "Есть вопрос?",
+      questionText: "Мы поможем определиться с переводом!",
+      questionButton: "НАПИСАТЬ НАМ",
+    },
   },
   EN: {
     contact: {
-      title: "Get in touch",
+      title: "Contact for collaboration",
       subtitle: "Write to us if you have a question",
       nameLabel: "NAME *",
       emailLabel: "EMAIL *",
@@ -124,10 +141,15 @@ export const contactCopyByLang: Record<
       asideTextBeforeEmail: "Have another question? Email us at",
       consultMe: "CONSULT ME",
     },
+    contactQuestion: {
+      questionTitle: "Any questions?",
+      questionText: "We will help you choose the right translation!",
+      questionButton: "CONTACT US",
+    },
   },
   DE: {
     contact: {
-      title: "Kontakt",
+      title: "Kontakt für Zusammenarbeit",
       subtitle: "Schreiben Sie uns, wenn Sie eine Frage haben",
       nameLabel: "NAME *",
       emailLabel: "EMAIL *",
@@ -158,6 +180,11 @@ export const contactCopyByLang: Record<
       asideAlt: "Yena Translations Illustration",
       asideTextBeforeEmail: "Noch eine Frage? Schreiben Sie an",
       consultMe: "BERATEN SIE MICH",
+    },
+    contactQuestion: {
+      questionTitle: "Haben Sie Fragen?",
+      questionText: "Wir helfen Ihnen, die passende Übersetzung zu wählen!",
+      questionButton: "SCHREIBEN SIE UNS",
     },
   },
 };

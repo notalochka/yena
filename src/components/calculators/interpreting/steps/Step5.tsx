@@ -11,8 +11,16 @@ export type InterpretingStep5Props = {
   setPhone: (v: string) => void;
   email: string;
   setEmail: (v: string) => void;
-  address: string;
-  setAddress: (v: string) => void;
+  country: string;
+  setCountry: (v: string) => void;
+  city: string;
+  setCity: (v: string) => void;
+  street: string;
+  setStreet: (v: string) => void;
+  houseNumber: string;
+  setHouseNumber: (v: string) => void;
+  postalCode: string;
+  setPostalCode: (v: string) => void;
 };
 
 /** Останній крок («Фініш») — підсумок + контактні дані. */
@@ -26,38 +34,22 @@ export default function Step5({
   setPhone,
   email,
   setEmail,
-  address,
-  setAddress,
+  country,
+  setCountry,
+  city,
+  setCity,
+  street,
+  setStreet,
+  houseNumber,
+  setHouseNumber,
+  postalCode,
+  setPostalCode,
 }: InterpretingStep5Props) {
   return (
     <>
       <div className={styles.step5Summary}>
         <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-            {copy.step5.estimatedCostNoVat}
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-            {copy.step5.apostilleInTranslation}
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-            {copy.step5.apostilleInDocument}
-          </span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>{copy.step5.certification}</span>
-          <span className={styles.step5SummaryValue}>0.00 €</span>
-        </div>
-        <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-            {copy.step5.orderTotalNoVat}
-          </span>
+          <span className={styles.step5SummaryLabel}>{copy.step5.estimatedCost}</span>
           <span className={styles.step5SummaryValue}>0.00 €</span>
         </div>
         <div className={styles.step5SummaryRow}>
@@ -65,9 +57,7 @@ export default function Step5({
           <span className={styles.step5SummaryValue}>0.00 €</span>
         </div>
         <div className={styles.step5SummaryRow}>
-          <span className={styles.step5SummaryLabel}>
-            {copy.step5.finalTotalWithVat}
-          </span>
+          <span className={styles.step5SummaryLabel}>{copy.step5.subtotalCost}</span>
           <span className={styles.step5SummaryValue}>0.00 €</span>
         </div>
       </div>
@@ -131,16 +121,54 @@ export default function Step5({
           />
         </div>
 
-        <div className={styles.step5Field}>
-          <label className={styles.step5FieldLabel} htmlFor="calc-address">
-            {copy.step5.address}
-          </label>
-          <input
-            id="calc-address"
-            className={styles.step5Control}
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
+        <div className={styles.step5MailingSection}>
+          <h3 className={styles.step5SectionTitle}>{copy.step5.mailingAddressTitle}</h3>
+          <div className={styles.step5Grid2}>
+            <input
+              id="calc-country"
+              className={styles.step5Control}
+              placeholder={copy.step5.countryPlaceholder}
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              aria-label={copy.step5.countryPlaceholder}
+            />
+            <input
+              id="calc-city"
+              className={styles.step5Control}
+              placeholder={copy.step5.cityPlaceholder}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              aria-label={copy.step5.cityPlaceholder}
+            />
+          </div>
+          <div className={styles.step5Grid2}>
+            <input
+              id="calc-street"
+              className={styles.step5Control}
+              placeholder={copy.step5.streetPlaceholder}
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+              aria-label={copy.step5.streetPlaceholder}
+            />
+            <input
+              id="calc-house-number"
+              className={styles.step5Control}
+              placeholder={copy.step5.houseNumberPlaceholder}
+              value={houseNumber}
+              onChange={(e) => setHouseNumber(e.target.value)}
+              aria-label={copy.step5.houseNumberPlaceholder}
+            />
+          </div>
+          <div className={styles.step5GridHalf}>
+            <input
+              id="calc-postal-code"
+              className={styles.step5Control}
+              placeholder={copy.step5.postalCodePlaceholder}
+              value={postalCode}
+              onChange={(e) => setPostalCode(e.target.value)}
+              aria-label={copy.step5.postalCodePlaceholder}
+            />
+          </div>
         </div>
       </div>
     </>

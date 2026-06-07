@@ -15,18 +15,26 @@ export default function Step2({
   const s = copy.step2;
   return (
     <>
-      <h3 className={styles.sectionTitle}>{s.title}</h3>
+      <div className={styles.step1ChoiceSection}>
+        <h3 className={styles.sectionTitle}>{s.title}</h3>
+        <div className={styles.choiceButtonRow}>
+          <button
+            type="button"
+            aria-pressed={needsEditing}
+            className={`${styles.choiceButton} ${
+              needsEditing ? styles.choiceButtonSelected : ""
+            }`}
+            onClick={() => setNeedsEditing(!needsEditing)}
+          >
+            {s.toggleText}
+          </button>
+        </div>
+      </div>
 
-      <label className={styles.step2ToggleCard}>
-        <input
-          className={styles.step2ToggleInput}
-          type="checkbox"
-          checked={needsEditing}
-          onChange={(e) => setNeedsEditing(e.target.checked)}
-        />
-        <span className={styles.step2ToggleDot} aria-hidden />
-        <span className={styles.step2ToggleText}>{s.toggleText}</span>
-      </label>
+      <div className={styles.step2CostRow} aria-label={s.costAria}>
+        <span className={styles.step2CostLabel}>{s.costLabel}</span>
+        <span className={styles.step2CostValue}>0.00 €</span>
+      </div>
     </>
   );
 }

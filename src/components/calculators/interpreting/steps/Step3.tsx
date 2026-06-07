@@ -10,31 +10,36 @@ export type InterpretingStep3Props = {
 export default function Step3({ copy, location, setLocation }: InterpretingStep3Props) {
   return (
     <>
-      <h3 className={styles.sectionTitle}>{copy.step3.title}</h3>
-
-      <div
-        className={styles.radioGroup}
-        role="radiogroup"
-        aria-label={copy.step3.aria}
-      >
-        <label className={styles.radioItem}>
-          <input
-            type="radio"
-            name="calc-location"
-            checked={location === "online"}
-            onChange={() => setLocation("online")}
-          />
-          {copy.step3.online}
-        </label>
-        <label className={styles.radioItem}>
-          <input
-            type="radio"
-            name="calc-location"
-            checked={location === "offline"}
-            onChange={() => setLocation("offline")}
-          />
-          {copy.step3.offline}
-        </label>
+      <div className={styles.step1ChoiceSection}>
+        <h3 className={styles.sectionTitle}>{copy.step3.title}</h3>
+        <div
+          className={styles.choiceButtonRow}
+          role="radiogroup"
+          aria-label={copy.step3.aria}
+        >
+          <button
+            type="button"
+            role="radio"
+            aria-checked={location === "online"}
+            className={`${styles.choiceButton} ${
+              location === "online" ? styles.choiceButtonSelected : ""
+            }`}
+            onClick={() => setLocation("online")}
+          >
+            {copy.step3.online}
+          </button>
+          <button
+            type="button"
+            role="radio"
+            aria-checked={location === "offline"}
+            className={`${styles.choiceButton} ${
+              location === "offline" ? styles.choiceButtonSelected : ""
+            }`}
+            onClick={() => setLocation("offline")}
+          >
+            {copy.step3.offline}
+          </button>
+        </div>
       </div>
 
       <div className={styles.step3TotalRow} aria-label={copy.step3.totalAria}>

@@ -109,7 +109,6 @@ export type TopicsAccordionProps = {
   items: TopicItem[];
   variant?: TopicsAccordionVariant;
   "aria-label"?: string;
-  /** Префікс для id панелей (якщо на сторінці кілька акордеонів) */
   idPrefix?: string;
 };
 

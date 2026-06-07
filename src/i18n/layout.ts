@@ -4,6 +4,7 @@ export type HeaderCopy = {
   navLabel: string;
   burgerOpen: string;
   burgerClose: string;
+  ctaEstimate: string;
   menu: {
     home: string;
     about: string;
@@ -39,6 +40,7 @@ export const layoutCopyByLang: Record<UiLanguage, LayoutCopy> = {
       navLabel: "Головне меню",
       burgerOpen: "Відкрити меню",
       burgerClose: "Закрити меню",
+      ctaEstimate: "Замовити кошторис",
       menu: {
         home: "Головна",
         about: "Про нас",
@@ -72,6 +74,7 @@ export const layoutCopyByLang: Record<UiLanguage, LayoutCopy> = {
       navLabel: "Главное меню",
       burgerOpen: "Открыть меню",
       burgerClose: "Закрыть меню",
+      ctaEstimate: "Заказать смету",
       menu: {
         home: "Главная",
         about: "О нас",
@@ -105,6 +108,7 @@ export const layoutCopyByLang: Record<UiLanguage, LayoutCopy> = {
       navLabel: "Main menu",
       burgerOpen: "Open menu",
       burgerClose: "Close menu",
+      ctaEstimate: "Request an estimate",
       menu: {
         home: "Home",
         about: "About",
@@ -138,6 +142,7 @@ export const layoutCopyByLang: Record<UiLanguage, LayoutCopy> = {
       navLabel: "Hauptmenü",
       burgerOpen: "Menü öffnen",
       burgerClose: "Menü schließen",
+      ctaEstimate: "Kostenvoranschlag anfragen",
       menu: {
         home: "Startseite",
         about: "Über uns",

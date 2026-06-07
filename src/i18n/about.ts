@@ -7,6 +7,7 @@ export type AboutExpertiseCard = {
 };
 
 export type AboutCopy = {
+  heroBadge: string;
   heroTitle: string;
   heroDescription1: string;
   heroDescription2: string;
@@ -38,7 +39,8 @@ export type AboutCopy = {
 };
 
 const ua: AboutCopy = {
-  heroTitle: "Ласкаво просимо до бюро перекладів Yena\u00A0Translations!",
+  heroBadge: "Бюро перекладів",
+  heroTitle: "Наталія Єна — перекладач з 35+ роками досвіду",
   heroDescription1:
     "Ми пропонуємо професійні рішення у сфері міжмовної комунікації. Ми працюємо з чотирма мовами: німецькою, українською, англійською та російською, забезпечуючи як усний, так і письмовий переклад.",
   heroDescription2:
@@ -52,22 +54,22 @@ const ua: AboutCopy = {
   expertiseSubtitle: "Як старший конференц-перекладач і консультант я:",
   expertiseCards: [
     {
-      icon: "/abillities1.png",
+      icon: "/abillities1.svg",
       alt: "Організація команд перекладачів",
       text: "Організовую команди перекладачів",
     },
     {
-      icon: "/abillities2.png",
+      icon: "/abillities2.svg",
       alt: "Консультації для міжнародних заходів",
       text: "Консультую щодо проведення міжнародних заходів",
     },
     {
-      icon: "/abillities3.png",
+      icon: "/abillities3.svg",
       alt: "Підбір технічних рішень",
       text: "Підбираю технічні рішення для синхронного та віддаленого перекладу",
     },
     {
-      icon: "/abillities4.png",
+      icon: "/abillities4.svg",
       alt: "Координація перекладацької команди",
       text: "Забезпечую координацію роботи перекладацької команди",
     },
@@ -108,7 +110,8 @@ const ua: AboutCopy = {
 };
 
 const ru: AboutCopy = {
-  heroTitle: "Добро пожаловать в бюро переводов Yena\u00A0Translations!",
+  heroBadge: "Бюро переводов",
+  heroTitle: "Наталия Ена — переводчик с 35+ годами опыта",
   heroDescription1:
     "Мы предлагаем профессиональные решения в сфере межъязыковой коммуникации. Работаем с четырьмя языками: немецким, украинским, английским и русским — как с устным, так и с письменным переводом.",
   heroDescription2:
@@ -122,22 +125,22 @@ const ru: AboutCopy = {
   expertiseSubtitle: "Как старший конференц-переводчик и консультант я:",
   expertiseCards: [
     {
-      icon: "/abillities1.png",
+      icon: "/abillities1.svg",
       alt: "Организация команд переводчиков",
       text: "Организую команды переводчиков",
     },
     {
-      icon: "/abillities2.png",
+      icon: "/abillities2.svg",
       alt: "Консультации по международным мероприятиям",
       text: "Консультирую по проведению международных мероприятий",
     },
     {
-      icon: "/abillities3.png",
+      icon: "/abillities3.svg",
       alt: "Подбор технических решений",
       text: "Подбираю технические решения для синхронного и удалённого перевода",
     },
     {
-      icon: "/abillities4.png",
+      icon: "/abillities4.svg",
       alt: "Координация команды переводчиков",
       text: "Обеспечиваю координацию работы команды переводчиков",
     },
@@ -178,7 +181,8 @@ const ru: AboutCopy = {
 };
 
 const en: AboutCopy = {
-  heroTitle: "Welcome to Yena\u00A0Translations!",
+  heroBadge: "Translation agency",
+  heroTitle: "Nataliia Yena — translator with 35+ years of experience",
   heroDescription1:
     "We offer professional solutions in cross-language communication. We work with four languages — German, Ukrainian, English and Russian — providing both interpreting and written translation.",
   heroDescription2:
@@ -192,22 +196,22 @@ const en: AboutCopy = {
   expertiseSubtitle: "As a senior conference interpreter and consultant I:",
   expertiseCards: [
     {
-      icon: "/abillities1.png",
+      icon: "/abillities1.svg",
       alt: "Building interpreter teams",
       text: "I assemble teams of interpreters",
     },
     {
-      icon: "/abillities2.png",
+      icon: "/abillities2.svg",
       alt: "Consulting for international events",
       text: "I advise on organising international events",
     },
     {
-      icon: "/abillities3.png",
+      icon: "/abillities3.svg",
       alt: "Selecting technical solutions",
       text: "I select technical solutions for simultaneous and remote interpreting",
     },
     {
-      icon: "/abillities4.png",
+      icon: "/abillities4.svg",
       alt: "Coordinating the interpreting team",
       text: "I coordinate the interpreting team’s work",
     },
@@ -248,7 +252,8 @@ const en: AboutCopy = {
 };
 
 const de: AboutCopy = {
-  heroTitle: "Willkommen bei Yena\u00A0Translations!",
+  heroBadge: "Übersetzungsbüro",
+  heroTitle: "Nataliia Yena — Übersetzerin mit über 35 Jahren Erfahrung",
   heroDescription1:
     "Wir bieten professionelle Lösungen für mehrsprachige Kommunikation. Wir arbeiten mit vier Sprachen — Deutsch, Ukrainisch, Englisch und Russisch — und liefern sowohl Dolmetschen als auch schriftliche Übersetzung.",
   heroDescription2:
@@ -262,22 +267,22 @@ const de: AboutCopy = {
   expertiseSubtitle: "Als erfahrene Konferenzdolmetscherin und Beraterin:",
   expertiseCards: [
     {
-      icon: "/abillities1.png",
+      icon: "/abillities1.svg",
       alt: "Teams von Dolmetscher:innen",
       text: "Ich stelle Teams von Dolmetscher:innen zusammen",
     },
     {
-      icon: "/abillities2.png",
+      icon: "/abillities2.svg",
       alt: "Beratung zu internationalen Veranstaltungen",
       text: "Ich berate zur Organisation internationaler Veranstaltungen",
     },
     {
-      icon: "/abillities3.png",
+      icon: "/abillities3.svg",
       alt: "Technische Lösungen",
       text: "Ich wähle technische Lösungen für Simultan- und Remote-Dolmetschen",
     },
     {
-      icon: "/abillities4.png",
+      icon: "/abillities4.svg",
       alt: "Koordination des Dolmetschteams",
       text: "Ich koordiniere die Arbeit des Dolmetschteams",
     },

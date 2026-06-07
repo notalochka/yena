@@ -1,5 +1,3 @@
-import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
-import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Seo } from "@/components/Seo";
@@ -9,10 +7,18 @@ import { officialDocumentsCopyByLang } from "@/i18n/officialDocuments";
 import { officialDocumentsAccordionItemsByLang } from "@/i18n/officialDocumentsAccordion";
 import { getSeo } from "@/i18n/seoPages";
 import revealStyles from "@/styles/pageReveal.module.css";
-import { Source_Sans_3 } from "next/font/google";
-import styles from "./official-documents.module.css";
-import TopicsAccordion from "@/components/TopicsAccordion";
+import Image from "next/image";
+import Link from "next/link";
+import { DM_Sans, Source_Sans_3 } from "next/font/google";
 
+import TopicsAccordion from "@/components/TopicsAccordion";
+import ContactQuestion from "@/components/ContactQuestion";
+import styles from "./official-documents.module.css";
+
+const dmSans = DM_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400"],
+});
 const sourceSans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
   weight: ["300", "400", "600"],
@@ -33,6 +39,20 @@ export default function OfficialDocumentsPage() {
           data-page-reveal
           className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
         >
+          <nav
+              className={`${dmSans.className} ${styles.heroBreadcrumb}`}
+              aria-label={copy.heroBreadcrumbAriaLabel}
+            >
+              <Link href="/services" className={styles.heroBreadcrumbLink}>
+                {copy.heroBreadcrumbServices}
+              </Link>
+              <span className={styles.heroBreadcrumbSeparator} aria-hidden>
+                |
+              </span>
+              <span className={styles.heroBreadcrumbCurrent}>
+                {copy.heroTitle}
+              </span>
+            </nav>
           <div className={styles.heroContainer}>
             <div className={`${sourceSans.className} ${styles.heroContent}`}>
               <h1 className={styles.heroTitle}>{copy.heroTitle}</h1>
@@ -41,7 +61,9 @@ export default function OfficialDocumentsPage() {
                 <div className={styles.heroActions}>
                   <a
                     className={`${styles.heroButton} ${styles.heroButtonPrimary}`}
-                    href="#contact"
+                    href="https://silabot.de/uk/homepage/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {copy.ctaOrder}
                   </a>
@@ -56,7 +78,7 @@ export default function OfficialDocumentsPage() {
             </div>
 
             <div className={styles.heroImageWrap}>
-              <ImageWithPlaceholder
+              <Image
                 src="/official.png"
                 alt={copy.heroImageAlt}
                 width={650}
@@ -93,13 +115,10 @@ export default function OfficialDocumentsPage() {
           <ul className={styles.docTypesGrid}>
             {copy.documentTypes.map((item) => (
               <li key={item.icon} className={styles.docTypesItem}>
-                <ImageWithPlaceholder
+                <img
                   src={item.icon}
                   alt=""
-                  width={120}
-                  height={120}
                   className={styles.docTypesIcon}
-                  inline
                 />
                 <p className={styles.docTypesCaption}>{item.label}</p>
               </li>
@@ -122,6 +141,16 @@ export default function OfficialDocumentsPage() {
           {copy.silabotSecondParagraph}
         </p>
       </section>
+      <section
+        data-page-reveal
+        className={`${styles.topicsSection} ${revealStyles.reveal}`}
+        id="topics"
+      >
+        <div className={`${sourceSans.className} ${styles.topicsContainer}`}>
+          <span className={styles.topicsBadge}>{copy.topicsBadge}</span>
+          <h2 className={styles.topicsTitle}>{copy.topicsTitle}</h2>
+        </div>
+      </section>
       <div
         data-page-reveal
         className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
@@ -133,13 +162,7 @@ export default function OfficialDocumentsPage() {
           idPrefix="official-documents-accordion"
         />
       </div>
-      <div
-        data-page-reveal
-        className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
-        id="contact"
-      >
-        <ContactSection />
-      </div>
+      <ContactQuestion />
       <Footer />
     </div>
   );

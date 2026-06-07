@@ -274,6 +274,74 @@
   margin-top: 10px;
 }
 
+.step1ChoiceSection {
+  margin-top: 0;
+}
+
+.step1ChoiceSection .sectionTitle {
+  margin-bottom: 16px;
+}
+
+.choiceButtonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.choiceButton {
+  flex: 1 1 0;
+  min-width: 140px;
+  min-height: 56px;
+  padding: 14px 20px;
+  box-sizing: border-box;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background-color: #f1f1f1;
+  color: #454545;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.choiceButtonWhite {
+  background-color: #ffffff;
+}
+
+.choiceButton:hover {
+  border-color: #454545;
+}
+
+.choiceButtonSelected {
+  border: 2px solid #454545;
+}
+
+.step2CostRow {
+  margin: 44px 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.step2CostLabel {
+  color: var(--brand-blue);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.step2CostValue {
+  color: var(--brand-blue);
+  font-size: 32px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .radioGroup {
   display: grid;
   gap: 15px;
@@ -637,21 +705,24 @@
 }
 
 .step5GrandTotal {
-  margin: 69px 0 0;
+  margin: 44px 0 0;
   display: flex;
   align-items: baseline;
-  gap: 98px;
-  color: #4C4C4C;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .step5GrandTotalLabel {
+  color: #4c4c4c;
   font-size: 40px;
   font-weight: 600;
 }
 
 .step5GrandTotalValue {
+  color: var(--brand-blue);
   font-size: 40px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .step5Divider {
@@ -663,6 +734,29 @@
 .step5Form {
   display: grid;
   gap: 25px;
+}
+
+.step5MailingSection {
+  display: grid;
+  gap: 20px;
+}
+
+.step5SectionTitle {
+  margin: 8px 0 0;
+  color: var(--brand-blue);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.step5GridHalf {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.step5GridHalf .step5Control {
+  grid-column: 1;
 }
 
 .step5Grid2 {
@@ -685,32 +779,32 @@
 .step5Control {
   width: 100%;
   height: 74px;
+  border: 0;
   border-radius: 28px;
-  background: #ffffff;
-  border: 2px solid #C7C7C7;
-  padding: 0 18px;
+  background: #f1f1f1;
+  padding: 0 24px;
   color: #111111;
+  font-family: inherit;
   font-size: 28px;
+  font-weight: 400;
   outline: none;
   transition:
-    border-color 0.15s ease,
     box-shadow 0.15s ease,
     background-color 0.15s ease;
 }
 
 .step5Control::placeholder {
-  color:  #BFBFBF;
-
+  color: #bfbfbf;
+  font-weight: 400;
 }
 
 .step5Control:hover {
-  border-color: rgba(201, 81, 24, 0.35);
+  background-color: #ececec;
 }
 
 .step5Control:focus,
 .step5Control:focus-visible {
-  border-color: rgba(201, 81, 24, 0.65);
-  box-shadow: 0 0 0 4px rgba(201, 81, 24, 0.12);
+  box-shadow: 0 0 0 4px rgba(69, 105, 153, 0.12);
 }
 .footerRow {
   display: flex;

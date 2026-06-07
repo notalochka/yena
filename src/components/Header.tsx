@@ -10,7 +10,7 @@ import styles from "./Header.module.css";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
-  weight: ["400"],
+  weight: ["400", "700"],
 });
 
 const serviceDetailPaths = [
@@ -67,7 +67,7 @@ export default function Header() {
       <div className={styles.container}>
         <div className={styles.logoWrap}>
           <ImageWithPlaceholder
-            src="/logo.png"
+            src="/logo_icon.svg"
             alt="Yena logo"
             width={230}
             height={70}
@@ -77,6 +77,44 @@ export default function Header() {
         </div>
 
         <div className={styles.rightSide}>
+          <nav
+            aria-label={copy.navLabel}
+            className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}
+          >
+            <ul className={`${sourceSans.className} ${styles.menuList}`}>
+              {menuItems.map((item) => {
+                const isActive =
+                  (item.pathname !== undefined &&
+                    router.pathname === item.pathname) ||
+                  ("additionalActivePaths" in item &&
+                    item.additionalActivePaths?.includes(
+                      router.pathname as (typeof serviceDetailPaths)[number],
+                    ));
+
+                return (
+                  <li key={item.label}>
+                    <Link
+                      className={`${styles.menuLink} ${
+                        isActive ? styles.menuLinkActive : ""
+                      }`}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <Link
+              href="/services"
+              className={`${sourceSans.className} ${styles.estimateButton}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {copy.ctaEstimate}
+            </Link>
+          </nav>
+
           <div className={styles.langWrap} ref={langWrapRef}>
             <button
               type="button"
@@ -128,50 +166,19 @@ export default function Header() {
             )}
           </div>
 
-        <button
-          type="button"
-          className={`${styles.burgerButton} ${
-            isMenuOpen ? styles.burgerButtonOpen : ""
-          }`}
-          aria-label={isMenuOpen ? copy.burgerClose : copy.burgerOpen}
-          aria-expanded={isMenuOpen}
-          onClick={() => setIsMenuOpen((prevState) => !prevState)}
-        >
-          <span className={styles.burgerLine} />
-          <span className={styles.burgerLine} />
-          <span className={styles.burgerLine} />
-        </button>
-
-        <nav
-          aria-label={copy.navLabel}
-          className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}
-        >
-          <ul className={`${sourceSans.className} ${styles.menuList}`}>
-            {menuItems.map((item) => {
-              const isActive =
-                (item.pathname !== undefined &&
-                  router.pathname === item.pathname) ||
-                ("additionalActivePaths" in item &&
-                  item.additionalActivePaths?.includes(
-                    router.pathname as (typeof serviceDetailPaths)[number],
-                  ));
-
-              return (
-              <li key={item.label}>
-                <Link
-                  className={`${styles.menuLink} ${
-                    isActive ? styles.menuLinkActive : ""
-                  }`}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </li>
-              );
-            })}
-          </ul>
-        </nav>
+          <button
+            type="button"
+            className={`${styles.burgerButton} ${
+              isMenuOpen ? styles.burgerButtonOpen : ""
+            }`}
+            aria-label={isMenuOpen ? copy.burgerClose : copy.burgerOpen}
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((prevState) => !prevState)}
+          >
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
+          </button>
         </div>
       </div>
     </header>

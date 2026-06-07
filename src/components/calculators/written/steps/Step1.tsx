@@ -133,37 +133,30 @@ export default function Step1({
         <div className={styles.row} style={{ marginTop: 22 }}>
           <div className={styles.fieldLabel}>{s.optionsLabel}</div>
           <div
-            className={styles.radioGroup}
+            className={styles.choiceButtonRow}
             role="radiogroup"
             aria-label={s.volumeAria}
           >
-            <label className={styles.radioItem}>
-              <input
-                type="radio"
-                name="calc-volume-unit"
-                checked={volumeUnit === "words"}
-                onChange={() => setVolumeUnit("words")}
-              />
-              {s.words}
-            </label>
-            <label className={styles.radioItem}>
-              <input
-                type="radio"
-                name="calc-volume-unit"
-                checked={volumeUnit === "symbols"}
-                onChange={() => setVolumeUnit("symbols")}
-              />
-              {s.symbols}
-            </label>
-            <label className={styles.radioItem}>
-              <input
-                type="radio"
-                name="calc-volume-unit"
-                checked={volumeUnit === "pages"}
-                onChange={() => setVolumeUnit("pages")}
-              />
-              {s.pages}
-            </label>
+            {(
+              [
+                ["words", s.words],
+                ["symbols", s.symbols],
+                ["pages", s.pages],
+              ] as const
+            ).map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                role="radio"
+                aria-checked={volumeUnit === value}
+                className={`${styles.choiceButton} ${styles.choiceButtonWhite} ${
+                  volumeUnit === value ? styles.choiceButtonSelected : ""
+                }`}
+                onClick={() => setVolumeUnit(value)}
+              >
+                {label}
+              </button>
+            ))}
           </div>
         </div>
 

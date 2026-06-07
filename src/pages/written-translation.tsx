@@ -1,5 +1,4 @@
 import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
-import ContactSection from "@/components/ContactSection";
 import TopicsAccordion from "@/components/TopicsAccordion";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -13,6 +12,14 @@ import revealStyles from "@/styles/pageReveal.module.css";
 import { Source_Sans_3 } from "next/font/google";
 import styles from "./written-translation.module.css";
 import WrittenCalculator from "@/components/calculators/written";
+import ContactQuestion from "@/components/ContactQuestion";
+import Link from "next/link";
+import { DM_Sans } from "next/font/google";
+
+const dmSans = DM_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400"],
+});
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
@@ -36,6 +43,21 @@ export default function WrittenTranslationPage() {
           className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
         >
           <div className={`${sourceSans.className} ${styles.heroContainer}`}>
+            <nav
+              className={`${dmSans.className} ${styles.heroBreadcrumb}`}
+              aria-label={copy.heroBreadcrumbAriaLabel}
+            >
+              <Link href="/services" className={styles.heroBreadcrumbLink}>
+                {copy.heroBreadcrumbServices}
+              </Link>
+              <span className={styles.heroBreadcrumbSeparator} aria-hidden>
+                |
+              </span>
+              <span className={styles.heroBreadcrumbCurrent}>
+                {copy.heroTitle}
+              </span>
+            </nav>
+            <div className={styles.heroGrid}>
             <div className={styles.heroImageCol}>
               <ImageWithPlaceholder
                 src="/writen.png"
@@ -69,12 +91,13 @@ export default function WrittenTranslationPage() {
                 </p>
               ))}
             </div>
+            </div>
           </div>
         </div>
       </section>
       <section
         data-page-reveal
-        className={`${styles.descriptionSection} ${revealStyles.reveal}`}
+        className={`${sourceSans.className} ${styles.descriptionSection} ${revealStyles.reveal}`}
       >
         {copy.descriptionParagraphs.map((p) => (
           <p key={p} className={styles.descriptionText}>
@@ -89,6 +112,7 @@ export default function WrittenTranslationPage() {
         id="price-calculator"
       >
         <div className={`${sourceSans.className} ${styles.labelContainer}`}>
+          <span className={styles.heroBadge}>{copy.heroBadge}</span>
           <h2 className={styles.labelTitle}>{copy.priceCalculatorTitle}</h2>
         </div>
       </section>
@@ -99,7 +123,16 @@ export default function WrittenTranslationPage() {
         <WrittenCalculator />
       </div>
 
-
+      <section
+        data-page-reveal
+        className={`${styles.topicsSection} ${revealStyles.reveal}`}
+        id="topics"
+      >
+        <div className={`${sourceSans.className} ${styles.topicsContainer}`}>
+          <span className={styles.topicsBadge}>{copy.topicsBadge}</span>
+          <h2 className={styles.topicsTitle}>{copy.topicsTitle}</h2>
+        </div>
+      </section>
       <div
         data-page-reveal
         className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
@@ -112,12 +145,7 @@ export default function WrittenTranslationPage() {
           idPrefix="written-accordion"
         />
       </div>
-      <div
-        data-page-reveal
-        className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
-      >
-        <ContactSection />
-      </div>
+      <ContactQuestion />
       <Footer />
     </div>
   );

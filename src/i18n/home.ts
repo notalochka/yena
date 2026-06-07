@@ -15,6 +15,7 @@ export type HomeCopy = {
     clients: string;
     years: string;
   };
+  servicesBadge: string;
   servicesTitle: string;
   servicesLead: string;
 };
@@ -37,9 +38,10 @@ const ua: HomeCopy = {
     clients: "задоволених клієнтів з 1991 року",
     years: "років на ринку",
   },
-  servicesTitle: "Послуги",
+  servicesBadge: "Послуги",
+  servicesTitle: "Що ми перекладаємо?",
   servicesLead:
-    "Мене звати Наталія Єна, я власник бюро перекладів і сама кваліфікований професійний перекладач. Як досвідчений старший перекладач я надаю консультації з конференц-перекладу, організовую команди перекладачів, консультую з питань проведення конференцій та підбираю технічні засоби для перекладу. Крім того, я є судовим присяжним перекладачем.",
+    "Я – професійний кваліфікований перекладач. Крім того, як досвідчений старший перекладач я надаю консультації з конференц-перекладу. Я організовую команди перекладачів, консультую з питань проведення конференцій та підбираю технічні засоби для перекладу. Крім того, я є судовим присяжним перекладачем.",
 };
 
 const ru: HomeCopy = {
@@ -60,9 +62,10 @@ const ru: HomeCopy = {
     clients: "довольных клиентов с 1991 года",
     years: "лет на рынке",
   },
-  servicesTitle: "Услуги",
+  servicesBadge: "Услуги",
+  servicesTitle: "Что мы переводим?",
   servicesLead:
-    "Меня зовут Наталия Ена, я владелец бюро переводов и сама являюсь квалифицированным профессиональным переводчиком. Как опытный старший переводчик я консультирую по конференц-переводу, формирую команды переводчиков, консультирую по организации конференций и подбираю технические решения для перевода. Кроме того, я являюсь судебным присяжным переводчиком.",
+    "Я — профессиональный квалифицированный переводчик. Кроме того, как опытный старший переводчик я консультирую по конференц-переводу, организую команды переводчиков, консультирую по проведению конференций и подбираю технические средства для перевода. Кроме того, я являюсь судебным присяжным переводчиком.",
 };
 
 const en: HomeCopy = {
@@ -83,9 +86,10 @@ const en: HomeCopy = {
     clients: "happy clients since 1991",
     years: "years on the market",
   },
-  servicesTitle: "Services",
+  servicesBadge: "Services",
+  servicesTitle: "What do we translate?",
   servicesLead:
-    "My name is Nataliia Yena. I run a translation agency and I’m also a qualified professional translator. As an experienced senior linguist, I advise on conference interpreting, build interpreting teams, consult on event formats and select the right technical solutions. I am also a sworn court translator.",
+    "I am a qualified professional translator. As an experienced senior linguist, I also advise on conference interpreting, build interpreting teams, consult on conference planning and select the right technical solutions. I am also a sworn court translator.",
 };
 
 const de: HomeCopy = {
@@ -106,9 +110,10 @@ const de: HomeCopy = {
     clients: "zufriedene Kund:innen seit 1991",
     years: "Jahre am Markt",
   },
-  servicesTitle: "Leistungen",
+  servicesBadge: "Leistungen",
+  servicesTitle: "Was übersetzen wir?",
   servicesLead:
-    "Mein Name ist Nataliia Yena. Ich leite ein Übersetzungsbüro und bin selbst qualifizierte professionelle Übersetzerin. Als erfahrene Senior-Linguistin berate ich zum Konferenzdolmetschen, stelle Teams zusammen, unterstütze bei der Veranstaltungsplanung und wähle passende technische Lösungen. Außerdem bin ich beeidigte Gerichtsdolmetscherin.",
+    "Ich bin qualifizierte professionelle Übersetzerin. Als erfahrene Senior-Linguistin berate ich außerdem zum Konferenzdolmetschen, stelle Dolmetscherteams zusammen, berate bei der Planung von Konferenzen und wähle passende technische Lösungen. Außerdem bin ich beeidigte Gerichtsdolmetscherin.",
 };
 
 export const homeCopyByLang: Record<UiLanguage, HomeCopy> = {

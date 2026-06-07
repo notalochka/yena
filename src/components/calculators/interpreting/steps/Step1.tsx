@@ -288,59 +288,101 @@ export default function Step1({
         </div>
       </div>
 
-      <h3 className={styles.sectionTitle}>{copy.step1.complexityTitle}</h3>
-      <select
-        className={`${styles.control} ${styles.selectControl}`}
-        required
-        value={complexity}
-        onChange={(e) => setComplexity(e.target.value)}
-        aria-label={copy.step1.complexityAria}
-      >
-        <option value="" disabled hidden>
-          {copy.step1.complexityPlaceholder}
-        </option>
-        <option value="general">{copy.step1.complexityOptions.general}</option>
-        <option value="business">{copy.step1.complexityOptions.business}</option>
-        <option value="technical">{copy.step1.complexityOptions.technical}</option>
-        <option value="medical">{copy.step1.complexityOptions.medical}</option>
-        <option value="legal">{copy.step1.complexityOptions.legal}</option>
-      </select>
-
-      <h3 className={styles.sectionTitle}>{copy.step1.typeTitle}</h3>
-      <div
-        className={styles.radioGroup}
-        role="radiogroup"
-        aria-label={copy.step1.typeAria}
-      >
-        <label className={styles.radioItem}>
-          <input
-            type="radio"
-            name="calc-type"
-            checked={type === "sync"}
-            onChange={() => setType("sync")}
-          />
-          {copy.step1.typeSync}
-        </label>
-        <label className={styles.radioItem}>
-          <input
-            type="radio"
-            name="calc-type"
-            checked={type === "cons"}
-            onChange={() => setType("cons")}
-          />
-          {copy.step1.typeCons}
-        </label>
+      <div className={styles.step1ChoiceSection}>
+        <h3 className={styles.sectionTitle}>{copy.step1.complexityTitle}</h3>
+        <div
+          className={styles.choiceButtonRow}
+          role="radiogroup"
+          aria-label={copy.step1.complexityAria}
+        >
+          {(
+            [
+              ["business", copy.step1.complexityOptions.business],
+              ["medium", copy.step1.complexityOptions.medium],
+              ["complex", copy.step1.complexityOptions.complex],
+            ] as const
+          ).map(([value, label]) => (
+            <button
+              key={value}
+              type="button"
+              role="radio"
+              aria-checked={complexity === value}
+              className={`${styles.choiceButton} ${
+                complexity === value ? styles.choiceButtonSelected : ""
+              }`}
+              onClick={() => setComplexity(value)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <h3 className={styles.sectionTitle}>{copy.step1.interpretersTitle}</h3>
-      <input
-        className={styles.control}
-        type="number"
-        min={0}
-        value={interpreters}
-        onChange={(e) => setInterpreters(e.target.value)}
-        aria-label={copy.step1.interpretersAria}
-      />
+      <div className={styles.step1ChoiceSection}>
+        <h3 className={styles.sectionTitle}>{copy.step1.typeTitle}</h3>
+        <div
+          className={styles.choiceButtonRow}
+          role="radiogroup"
+          aria-label={copy.step1.typeAria}
+        >
+          <button
+            type="button"
+            role="radio"
+            aria-checked={type === "sync"}
+            className={`${styles.choiceButton} ${
+              type === "sync" ? styles.choiceButtonSelected : ""
+            }`}
+            onClick={() => setType("sync")}
+          >
+            {copy.step1.typeSync}
+          </button>
+          <button
+            type="button"
+            role="radio"
+            aria-checked={type === "cons"}
+            className={`${styles.choiceButton} ${
+              type === "cons" ? styles.choiceButtonSelected : ""
+            }`}
+            onClick={() => setType("cons")}
+          >
+            {copy.step1.typeCons}
+          </button>
+        </div>
+      </div>
+
+      <div className={styles.interpreterRow}>
+        <h3 className={styles.interpreterTitle}>{copy.step1.interpretersTitle}</h3>
+        <div
+          className={styles.interpreterCounter}
+          aria-label={copy.step1.interpretersAria}
+        >
+          <button
+            type="button"
+            className={styles.counterButton}
+            aria-label={`${copy.step1.interpretersAria} −`}
+            onClick={() => {
+              const next = Math.max(1, (parseInt(interpreters, 10) || 1) - 1);
+              setInterpreters(String(next));
+            }}
+          >
+            −
+          </button>
+          <span className={styles.counterValue} aria-live="polite">
+            {parseInt(interpreters, 10) || 1}
+          </span>
+          <button
+            type="button"
+            className={styles.counterButton}
+            aria-label={`${copy.step1.interpretersAria} +`}
+            onClick={() => {
+              const next = (parseInt(interpreters, 10) || 1) + 1;
+              setInterpreters(String(next));
+            }}
+          >
+            +
+          </button>
+        </div>
+      </div>
 
       <div className={styles.footerRow}>
         <div className={styles.priceWrap} aria-label={copy.step1.priceAria}>

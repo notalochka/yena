@@ -71,16 +71,18 @@ export default function Step3({
 
       <h3 className={styles.sectionTitle}>{s.titleFormatting}</h3>
 
-      <label className={styles.step2ToggleCard}>
-        <input
-          className={styles.step2ToggleInput}
-          type="checkbox"
-          checked={addFormatting}
-          onChange={(e) => setAddFormatting(e.target.checked)}
-        />
-        <span className={styles.step2ToggleDot} aria-hidden />
-        <span className={styles.step2ToggleText}>{s.addFormatting}</span>
-      </label>
+      <div className={styles.choiceButtonRow}>
+        <button
+          type="button"
+          aria-pressed={addFormatting}
+          className={`${styles.choiceButton} ${
+            addFormatting ? styles.choiceButtonSelected : ""
+          }`}
+          onClick={() => setAddFormatting(!addFormatting)}
+        >
+          {s.addFormatting}
+        </button>
+      </div>
 
       <div
         className={styles.step3CostRow}

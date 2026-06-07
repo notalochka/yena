@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  margin: 48px 0 56px;
+  margin: 0;
 }
 
 .sectionOrange {
@@ -8,10 +8,11 @@
 }
 
 .sectionBlue {
-  background-color: #245DA9;
+  background-color: #395171;
+
 }
 .sectionOlive {
-  background-color: #8D8A1F;
+  background-color: #8D8A1E;
 }
 .list {
   margin: 0;
@@ -31,7 +32,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: 0 10px;
 }
 
 .divider {
@@ -44,11 +45,11 @@
 }
 
 .dividerBlue {
-  border-top: 6px solid #96C0F870;
+  border-top: 6px solid #456999;
 }
 
 .dividerOlive {
-  border-top: 6px solid #BBB605;
+  border-top: 6px solid #A29F30;
 }
 
 .item:last-child .divider {
@@ -62,7 +63,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 50px 0;
+  padding: 40px 0;
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -90,8 +91,8 @@
   position: relative;
   flex-shrink: 0;
   box-sizing: border-box;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border: 3px solid #ffffff;
   border-radius: 50%;
   background: transparent;
@@ -109,13 +110,13 @@
 }
 
 .iconLineH {
-  width: 30px;
+  width: 20px;
   height: 2px;
 }
 
 .iconLineV {
   width: 2px;
-  height: 30px;
+  height: 20px;
   transition: opacity 0.15s ease;
 }
 

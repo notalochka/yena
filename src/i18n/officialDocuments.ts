@@ -7,6 +7,8 @@ export type OfficialDocumentTypeItem = {
 
 export type OfficialDocumentsCopy = {
   heroImageAlt: string;
+  heroBreadcrumbServices: string;
+  heroBreadcrumbAriaLabel: string;
   ctaOrder: string;
   ctaMore: string;
   heroTitle: string;
@@ -18,6 +20,8 @@ export type OfficialDocumentsCopy = {
   silabotAfterLink: string;
   silabotSecondParagraph: string;
   accordionAriaLabel: string;
+  topicsBadge: string;
+  topicsTitle: string;
 };
 
 export const officialDocumentsCopyByLang: Record<
@@ -26,6 +30,8 @@ export const officialDocumentsCopyByLang: Record<
 > = {
   UA: {
     heroImageAlt: "Переклад офіційних документів",
+    heroBreadcrumbServices: "Послуги",
+    heroBreadcrumbAriaLabel: "Переклад офіційних документів",
     ctaOrder: "Замовити переклад",
     ctaMore: "Дізнатися більше",
     heroTitle: "Переклад офіційних документів",
@@ -33,7 +39,7 @@ export const officialDocumentsCopyByLang: Record<
       "Я є присяжним перекладачем німецької, української та російської мови. Крім того, на підставі мого британського диплому з перекладу для державних та муніципальних служб я вповноважена на виконання засвідчених перекладів на англійську мову та з неї на українську або російську. Я виконую переклади відповідно до стандарту ISO 9: 1995 (E) або Постанови Кабінету міністрів України від 27 січня 2010 р. № 55. Крім того, я маю право посвідчувати їх точність та вичерпність. Йдеться як про переклади на німецьку мову, призначені для німецьких державних установ, так і про переклади на українську, російську та англійську для державних установ за кордоном.",
       "Я пропоную своїм клієнтам 10-річний сервіс. Це означає, що одного разу перекладений документ ви можете повторно замовляти протягом 10 років лише з оплатою виготовлення, засвідчення та накладних витрат.",
       "У засвідчених перекладах російською та українською написання власних імен кирилицею може за бажанням замовника здійснюватися не тільки відповідно до вищезазначеного стандарту ISO або Постанови КМУ, але й згідно з вимогами транслітерації інших країн.",
-      "У засвідчених перекладах німецькою та англійською, паралельно з транслітерацією імен з кирилиці латинським алфавітом відповідно до стандарту ISO або Постанови Кабінету Міністрів України, у перекладеному документі може наводитися написання імен згідно з закордонним паспортом особи, якій виданий офіційний документ. Для цього мені потрібно підтвердження відповідного написання імен на підставі офіційного посвідчення особи з фотографією.",
+      "У засвідчених перекладах німецькою та англійською, паралельно з транслітерацією імен з кирилиці латинським алфавітом відповідно до стандарту ISO або Постанови Кабінету Міністрів України, може наводитися написання імен згідно з закордонним паспортом особи, якій видано цей офіційний документ. Для цього мені потрібно підтвердження відповідного написання імен на підставі офіційного посвідчення особи з фотографією.",
       "Зрештою, за бажанням замовника на засвідчений переклад може бути проставлений апостиль. Це, зокрема, необхідно, якщо переклад документа виданого в Німеччині призначений для використання в іншій країні.",
     ],
     docTypesTitle: "Основні види офіційних документів, які я перекладаю:",
@@ -76,9 +82,13 @@ export const officialDocumentsCopyByLang: Record<
       "Ми його спеціально створили для перекладу офіційних документів, які потребують засвідчення.",
     accordionAriaLabel:
       "Основні види офіційних документів, які я перекладаю",
+    topicsBadge: "ТИПИ ПОСЛУГ",
+    topicsTitle: "Послуги",
   },
   RU: {
     heroImageAlt: "Перевод официальных документов",
+    heroBreadcrumbServices: "Услуги",
+    heroBreadcrumbAriaLabel: "Перевод официальных документов",
     ctaOrder: "Заказать перевод",
     ctaMore: "Узнать больше",
     heroTitle: "Перевод официальных документов",
@@ -130,9 +140,13 @@ export const officialDocumentsCopyByLang: Record<
       "Мы создали его специально для перевода официальных документов, требующих заверения.",
     accordionAriaLabel:
       "Основные виды официальных документов, которые я перевожу",
+    topicsBadge: "ТИПЫ УСЛУГ",
+    topicsTitle: "Услуги",
   },
   EN: {
     heroImageAlt: "Certified translation of official documents",
+    heroBreadcrumbServices: "Services",
+    heroBreadcrumbAriaLabel: "Certified translation of official documents",
     ctaOrder: "Request a translation",
     ctaMore: "Learn more",
     heroTitle: "Certified translation of official documents",
@@ -182,9 +196,13 @@ export const officialDocumentsCopyByLang: Record<
     silabotSecondParagraph:
       "We created it specifically for official documents that require certification.",
     accordionAriaLabel: "Main types of official documents I translate",
+    topicsBadge: "TYPES OF SERVICES",
+    topicsTitle: "Services",
   },
   DE: {
     heroImageAlt: "Beglaubigte Übersetzung von Urkunden",
+    heroBreadcrumbServices: "Leistungen",
+    heroBreadcrumbAriaLabel: "Beglaubigte Übersetzung von Urkunden",
     ctaOrder: "Übersetzung anfragen",
     ctaMore: "Mehr erfahren",
     heroTitle: "Beglaubigte Übersetzung von Urkunden",
@@ -234,5 +252,7 @@ export const officialDocumentsCopyByLang: Record<
     silabotSecondParagraph:
       "Wir haben sie speziell für Urkunden eingerichtet, die eine Beglaubigung erfordern.",
     accordionAriaLabel: "Arten von Urkunden, die ich übersetze",
+    topicsBadge: "TYPEN DER LEISTUNGEN",
+    topicsTitle: "Leistungen",
   },
 };

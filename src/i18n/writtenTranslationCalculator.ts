@@ -44,6 +44,8 @@ export type WrittenCalculatorCopy = {
   step2: {
     title: string;
     toggleText: string;
+    costAria: string;
+    costLabel: string;
   };
   step3: {
     titleFiles: string;
@@ -69,26 +71,27 @@ export type WrittenCalculatorCopy = {
     deliveryCostLabel: string;
   };
   step5: {
-    recalculation: string;
-    editingCost: string;
-    formattingCost: string;
-    deliveryCost: string;
-    estimatedNoVat: string;
-    apostilleTranslation: string;
-    apostilleDocument: string;
-    certification: string;
+    estimatedCost: string;
+    editing: string;
+    formatting: string;
     officeFee: string;
-    orderTotalNoVat: string;
+    estimatedNetto: string;
+    totalEstimatedNetto: string;
     shippingPackaging: string;
     vat: string;
-    grandEstimatedWithVat: string;
+    totalEstimatedBrutto: string;
     grandTotalAria: string;
     grandTotalLabel: string;
     firstName: string;
     lastName: string;
     phone: string;
     email: string;
-    address: string;
+    mailingAddressTitle: string;
+    countryPlaceholder: string;
+    cityPlaceholder: string;
+    streetPlaceholder: string;
+    houseNumberPlaceholder: string;
+    postalCodePlaceholder: string;
   };
 };
 
@@ -125,13 +128,13 @@ export const writtenTranslationCalculatorCopyByLang: Record<
         medical: "Медична тематика",
         legal: "Юридична тематика",
       },
-      optionsLabel: "Варіанти",
-      volumeAria: "Варіанти об’єму",
+      optionsLabel: "Обрахунок спирається на",
+      volumeAria: "Обрахунок спирається на",
       words: "Слова",
       symbols: "Символи",
       pages: "Сторінки",
-      goalLabel: "Мета перекладу",
-      goalPlaceholder: "Оберіть мету перекладу",
+      goalLabel: "Призначення перекладу",
+      goalPlaceholder: "Оберіть призначення перекладу",
       goalOptions: {
         personal: "Особисте використання",
         business: "Бізнес",
@@ -143,18 +146,20 @@ export const writtenTranslationCalculatorCopyByLang: Record<
       next: "Наступна сторінка",
     },
     step2: {
-      title: "Редагування або виправлення тексту",
-      toggleText: "Редагування або виправлення тексту",
+      title: "Редагування тексту",
+      toggleText: "Редагування тексту",
+      costAria: "Вартість",
+      costLabel: "Вартість",
     },
     step3: {
       titleFiles: "Файли",
-      uploadText: "Перетягнути або вибір файлів",
+      uploadText: "Додати файли",
       filesAria: "Додані файли",
       remove: "Прибрати",
       titleFormatting: "Форматування",
       addFormatting: "Додати форматування",
-      formattingCostAria: "Форматування витрат",
-      formattingCostLabel: "Форматування витрат",
+      formattingCostAria: "Вартість форматування",
+      formattingCostLabel: "Вартість форматування",
     },
     step4: {
       title: "Термін доставки (робочі дні)",
@@ -170,26 +175,27 @@ export const writtenTranslationCalculatorCopyByLang: Record<
       deliveryCostLabel: "Вартість доставки",
     },
     step5: {
-      recalculation: "Перерахунок вартості",
-      editingCost: "Вартість редагування або виправлення тексту",
-      formattingCost: "Форматування витрат",
-      deliveryCost: "Вартість доставки",
-      estimatedNoVat: "Оцінена вартість (без ПДВ)",
-      apostilleTranslation: "Поставити апостиль на перекладі",
-      apostilleDocument: "Поставити апостиль на документі",
-      certification: "Засвідчення",
+      estimatedCost: "Розрахункова вартість",
+      editing: "Редагування",
+      formatting: "Форматування",
       officeFee: "Канцелярський збір",
-      orderTotalNoVat: "Загальна вартість замовлення (без ПДВ)",
+      estimatedNetto: "Оцінена вартість NETTO",
+      totalEstimatedNetto: "Загальна оцінена вартість NETTO",
       shippingPackaging: "Доставка та упаковка",
       vat: "ПДВ",
-      grandEstimatedWithVat: "Загальна оцінена вартість замовлення (з ПДВ)",
+      totalEstimatedBrutto: "Загальна оціненна вартість БРУТТО",
       grandTotalAria: "Всього",
       grandTotalLabel: "Всього",
       firstName: "Ім’я",
       lastName: "Прізвище",
       phone: "Номер телефону",
       email: "Адреса електронної пошти",
-      address: "Адреса",
+      mailingAddressTitle: "Поштова адреса",
+      countryPlaceholder: "Країна",
+      cityPlaceholder: "Місто",
+      streetPlaceholder: "Вулиця",
+      houseNumberPlaceholder: "Номер будинку",
+      postalCodePlaceholder: "Поштовий індекс",
     },
   },
   RU: {
@@ -221,13 +227,13 @@ export const writtenTranslationCalculatorCopyByLang: Record<
         medical: "Медицинская тематика",
         legal: "Юридическая тематика",
       },
-      optionsLabel: "Варианты",
-      volumeAria: "Варианты объёма",
+      optionsLabel: "Расчёт основан на",
+      volumeAria: "Расчёт основан на",
       words: "Слова",
       symbols: "Знаки",
       pages: "Страницы",
-      goalLabel: "Цель перевода",
-      goalPlaceholder: "Выберите цель перевода",
+      goalLabel: "Назначение перевода",
+      goalPlaceholder: "Выберите назначение перевода",
       goalOptions: {
         personal: "Личное использование",
         business: "Бизнес",
@@ -239,12 +245,14 @@ export const writtenTranslationCalculatorCopyByLang: Record<
       next: "Следующая страница",
     },
     step2: {
-      title: "Редактирование или исправление текста",
-      toggleText: "Редактирование или исправление текста",
+      title: "Редактирование текста",
+      toggleText: "Редактирование текста",
+      costAria: "Стоимость",
+      costLabel: "Стоимость",
     },
     step3: {
       titleFiles: "Файлы",
-      uploadText: "Перетащите файлы или выберите",
+      uploadText: "Добавить файлы",
       filesAria: "Добавленные файлы",
       remove: "Удалить",
       titleFormatting: "Форматирование",
@@ -266,26 +274,27 @@ export const writtenTranslationCalculatorCopyByLang: Record<
       deliveryCostLabel: "Стоимость доставки",
     },
     step5: {
-      recalculation: "Пересчёт стоимости",
-      editingCost: "Стоимость редактирования или исправления текста",
-      formattingCost: "Стоимость форматирования",
-      deliveryCost: "Стоимость доставки",
-      estimatedNoVat: "Оценочная стоимость (без НДС)",
-      apostilleTranslation: "Апостиль на переводе",
-      apostilleDocument: "Апостиль на документе",
-      certification: "Засвидетельствование",
+      estimatedCost: "Расчётная стоимость",
+      editing: "Редактирование",
+      formatting: "Форматирование",
       officeFee: "Канцелярский сбор",
-      orderTotalNoVat: "Общая стоимость заказа (без НДС)",
+      estimatedNetto: "Оценённая стоимость NETTO",
+      totalEstimatedNetto: "Общая оценённая стоимость NETTO",
       shippingPackaging: "Доставка и упаковка",
       vat: "НДС",
-      grandEstimatedWithVat: "Общая оценочная стоимость заказа (с НДС)",
+      totalEstimatedBrutto: "Общая оценённая стоимость БРУТТО",
       grandTotalAria: "Итого",
       grandTotalLabel: "Итого",
       firstName: "Имя",
       lastName: "Фамилия",
       phone: "Номер телефона",
-      email: "Электронная почта",
-      address: "Адрес",
+      email: "Адрес электронной почты",
+      mailingAddressTitle: "Почтовый адрес",
+      countryPlaceholder: "Страна",
+      cityPlaceholder: "Город",
+      streetPlaceholder: "Улица",
+      houseNumberPlaceholder: "Номер дома",
+      postalCodePlaceholder: "Почтовый индекс",
     },
   },
   EN: {
@@ -317,13 +326,13 @@ export const writtenTranslationCalculatorCopyByLang: Record<
         medical: "Medical",
         legal: "Legal",
       },
-      optionsLabel: "Options",
-      volumeAria: "Volume units",
+      optionsLabel: "Calculation based on",
+      volumeAria: "Calculation based on",
       words: "Words",
       symbols: "Characters",
       pages: "Pages",
-      goalLabel: "Purpose of the translation",
-      goalPlaceholder: "Select purpose",
+      goalLabel: "Purpose of translation",
+      goalPlaceholder: "Choose the purpose of translation",
       goalOptions: {
         personal: "Personal use",
         business: "Business",
@@ -335,12 +344,14 @@ export const writtenTranslationCalculatorCopyByLang: Record<
       next: "Next page",
     },
     step2: {
-      title: "Editing or text correction",
-      toggleText: "Editing or text correction",
+      title: "Text editing",
+      toggleText: "Text editing",
+      costAria: "Cost",
+      costLabel: "Cost",
     },
     step3: {
       titleFiles: "Files",
-      uploadText: "Drag and drop or choose files",
+      uploadText: "Add files",
       filesAria: "Uploaded files",
       remove: "Remove",
       titleFormatting: "Formatting",
@@ -362,26 +373,27 @@ export const writtenTranslationCalculatorCopyByLang: Record<
       deliveryCostLabel: "Delivery cost",
     },
     step5: {
-      recalculation: "Cost recalculation",
-      editingCost: "Editing or correction cost",
-      formattingCost: "Formatting cost",
-      deliveryCost: "Delivery cost",
-      estimatedNoVat: "Estimated cost (excl. VAT)",
-      apostilleTranslation: "Apostille on the translation",
-      apostilleDocument: "Apostille on the document",
-      certification: "Certification",
+      estimatedCost: "Estimated cost",
+      editing: "Editing",
+      formatting: "Formatting",
       officeFee: "Administrative fee",
-      orderTotalNoVat: "Order total (excl. VAT)",
+      estimatedNetto: "Estimated cost NET",
+      totalEstimatedNetto: "Total estimated cost NET",
       shippingPackaging: "Shipping and packaging",
       vat: "VAT",
-      grandEstimatedWithVat: "Total estimated order value (incl. VAT)",
+      totalEstimatedBrutto: "Total estimated cost GROSS",
       grandTotalAria: "Total",
       grandTotalLabel: "Total",
       firstName: "First name",
       lastName: "Last name",
       phone: "Phone number",
       email: "Email address",
-      address: "Address",
+      mailingAddressTitle: "Mailing address",
+      countryPlaceholder: "Country",
+      cityPlaceholder: "City",
+      streetPlaceholder: "Street",
+      houseNumberPlaceholder: "House number",
+      postalCodePlaceholder: "Postal code",
     },
   },
   DE: {
@@ -413,13 +425,13 @@ export const writtenTranslationCalculatorCopyByLang: Record<
         medical: "Medizin",
         legal: "Recht",
       },
-      optionsLabel: "Optionen",
-      volumeAria: "Mengeneinheit",
+      optionsLabel: "Berechnung basiert auf",
+      volumeAria: "Berechnung basiert auf",
       words: "Wörter",
       symbols: "Zeichen",
       pages: "Seiten",
       goalLabel: "Zweck der Übersetzung",
-      goalPlaceholder: "Zweck wählen",
+      goalPlaceholder: "Zweck der Übersetzung wählen",
       goalOptions: {
         personal: "Privat",
         business: "Business",
@@ -431,12 +443,14 @@ export const writtenTranslationCalculatorCopyByLang: Record<
       next: "Nächste Seite",
     },
     step2: {
-      title: "Bearbeitung oder Textkorrektur",
-      toggleText: "Bearbeitung oder Textkorrektur",
+      title: "Textbearbeitung",
+      toggleText: "Textbearbeitung",
+      costAria: "Kosten",
+      costLabel: "Kosten",
     },
     step3: {
       titleFiles: "Dateien",
-      uploadText: "Dateien ziehen oder auswählen",
+      uploadText: "Dateien hinzufügen",
       filesAria: "Hochgeladene Dateien",
       remove: "Entfernen",
       titleFormatting: "Formatierung",
@@ -458,26 +472,27 @@ export const writtenTranslationCalculatorCopyByLang: Record<
       deliveryCostLabel: "Lieferkosten",
     },
     step5: {
-      recalculation: "Neuberechnung",
-      editingCost: "Kosten für Bearbeitung oder Korrektur",
-      formattingCost: "Formatierungskosten",
-      deliveryCost: "Lieferkosten",
-      estimatedNoVat: "Geschätzte Kosten (ohne MwSt.)",
-      apostilleTranslation: "Apostille auf der Übersetzung",
-      apostilleDocument: "Apostille auf dem Dokument",
-      certification: "Beglaubigung",
+      estimatedCost: "Kalkulierte Kosten",
+      editing: "Bearbeitung",
+      formatting: "Formatierung",
       officeFee: "Kanzleigebühr",
-      orderTotalNoVat: "Gesamtauftragswert (ohne MwSt.)",
+      estimatedNetto: "Geschätzte Kosten NETTO",
+      totalEstimatedNetto: "Gesamte geschätzte Kosten NETTO",
       shippingPackaging: "Versand und Verpackung",
       vat: "MwSt.",
-      grandEstimatedWithVat: "Geschätzter Gesamtauftragswert (inkl. MwSt.)",
+      totalEstimatedBrutto: "Gesamte geschätzte Kosten BRUTTO",
       grandTotalAria: "Gesamt",
       grandTotalLabel: "Gesamt",
       firstName: "Vorname",
       lastName: "Nachname",
       phone: "Telefonnummer",
-      email: "E-Mail-Adresse",
-      address: "Adresse",
+      email: "E‑Mail-Adresse",
+      mailingAddressTitle: "Postanschrift",
+      countryPlaceholder: "Land",
+      cityPlaceholder: "Stadt",
+      streetPlaceholder: "Straße",
+      houseNumberPlaceholder: "Hausnummer",
+      postalCodePlaceholder: "Postleitzahl",
     },
   },
 };

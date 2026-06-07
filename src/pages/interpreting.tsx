@@ -1,22 +1,28 @@
 import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
-import ContactSection from "@/components/ContactSection";
 import InterpretingCalculator from "@/components/calculators/interpreting";
 import TopicsAccordion from "@/components/TopicsAccordion";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Seo } from "@/components/Seo";
+import Link from "next/link";
 import { usePageReveal } from "@/hooks/usePageReveal";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { interpretingCopyByLang } from "@/i18n/interpreting";
 import { interpretingAccordionItemsByLang } from "@/i18n/interpretingAccordion";
 import { getSeo } from "@/i18n/seoPages";
 import revealStyles from "@/styles/pageReveal.module.css";
-import { Source_Sans_3 } from "next/font/google";
+import { DM_Sans, Source_Sans_3 } from "next/font/google";
 import styles from "./interpreting.module.css";
+import ContactQuestion from "@/components/ContactQuestion";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "600"],
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400"],
 });
 
 export default function InterpretingPage() {
@@ -36,9 +42,25 @@ export default function InterpretingPage() {
           className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
         >
           <div className={`${sourceSans.className} ${styles.heroContainer}`}>
+            <nav
+              className={`${dmSans.className} ${styles.heroBreadcrumb}`}
+              aria-label={copy.heroBreadcrumbAriaLabel}
+            >
+              <Link href="/services" className={styles.heroBreadcrumbLink}>
+                {copy.heroBreadcrumbServices}
+              </Link>
+              <span className={styles.heroBreadcrumbSeparator} aria-hidden>
+                |
+              </span>
+              <span className={styles.heroBreadcrumbCurrent}>
+                {copy.heroTitle}
+              </span>
+            </nav>
+
+            <div className={styles.heroGrid}>
             <div className={styles.heroImageCol}>
               <ImageWithPlaceholder
-                src="/verbal.jpg"
+                src="/verbal.png"
                 alt={copy.heroImageAlt}
                 width={650}
                 height={430}
@@ -69,6 +91,7 @@ export default function InterpretingPage() {
                 </p>
               ))}
             </div>
+            </div>
           </div>
         </div>
       </section>
@@ -79,6 +102,7 @@ export default function InterpretingPage() {
         id="price-calculator"
       >
         <div className={`${sourceSans.className} ${styles.labelContainer}`}>
+          <span className={styles.heroBadge}>{copy.heroBadge}</span>
           <h2 className={styles.labelTitle}>{copy.priceCalculatorTitle}</h2>
         </div>
       </section>
@@ -89,7 +113,16 @@ export default function InterpretingPage() {
       >
         <InterpretingCalculator />
       </div>
-
+      <section
+        data-page-reveal
+        className={`${styles.topicsSection} ${revealStyles.reveal}`}
+        id="topics"
+      >
+        <div className={`${sourceSans.className} ${styles.topicsContainer}`}>
+          <span className={styles.topicsBadge}>{copy.topicsBadge}</span>
+          <h2 className={styles.topicsTitle}>{copy.topicsTitle}</h2>
+        </div>
+      </section>
       <div
         data-page-reveal
         className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
@@ -102,13 +135,8 @@ export default function InterpretingPage() {
           idPrefix="interpreting-accordion"
         />
       </div>
-
-      <div
-        data-page-reveal
-        className={`${revealStyles.reveal} ${revealStyles.revealFullWidth}`}
-      >
-        <ContactSection />
-      </div>
+     
+      <ContactQuestion />
       <Footer />
     </div>
   );

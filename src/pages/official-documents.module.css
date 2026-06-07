@@ -1,13 +1,45 @@
 .page {
-  background-color: #ffffff;
+  background-color: var(--background-secondary);
 }
 
 .heroSection {
   width: 100%;
-  background-color: #ffffff;
-  margin-top: 10px;
+  background-color: var(--background-secondary);
+}
+.heroBreadcrumb {
+  display: flex;
+  text-align: left;
+  gap: 12px;
+  margin: 0 0 24px;
+  color: #6b5b4f;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 230%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 10px 0px;
 }
 
+.heroBreadcrumbLink {
+  color: #BBB605;
+  text-decoration: none;
+}
+
+.heroBreadcrumbLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.heroBreadcrumbSeparator {
+  color: inherit;
+}
+
+.heroBreadcrumbCurrent {
+  color: inherit;
+}
 .heroContainer {
   display: flex;
   justify-content: space-between;
@@ -15,15 +47,14 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 28px 32px 40px;
+  padding: 28px 10px 40px;
 }
 
 .heroContent {
   max-width: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
+  height: 100%;
 }
 
 .heroBody {
@@ -34,10 +65,10 @@
   margin: 0;
   color: #BBB605;
   font-size: 60px;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 120%;
   letter-spacing: 0;
-  
+  padding: 70px 0 40px;
 }
 
 .heroActions {
@@ -50,12 +81,12 @@
 .heroButton {
   display: inline-flex;
   padding: 15px 31px;
-  border: 1px solid #BBB605;
+  border: 4px solid #BBB605;
   border-radius: 50px;
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 800;
   line-height: 100%;
   letter-spacing: 0;
   white-space: nowrap;
@@ -73,9 +104,7 @@
 }
 
 .heroButtonSecondary {
-  background-color: #ffffff;
-  color: var(--brand-blue);
-  border-color: var(--brand-blue);
+  color: #BBB605;
 }
 
 .heroButtonSecondary:hover {
@@ -100,17 +129,11 @@
 
 
 
-
-
-
-
-
-
 .introSection {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 32px 56px;
+  padding: 20px 10px 56px;
   scroll-margin-top: 80px;
 }
 
@@ -142,13 +165,13 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 56px 32px;
+  padding: 56px 10px;
 }
 
 .docTypesTitle {
   margin: 0;
   padding-bottom: 47px;
-  color: #bbb605;
+  color: #000000;
   font-size: 40px;
   font-weight: 600;
   line-height: 40px;
@@ -158,9 +181,9 @@
 
 .docTypesCard {
   margin-bottom: 50px;
-  padding: 40px 32px;
+  padding: 40px 10px;
   border-radius: 16px;
-  background-color: #f4f4f4;
+  background-color: #ffffff;
 }
 
 .docTypesGrid {
@@ -180,7 +203,7 @@
 }
 
 .docTypesIcon {
-  height: 100px;
+  height: 120px;
   width: auto;
   object-fit: contain;
 }
@@ -189,7 +212,7 @@
   margin: 16px 0 0;
   color: #000000;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 40px;
   letter-spacing: 0.5px;
   text-align: center;
@@ -212,9 +235,53 @@
 .docTypesLink:hover {
   opacity: 0.9;
 }
+.topicsSection {
+  width: 100%;
+  background-color: var(--background-secondary);
+  scroll-margin-top: 80px;
+}
+
+.topicsContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 10px;
+}
+.topicsBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 40px;
+  border-radius: 50px;
+  background: #E3DE3D;
+  color: #8D8A1E;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.topicsTitle {
+  margin: 0;
+  color: #000000;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0;
+  font-family: Source Sans 3;
+  font-weight: 600;
+  text-align: left;
+}
 @media (max-width: 900px) {
   .heroSection {
     margin-top: 10px;
+  }
+  .heroBreadcrumb {
+    margin-bottom: 16px;
+    font-size: 13px;
+    padding: 0 20px;
   }
 
   .heroContainer {
@@ -231,6 +298,7 @@
   .heroTitle {
     order: 1;
     font-size: 34px;
+    padding: 0;
   }
 
   .heroBody {
@@ -300,6 +368,19 @@
     margin-top: 32px;
     font-size: 18px;
     line-height: 1.45;
+  }
+  .topicsContainer {
+    padding: 20px;
+  }
+
+  .topicsBadge {
+    margin-bottom: 10px;
+    font-size: 12px;
+    padding: 10px 20px;
+    width: 150px;
+  }
+  .topicsTitle {
+    font-size: 30px;
   }
 }
 

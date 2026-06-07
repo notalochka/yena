@@ -53,7 +53,7 @@ export default function InterpretingCalculator() {
   const [endMin, setEndMin] = useState("");
   const [complexity, setComplexity] = useState("");
   const [type, setType] = useState<"sync" | "cons">("sync");
-  const [interpreters, setInterpreters] = useState<string>("0");
+  const [interpreters, setInterpreters] = useState<string>("1");
   const [training, setTraining] = useState<string>("");
   const [location, setLocation] = useState<"online" | "offline" | "">("");
   const [recording, setRecording] = useState<"yes" | "no" | "">("");
@@ -61,7 +61,11 @@ export default function InterpretingCalculator() {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [street, setStreet] = useState("");
+  const [houseNumber, setHouseNumber] = useState("");
+  const [postalCode, setPostalCode] = useState("");
 
   const progressPercent =
     stepsMeta.length <= 0
@@ -93,12 +97,31 @@ export default function InterpretingCalculator() {
     const last = lastName.trim();
     const p = phone.trim();
     const e = email.trim();
-    const a = address.trim();
 
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
-    return first !== "" && last !== "" && p !== "" && emailOk && a !== "";
-  }, [address, email, firstName, lastName, phone]);
+    return (
+      first !== "" &&
+      last !== "" &&
+      p !== "" &&
+      emailOk &&
+      country.trim() !== "" &&
+      city.trim() !== "" &&
+      street.trim() !== "" &&
+      houseNumber.trim() !== "" &&
+      postalCode.trim() !== ""
+    );
+  }, [
+    city,
+    country,
+    email,
+    firstName,
+    houseNumber,
+    lastName,
+    phone,
+    postalCode,
+    street,
+  ]);
 
   const canProceedFromCurrentStep = useMemo(() => {
     switch (currentStepIndex) {
@@ -232,8 +255,16 @@ export default function InterpretingCalculator() {
             setPhone={setPhone}
             email={email}
             setEmail={setEmail}
-            address={address}
-            setAddress={setAddress}
+            country={country}
+            setCountry={setCountry}
+            city={city}
+            setCity={setCity}
+            street={street}
+            setStreet={setStreet}
+            houseNumber={houseNumber}
+            setHouseNumber={setHouseNumber}
+            postalCode={postalCode}
+            setPostalCode={setPostalCode}
           />
         )}
 

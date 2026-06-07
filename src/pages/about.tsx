@@ -10,6 +10,7 @@ import { usePageReveal } from "@/hooks/usePageReveal";
 import revealStyles from "@/styles/pageReveal.module.css";
 import { DM_Sans, Source_Sans_3 } from "next/font/google";
 import styles from "./about.module.css";
+import ContactQuestion from "@/components/ContactQuestion";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
@@ -39,6 +40,7 @@ export default function AboutPage() {
       >
         <div className={styles.heroContainer}>
           <div className={`${sourceSans.className} ${styles.heroContent}`}>
+            <span className={styles.heroBadge}>{copy.heroBadge}</span>
             <h1 className={styles.heroTitle}>{copy.heroTitle}</h1>
 
             <p className={styles.heroDescription}>{copy.heroDescription1}</p>
@@ -48,7 +50,7 @@ export default function AboutPage() {
 
           <div className={styles.heroImageWrap}>
             <ImageWithPlaceholder
-              src="/main_photo1.jpg"
+              src="/main_photo6.png"
               alt={copy.heroImageAlt}
               width={650}
               height={430}
@@ -64,92 +66,6 @@ export default function AboutPage() {
                 {copy.ctaMore}
               </a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="expertise"
-        data-page-reveal
-        className={`${sourceSans.className} ${styles.expertiseSection} ${revealStyles.reveal}`}
-      >
-        <div className={styles.expertiseContainer}>
-          <h2 className={styles.expertiseTitle}>{copy.expertiseTitle}</h2>
-          <p className={styles.expertiseDescription}>{copy.expertiseDescription}</p>
-          <p className={styles.expertiseSubtitle}>{copy.expertiseSubtitle}</p>
-
-          <div className={styles.expertiseGrid}>
-            {copy.expertiseCards.map((card) => (
-              <article key={card.icon} className={styles.expertiseCard}>
-                <ImageWithPlaceholder
-                  src={card.icon}
-                  alt={card.alt}
-                  width={110}
-                  height={110}
-                  className={styles.expertiseIcon}
-                  inline
-                />
-                <p className={styles.expertiseCardText}>{card.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section
-        data-page-reveal
-        className={`${sourceSans.className} ${styles.questionSection} ${revealStyles.reveal}`}
-      >
-        <div className={styles.questionContainer}>
-          <div className={styles.questionContent}>
-            <h2 className={styles.questionTitle}>{copy.questionTitle}</h2>
-            <p className={styles.questionText}>{copy.questionText}</p>
-          </div>
-
-          <Link className={`${styles.questionButton} ${dmSans.className}`} href="/contacts">
-            {copy.questionButton}
-          </Link>
-        </div>
-      </section>
-      <section
-        data-page-reveal
-        className={`${sourceSans.className} ${styles.experienceSection} ${revealStyles.reveal}`}
-      >
-        <div className={styles.experienceContainer}>
-          <h2 className={styles.experienceTitle}>{copy.experienceTitle}</h2>
-
-          <div className={styles.experienceTextGroup}>
-            {copy.experienceParagraphs.map((paragraph, index) => (
-              <p key={`experience-${index}`} className={styles.experienceText}>
-                {paragraph}
-              </p>
-            ))}
-          </div>
-
-          <h2 className={styles.practiceTitle}>{copy.practiceTitle}</h2>
-
-          <p className={styles.practiceText}>{copy.practiceIntro}</p>
-
-          <ul className={styles.practiceList}>
-            {copy.practiceList.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section
-        data-page-reveal
-        className={`${styles.videoSection} ${revealStyles.reveal}`}
-      >
-        <div className={styles.videoContainer}>
-          <div className={styles.videoPlaceholder}>
-            <button
-              type="button"
-              className={styles.videoPlayButton}
-              aria-label={copy.videoPlayLabel}
-            >
-              <span className={styles.videoPlayIcon} />
-            </button>
           </div>
         </div>
       </section>
@@ -180,28 +96,91 @@ export default function AboutPage() {
       </section>
 
       <section
+        id="expertise"
         data-page-reveal
-        className={`${sourceSans.className} ${styles.teamworkSection} ${revealStyles.reveal}`}
+        className={`${sourceSans.className} ${styles.expertiseSection} ${revealStyles.reveal}`}
       >
-        <div className={styles.teamworkContainer}>
-          <h2 className={styles.teamworkTitle}>{copy.teamworkTitle}</h2>
+        <div className={styles.expertiseContainer}>
+          <h2 className={styles.expertiseTitle}>{copy.expertiseTitle}</h2>
+          <p className={styles.expertiseDescription}>{copy.expertiseDescription}</p>
+          <p className={styles.expertiseSubtitle}>{copy.expertiseSubtitle}</p>
 
-          <div className={styles.teamworkTextGroup}>
-            {copy.teamworkParagraphs.map((paragraph, index) => (
-              <p key={`teamwork-${index}`} className={styles.teamworkText}>
+          <div className={styles.expertiseGrid}>
+            {copy.expertiseCards.map((card) => (
+              <article key={card.icon} className={styles.expertiseCard}>
+                <ImageWithPlaceholder
+                  src={card.icon}
+                  alt={card.alt}
+                  width={110}
+                  height={110}
+                  className={styles.expertiseIcon}
+                  inline
+                />
+                <p className={styles.expertiseCardText}>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.experienceSection} ${revealStyles.reveal}`}
+      >
+        <div className={styles.experienceContainer}>
+          <h2 className={styles.experienceTitle}>{copy.experienceTitle}</h2>
+
+          <div className={styles.experienceTextGroup}>
+            {copy.experienceParagraphs.map((paragraph, index) => (
+              <p key={`experience-${index}`} className={styles.experienceText}>
                 {paragraph}
               </p>
             ))}
           </div>
+          <div className={styles.experienceActions}>
+              <Link className={`${styles.heroButton} ${styles.heroButtonPrimary}`} href="/services">
+                {copy.ctaOrder}
+              </Link>
+              <a className={`${styles.heroButton} ${styles.heroButtonSecondary}`} href="#expertise">
+                {copy.ctaMore}
+              </a>
+            </div>
+        </div>
+      </section>
 
-          <ul className={styles.teamworkList}>
-            {copy.teamworkList.map((item) => (
+      <section
+        data-page-reveal
+        className={`${sourceSans.className} ${styles.practiceSection} ${revealStyles.reveal}`}
+      >
+        <div className={styles.practiceContainer}>
+          <h2 className={styles.practiceTitle}>{copy.practiceTitle}</h2>
+          <p className={styles.practiceText}>{copy.practiceIntro}</p>
+          <ul className={styles.practiceList}>
+            {copy.practiceList.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
       </section>
 
+      <section
+        data-page-reveal
+        className={`${styles.videoSection} ${revealStyles.reveal}`}
+      >
+        <div className={styles.videoContainer}>
+          <div className={styles.videoPlaceholder}>
+            <button
+              type="button"
+              className={styles.videoPlayButton}
+              aria-label={copy.videoPlayLabel}
+            >
+              <span className={styles.videoPlayIcon} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <ContactQuestion />
       <Footer />
     </div>
   );

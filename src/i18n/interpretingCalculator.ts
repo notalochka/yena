@@ -26,11 +26,9 @@ export type InterpretingCalculatorCopy = {
     complexityAria: string;
     complexityPlaceholder: string;
     complexityOptions: {
-      general: string;
       business: string;
-      technical: string;
-      medical: string;
-      legal: string;
+      medium: string;
+      complex: string;
     };
     typeTitle: string;
     typeAria: string;
@@ -62,27 +60,29 @@ export type InterpretingCalculatorCopy = {
     aria: string;
     yes: string;
     no: string;
-    summaryWithRecording: string;
-    organisation: string;
-    totalWithOrganisation: string;
+    withRecordingOrBroadcast: string;
+    projectFee: string;
+    withProjectFee: string;
+    withRecordingAndProjectFee: string;
     totalAria: string;
     totalLabel: string;
   };
   step5: {
-    estimatedCostNoVat: string;
-    apostilleInTranslation: string;
-    apostilleInDocument: string;
-    certification: string;
-    orderTotalNoVat: string;
+    estimatedCost: string;
     vat: string;
-    finalTotalWithVat: string;
+    subtotalCost: string;
     grandTotalAria: string;
     grandTotalLabel: string;
     firstName: string;
     lastName: string;
     phone: string;
     email: string;
-    address: string;
+    mailingAddressTitle: string;
+    countryPlaceholder: string;
+    cityPlaceholder: string;
+    streetPlaceholder: string;
+    houseNumberPlaceholder: string;
+    postalCodePlaceholder: string;
   };
 };
 
@@ -115,20 +115,18 @@ export const interpretingCalculatorCopyByLang: Record<UiLanguage, InterpretingCa
         timeLabel: "Час",
         hoursPlaceholder: "Години (напр. 08)",
         minutesPlaceholder: "Хвилини (напр. 00)",
-        complexityTitle: "Рівень складності тексту",
-        complexityAria: "Оберіть мету перекладу",
-        complexityPlaceholder: "Оберіть мету перекладу",
+        complexityTitle: "Рівень",
+        complexityAria: "Оберіть рівень",
+        complexityPlaceholder: "Оберіть рівень",
         complexityOptions: {
-          general: "Загальна тематика",
-          business: "Бізнес / переговори",
-          technical: "Технічна тематика",
-          medical: "Медична тематика",
-          legal: "Юридична тематика",
+          business: "Бізнес",
+          medium: "Середній",
+          complex: "Складний",
         },
         typeTitle: "Тип",
         typeAria: "Тип перекладу",
         typeSync: "Синхронний",
-        typeCons: "Консекутивний",
+        typeCons: "Послідовний",
         interpretersTitle: "Перекладачі",
         interpretersAria: "Кількість перекладачів",
         priceAria: "Ціна",
@@ -147,35 +145,37 @@ export const interpretingCalculatorCopyByLang: Record<UiLanguage, InterpretingCa
         aria: "Формат перекладу",
         online: "Онлайн",
         offline: "Офлайн",
-        totalAria: "Разом",
-        totalLabel: "Разом",
+        totalAria: "Вартість",
+        totalLabel: "Вартість",
       },
       step4: {
-        title: "Запис чи трансляція",
-        aria: "Запис чи трансляція",
+        title: "Запис чи трансляція перекладу",
+        aria: "Запис чи трансляція перекладу",
         yes: "Так",
         no: "Ні",
-        summaryWithRecording: "Разом із записом",
-        organisation: "Організація",
-        totalWithOrganisation: "Разом з організацією",
-        totalAria: "Разом",
-        totalLabel: "Разом",
+        withRecordingOrBroadcast: "Разом з записом чи трансляцією",
+        projectFee: "Проєктний збір",
+        withProjectFee: "Разом з проєктним збором",
+        withRecordingAndProjectFee: "Разом із записом і проєктним збором",
+        totalAria: "Вартість",
+        totalLabel: "Вартість",
       },
       step5: {
-        estimatedCostNoVat: "Оцінена вартість перекладу (без ПДВ)",
-        apostilleInTranslation: "Поставити апостоль в перекладі",
-        apostilleInDocument: "Поставити апостоль в документі",
-        certification: "Засвідчення",
-        orderTotalNoVat: "Загальна вартість замовлення (без ПДВ)",
+        estimatedCost: "Оцінена вартість",
         vat: "ПДВ",
-        finalTotalWithVat: "Підсумкова ціна замовлення (з ПДВ)",
+        subtotalCost: "Підсумкова вартість",
         grandTotalAria: "Всього",
         grandTotalLabel: "Всього",
         firstName: "Ім’я",
         lastName: "Прізвище",
         phone: "Номер телефону",
         email: "Адреса електронної пошти",
-        address: "Адреса",
+        mailingAddressTitle: "Поштова адреса",
+        countryPlaceholder: "Країна",
+        cityPlaceholder: "Місто",
+        streetPlaceholder: "Вулиця",
+        houseNumberPlaceholder: "Номер будинку",
+        postalCodePlaceholder: "Поштовий індекс",
       },
     },
     RU: {
@@ -196,15 +196,13 @@ export const interpretingCalculatorCopyByLang: Record<UiLanguage, InterpretingCa
         timeLabel: "Время",
         hoursPlaceholder: "Часы (напр. 08)",
         minutesPlaceholder: "Минуты (напр. 00)",
-        complexityTitle: "Уровень сложности текста",
-        complexityAria: "Выберите тематику",
-        complexityPlaceholder: "Выберите тематику",
+        complexityTitle: "Уровень",
+        complexityAria: "Выберите уровень",
+        complexityPlaceholder: "Выберите уровень",
         complexityOptions: {
-          general: "Общая тематика",
-          business: "Бизнес / переговоры",
-          technical: "Техническая тематика",
-          medical: "Медицинская тематика",
-          legal: "Юридическая тематика",
+          business: "Бизнес",
+          medium: "Средний",
+          complex: "Сложный",
         },
         typeTitle: "Тип",
         typeAria: "Тип перевода",
@@ -228,35 +226,37 @@ export const interpretingCalculatorCopyByLang: Record<UiLanguage, InterpretingCa
         aria: "Формат перевода",
         online: "Онлайн",
         offline: "Офлайн",
-        totalAria: "Итого",
-        totalLabel: "Итого",
+        totalAria: "Стоимость",
+        totalLabel: "Стоимость",
       },
       step4: {
-        title: "Запись или трансляция",
-        aria: "Запись или трансляция",
+        title: "Запись или трансляция перевода",
+        aria: "Запись или трансляция перевода",
         yes: "Да",
         no: "Нет",
-        summaryWithRecording: "Итого с записью",
-        organisation: "Организация",
-        totalWithOrganisation: "Итого с организацией",
-        totalAria: "Итого",
-        totalLabel: "Итого",
+        withRecordingOrBroadcast: "Итого с записью или трансляцией",
+        projectFee: "Проектный сбор",
+        withProjectFee: "Итого с проектным сбором",
+        withRecordingAndProjectFee: "Итого с записью и проектным сбором",
+        totalAria: "Стоимость",
+        totalLabel: "Стоимость",
       },
       step5: {
-        estimatedCostNoVat: "Оценочная стоимость перевода (без НДС)",
-        apostilleInTranslation: "Апостиль на перевод",
-        apostilleInDocument: "Апостиль на документ",
-        certification: "Заверение",
-        orderTotalNoVat: "Общая стоимость заказа (без НДС)",
+        estimatedCost: "Оценённая стоимость",
         vat: "НДС",
-        finalTotalWithVat: "Итоговая стоимость (с НДС)",
+        subtotalCost: "Итоговая стоимость",
         grandTotalAria: "Итого",
         grandTotalLabel: "Итого",
         firstName: "Имя",
         lastName: "Фамилия",
-        phone: "Телефон",
-        email: "Email",
-        address: "Адрес",
+        phone: "Номер телефона",
+        email: "Адрес электронной почты",
+        mailingAddressTitle: "Почтовый адрес",
+        countryPlaceholder: "Страна",
+        cityPlaceholder: "Город",
+        streetPlaceholder: "Улица",
+        houseNumberPlaceholder: "Номер дома",
+        postalCodePlaceholder: "Почтовый индекс",
       },
     },
     EN: {
@@ -277,15 +277,13 @@ export const interpretingCalculatorCopyByLang: Record<UiLanguage, InterpretingCa
         timeLabel: "Time",
         hoursPlaceholder: "Hours (e.g. 08)",
         minutesPlaceholder: "Minutes (e.g. 00)",
-        complexityTitle: "Topic complexity",
-        complexityAria: "Choose topic",
-        complexityPlaceholder: "Choose topic",
+        complexityTitle: "Level",
+        complexityAria: "Choose level",
+        complexityPlaceholder: "Choose level",
         complexityOptions: {
-          general: "General",
-          business: "Business / negotiations",
-          technical: "Technical",
-          medical: "Medical",
-          legal: "Legal",
+          business: "Business",
+          medium: "Intermediate",
+          complex: "Advanced",
         },
         typeTitle: "Mode",
         typeAria: "Interpreting mode",
@@ -309,35 +307,37 @@ export const interpretingCalculatorCopyByLang: Record<UiLanguage, InterpretingCa
         aria: "Format",
         online: "Online",
         offline: "On-site",
-        totalAria: "Total",
-        totalLabel: "Total",
+        totalAria: "Cost",
+        totalLabel: "Cost",
       },
       step4: {
-        title: "Recording or broadcast",
-        aria: "Recording or broadcast",
+        title: "Recording or broadcast of interpreting",
+        aria: "Recording or broadcast of interpreting",
         yes: "Yes",
         no: "No",
-        summaryWithRecording: "Total incl. recording",
-        organisation: "Organisation",
-        totalWithOrganisation: "Total incl. organisation",
-        totalAria: "Total",
-        totalLabel: "Total",
+        withRecordingOrBroadcast: "Total incl. recording or broadcast",
+        projectFee: "Project fee",
+        withProjectFee: "Total incl. project fee",
+        withRecordingAndProjectFee: "Total incl. recording and project fee",
+        totalAria: "Cost",
+        totalLabel: "Cost",
       },
       step5: {
-        estimatedCostNoVat: "Estimated interpreting cost (excl. VAT)",
-        apostilleInTranslation: "Apostille for translation",
-        apostilleInDocument: "Apostille for document",
-        certification: "Certification",
-        orderTotalNoVat: "Order total (excl. VAT)",
+        estimatedCost: "Estimated cost",
         vat: "VAT",
-        finalTotalWithVat: "Final total (incl. VAT)",
-        grandTotalAria: "Grand total",
-        grandTotalLabel: "Grand total",
+        subtotalCost: "Subtotal cost",
+        grandTotalAria: "Total",
+        grandTotalLabel: "Total",
         firstName: "First name",
         lastName: "Last name",
-        phone: "Phone",
-        email: "Email",
-        address: "Address",
+        phone: "Phone number",
+        email: "Email address",
+        mailingAddressTitle: "Mailing address",
+        countryPlaceholder: "Country",
+        cityPlaceholder: "City",
+        streetPlaceholder: "Street",
+        houseNumberPlaceholder: "House number",
+        postalCodePlaceholder: "Postal code",
       },
     },
     DE: {
@@ -358,15 +358,13 @@ export const interpretingCalculatorCopyByLang: Record<UiLanguage, InterpretingCa
         timeLabel: "Uhrzeit",
         hoursPlaceholder: "Stunden (z. B. 08)",
         minutesPlaceholder: "Minuten (z. B. 00)",
-        complexityTitle: "Themenkomplexität",
-        complexityAria: "Thema wählen",
-        complexityPlaceholder: "Thema wählen",
+        complexityTitle: "Niveau",
+        complexityAria: "Niveau wählen",
+        complexityPlaceholder: "Niveau wählen",
         complexityOptions: {
-          general: "Allgemein",
-          business: "Business / Verhandlung",
-          technical: "Technisch",
-          medical: "Medizinisch",
-          legal: "Juristisch",
+          business: "Business",
+          medium: "Mittel",
+          complex: "Komplex",
         },
         typeTitle: "Art",
         typeAria: "Dolmetschmodus",
@@ -390,35 +388,37 @@ export const interpretingCalculatorCopyByLang: Record<UiLanguage, InterpretingCa
         aria: "Format",
         online: "Online",
         offline: "Vor Ort",
-        totalAria: "Summe",
-        totalLabel: "Summe",
+        totalAria: "Kosten",
+        totalLabel: "Kosten",
       },
       step4: {
-        title: "Aufzeichnung oder Übertragung",
-        aria: "Aufzeichnung oder Übertragung",
+        title: "Aufzeichnung oder Übertragung des Dolmetschens",
+        aria: "Aufzeichnung oder Übertragung des Dolmetschens",
         yes: "Ja",
         no: "Nein",
-        summaryWithRecording: "Summe inkl. Aufzeichnung",
-        organisation: "Organisation",
-        totalWithOrganisation: "Summe inkl. Organisation",
-        totalAria: "Summe",
-        totalLabel: "Summe",
+        withRecordingOrBroadcast: "Summe inkl. Aufzeichnung oder Übertragung",
+        projectFee: "Projektgebühr",
+        withProjectFee: "Summe inkl. Projektgebühr",
+        withRecordingAndProjectFee: "Summe inkl. Aufzeichnung und Projektgebühr",
+        totalAria: "Kosten",
+        totalLabel: "Kosten",
       },
       step5: {
-        estimatedCostNoVat: "Geschätzte Dolmetschkosten (ohne MwSt.)",
-        apostilleInTranslation: "Apostille für Übersetzung",
-        apostilleInDocument: "Apostille für Dokument",
-        certification: "Beglaubigung",
-        orderTotalNoVat: "Gesamtkosten (ohne MwSt.)",
+        estimatedCost: "Geschätzte Kosten",
         vat: "MwSt.",
-        finalTotalWithVat: "Endsumme (inkl. MwSt.)",
+        subtotalCost: "Gesamtkosten",
         grandTotalAria: "Gesamt",
         grandTotalLabel: "Gesamt",
         firstName: "Vorname",
         lastName: "Nachname",
-        phone: "Telefon",
-        email: "E‑Mail",
-        address: "Adresse",
+        phone: "Telefonnummer",
+        email: "E‑Mail-Adresse",
+        mailingAddressTitle: "Postanschrift",
+        countryPlaceholder: "Land",
+        cityPlaceholder: "Stadt",
+        streetPlaceholder: "Straße",
+        houseNumberPlaceholder: "Hausnummer",
+        postalCodePlaceholder: "Postleitzahl",
       },
     },
   };
