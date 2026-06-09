@@ -1,6 +1,6 @@
 import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { languages } from "@/i18n/language";
+import { getLogoSrc, languages } from "@/i18n/language";
 import { layoutCopyByLang } from "@/i18n/layout";
 import { Source_Sans_3 } from "next/font/google";
 import Link from "next/link";
@@ -65,16 +65,20 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <div className={styles.logoWrap}>
+        <Link
+          href="/"
+          className={styles.logoWrap}
+          aria-label={copy.menu.home}
+        >
           <ImageWithPlaceholder
-            src="/logo_icon.svg"
+            src={getLogoSrc(language)}
             alt="Yena logo"
             width={230}
             height={70}
             className={styles.logo}
             priority
           />
-        </div>
+        </Link>
 
         <div className={styles.rightSide}>
           <nav

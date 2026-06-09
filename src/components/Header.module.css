@@ -19,6 +19,7 @@
 
 .logoWrap {
   display: flex;
+  text-decoration: none;
 }
 
 .logo {

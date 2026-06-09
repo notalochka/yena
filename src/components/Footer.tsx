@@ -1,5 +1,5 @@
-import ImageWithPlaceholder from "@/components/ImageWithPlaceholder";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { getLogoSrc } from "@/i18n/language";
 import { layoutCopyByLang } from "@/i18n/layout";
 import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
 import Link from "next/link";
@@ -17,7 +17,8 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export default function Footer() {
   const { language } = useLanguage();
-  const copy = layoutCopyByLang[language].footer;
+  const layoutCopy = layoutCopyByLang[language];
+  const copy = layoutCopy.footer;
   const services = copy.services;
   const orderedServices = [services[0], services[3], services[2], services[1]];
 
@@ -26,14 +27,19 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.top}>
           <div className={styles.brandColumn}>
-            <ImageWithPlaceholder
-              src="/logo2.png"
-              alt="Yena logo"
-              width={90}
-              height={146}
-              className={styles.logo}
-              style={{ width: "auto", height: "auto" }}
-            />
+            <Link
+              href="/"
+              className={styles.logoLink}
+              aria-label={layoutCopy.header.menu.home}
+            >
+              <img
+                src={getLogoSrc(language)}
+                alt="Yena logo"
+                width={230}
+                height={70}
+                className={styles.logo}
+              />
+            </Link>
             <p className={styles.brandText}>{copy.brandLine}</p>
           </div>
 

@@ -27,11 +27,18 @@
 
 }
 
+.logoLink {
+  display: inline-block;
+  line-height: 0;
+}
+
 .logo {
+  display: block;
   width: auto;
-  height: auto;
-  max-height: 146px;
+  height: 150px;
+  max-width: 100%;
   object-fit: contain;
+  margin-left: -20px;
 }
 
 .brandText {
@@ -125,7 +132,8 @@
   }
 
   .logo {
-    height: 110px;
+    height: 70px;
+    margin-left: 0;
   }
 
   .brandText {
