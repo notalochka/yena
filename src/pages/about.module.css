@@ -345,7 +345,7 @@
   width: 100%;
   min-height: 600px;
   border-radius: 30px;
-  background: var(--brand-orange);
+  background: var(--brand-orange) url("/video-poster.jpg") center / cover no-repeat;
   align-items: center;
   justify-content: center;
   overflow: hidden;
