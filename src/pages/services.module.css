@@ -112,10 +112,10 @@
 .cardDescription {
   margin: 24px 0 0;
   color: #000000;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 400;
   line-height: 135%;
-  letter-spacing: 0;
+  letter-spacing: 1px;
 }
 
 .cardFooter {
@@ -174,10 +174,10 @@
   padding: 21px;
   border-radius: 50px;
   font-family: inherit;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
   line-height: 120%;
-  letter-spacing: 0;
+  letter-spacing: 1px;
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -214,19 +214,19 @@
 
 .cardCalloutTitle {
   margin: 0;
-  font-size: 16px;
+  font-size: 23px;
   font-weight: 600;
   line-height: 100%;
-  letter-spacing: 0;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .cardCalloutText {
   margin: 16px 0 0;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   line-height: 120%;
-  letter-spacing: 0;
+  letter-spacing: 0.5px;
 }
 
 .servicesLink {
@@ -246,10 +246,10 @@
 .cardListTitle {
   margin: 0;
   color: var(--service-accent);
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 600;
   line-height: 120%;
-  letter-spacing: 0;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
@@ -264,7 +264,7 @@
   margin: 0;
   padding: 18px 0 18px 20px;
   color: #000000;
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 400;
   line-height: 134%;
   letter-spacing: 0;

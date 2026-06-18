@@ -5,6 +5,10 @@ export type HeaderCopy = {
   burgerOpen: string;
   burgerClose: string;
   ctaEstimate: string;
+  estimateMenu: {
+    interpreting: string;
+    written: string;
+  };
   menu: {
     home: string;
     about: string;
@@ -41,6 +45,10 @@ export const layoutCopyByLang: Record<UiLanguage, LayoutCopy> = {
       burgerOpen: "Відкрити меню",
       burgerClose: "Закрити меню",
       ctaEstimate: "Замовити кошторис",
+      estimateMenu: {
+        interpreting: "Усний переклад",
+        written: "Письмовий переклад",
+      },
       menu: {
         home: "Головна",
         about: "Про нас",
@@ -75,6 +83,10 @@ export const layoutCopyByLang: Record<UiLanguage, LayoutCopy> = {
       burgerOpen: "Открыть меню",
       burgerClose: "Закрыть меню",
       ctaEstimate: "Заказать смету",
+      estimateMenu: {
+        interpreting: "Устный перевод",
+        written: "Письменный перевод",
+      },
       menu: {
         home: "Главная",
         about: "О нас",
@@ -109,6 +121,10 @@ export const layoutCopyByLang: Record<UiLanguage, LayoutCopy> = {
       burgerOpen: "Open menu",
       burgerClose: "Close menu",
       ctaEstimate: "Request an estimate",
+      estimateMenu: {
+        interpreting: "Interpreting",
+        written: "Written translation",
+      },
       menu: {
         home: "Home",
         about: "About",
@@ -143,6 +159,10 @@ export const layoutCopyByLang: Record<UiLanguage, LayoutCopy> = {
       burgerOpen: "Menü öffnen",
       burgerClose: "Menü schließen",
       ctaEstimate: "Kostenvoranschlag anfragen",
+      estimateMenu: {
+        interpreting: "Dolmetschen",
+        written: "Schriftliche Übersetzung",
+      },
       menu: {
         home: "Startseite",
         about: "Über uns",

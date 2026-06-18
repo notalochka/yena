@@ -24,20 +24,27 @@ export default function Header() {
   const { language, setLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isEstimateOpen, setIsEstimateOpen] = useState(false);
   const langWrapRef = useRef<HTMLDivElement | null>(null);
+  const estimateWrapRef = useRef<HTMLDivElement | null>(null);
   const langMenuId = useId();
+  const estimateMenuId = useId();
 
   useEffect(() => {
-    if (!isLangOpen) return;
+    if (!isLangOpen && !isEstimateOpen) return;
 
     const onPointerDown = (event: PointerEvent) => {
       const target = event.target as Node | null;
       if (!target) return;
       if (!langWrapRef.current?.contains(target)) setIsLangOpen(false);
+      if (!estimateWrapRef.current?.contains(target)) setIsEstimateOpen(false);
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsLangOpen(false);
+      if (event.key === "Escape") {
+        setIsLangOpen(false);
+        setIsEstimateOpen(false);
+      }
     };
 
     window.addEventListener("pointerdown", onPointerDown, { capture: true });
@@ -47,7 +54,7 @@ export default function Header() {
       window.removeEventListener("pointerdown", onPointerDown, { capture: true } as never);
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [isLangOpen]);
+  }, [isLangOpen, isEstimateOpen]);
 
   const copy = layoutCopyByLang[language].header;
   const menuItems = [
@@ -110,13 +117,62 @@ export default function Header() {
                 );
               })}
             </ul>
-            <Link
-              href="/services"
-              className={`${sourceSans.className} ${styles.estimateButton}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {copy.ctaEstimate}
-            </Link>
+            <div className={styles.estimateWrap} ref={estimateWrapRef}>
+              <button
+                type="button"
+                className={`${sourceSans.className} ${styles.estimateButton}`}
+                aria-haspopup="menu"
+                aria-expanded={isEstimateOpen}
+                aria-controls={estimateMenuId}
+                onClick={() => setIsEstimateOpen((prev) => !prev)}
+              >
+                {copy.ctaEstimate}
+                <svg
+                  className={`${styles.estimateChevron} ${
+                    isEstimateOpen ? styles.estimateChevronOpen : ""
+                  }`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="11"
+                  height="7"
+                  viewBox="0 0 11 7"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M0.5 0.5L5.45385 5.45385L10.4077 0.5"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+
+              {isEstimateOpen && (
+                <div id={estimateMenuId} role="menu" className={styles.estimateMenu}>
+                  <Link
+                    role="menuitem"
+                    href="/interpreting#price-calculator"
+                    className={styles.estimateOption}
+                    onClick={() => {
+                      setIsEstimateOpen(false);
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    {copy.estimateMenu.interpreting}
+                  </Link>
+                  <Link
+                    role="menuitem"
+                    href="/written-translation#price-calculator"
+                    className={styles.estimateOption}
+                    onClick={() => {
+                      setIsEstimateOpen(false);
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    {copy.estimateMenu.written}
+                  </Link>
+                </div>
+              )}
+            </div>
           </nav>
 
           <div className={styles.langWrap} ref={langWrapRef}>

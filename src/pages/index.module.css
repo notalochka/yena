@@ -112,6 +112,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 5px;
+  gap: 30px;
 }
 
 .statsItem {
@@ -136,10 +137,10 @@
 .statsLabel {
   margin: 0;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
@@ -275,10 +276,10 @@
 .serviceCardText {
   margin-bottom: 20px;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 120%;
-  letter-spacing: 0;
+  letter-spacing: 1px;
 }
 
 .serviceCardBody {
@@ -297,10 +298,10 @@
   border: 0;
   background: transparent;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: 800;
   line-height: 120%;
-  letter-spacing: 0;
+  letter-spacing: 1px;
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: pointer;
@@ -572,17 +573,17 @@
   font-size: 32px;
   font-weight: 800;
   line-height: 119%;
-  letter-spacing: 0;
+  letter-spacing: 1px;
   white-space: pre-line;
 }
 
 .processStepText {
   margin: 24px 0 0;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 119%;
-  letter-spacing: 0;
+  letter-spacing: 1px;
 }
 
 .processStepLink {
@@ -741,10 +742,10 @@
   border-radius: 50px;
   background-color: #000000;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
   line-height: 24px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -788,20 +789,20 @@
 .benefitText {
   margin: 40px 0 0;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 120%;
-  letter-spacing: 0;
+  letter-spacing: 1px;
   text-align: center;
   text-transform: uppercase;
 }
 .benefitExtraText {
   margin: 20px 0 0;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 120%;
-  letter-spacing: 0;
+  letter-spacing: 1px;
   text-align: center;
 }
 

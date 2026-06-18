@@ -88,17 +88,23 @@
   opacity: 0.8;
 }
 
+.estimateWrap {
+  position: relative;
+  display: inline-flex;
+}
+
 .estimateButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 12px 20px;
   border: none;
   border-radius: 50px;
   background: var(--brand-orange);
   color: #ffffff;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 600;
   height: 42px;
   line-height: 24px;
   letter-spacing: 0.5px;
@@ -111,6 +117,53 @@
 
 .estimateButton:hover {
   opacity: 0.85;
+}
+
+.estimateChevron {
+  flex: 0 0 auto;
+  transition: transform 0.2s ease;
+}
+
+.estimateChevronOpen {
+  transform: rotate(180deg);
+}
+
+.estimateMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 240px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(201, 81, 24, 0.35);
+  box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  z-index: 35;
+}
+
+.estimateOption {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #1d1d1d;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.estimateOption + .estimateOption {
+  margin-top: 4px;
+}
+
+.estimateOption:hover {
+  border-color: var(--brand-orange);
+  background: rgba(201, 81, 24, 0.06);
 }
 
 .langWrap {
@@ -317,6 +370,10 @@
     font-weight: 700;
   }
 
+  .estimateWrap {
+    z-index: 30;
+  }
+
   .estimateButton {
     background: #ffffff;
     color: var(--brand-orange);
@@ -324,5 +381,12 @@
     font-weight: 800;
     height: auto;
     padding: 12px 28px;
+  }
+
+  .estimateMenu {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    min-width: min(280px, calc(100vw - 40px));
   }
 }

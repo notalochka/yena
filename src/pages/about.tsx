@@ -7,6 +7,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { aboutCopyByLang } from "@/i18n/about";
 import { getSeo } from "@/i18n/seoPages";
 import { usePageReveal } from "@/hooks/usePageReveal";
+import { useRef, useState } from "react";
 import revealStyles from "@/styles/pageReveal.module.css";
 import { DM_Sans, Source_Sans_3 } from "next/font/google";
 import styles from "./about.module.css";
@@ -24,9 +25,18 @@ const dmSans = DM_Sans({
 
 export default function AboutPage() {
   const heroReveal = usePageReveal();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasVideoStarted, setHasVideoStarted] = useState(false);
   const { language } = useLanguage();
   const seo = getSeo("about", language);
   const copy = aboutCopyByLang[language];
+
+  const handleVideoPlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    setHasVideoStarted(true);
+    void video.play();
+  };
 
   return (
     <div className={`${revealStyles.pageReveal} ${styles.page}`}>
@@ -168,14 +178,31 @@ export default function AboutPage() {
         className={`${styles.videoSection} ${revealStyles.reveal}`}
       >
         <div className={styles.videoContainer}>
-          <div className={styles.videoPlaceholder}>
-            <button
-              type="button"
-              className={styles.videoPlayButton}
-              aria-label={copy.videoPlayLabel}
-            >
-              <span className={styles.videoPlayIcon} />
-            </button>
+          <div
+            className={`${styles.videoPlaceholder} ${
+              hasVideoStarted ? styles.videoPlaceholderStarted : ""
+            }`}
+          >
+            <video
+              ref={videoRef}
+              className={`${styles.video} ${
+                hasVideoStarted ? styles.videoVisible : ""
+              }`}
+              src="/video.mp4"
+              controls={hasVideoStarted}
+              playsInline
+              preload="metadata"
+            />
+            {!hasVideoStarted && (
+              <button
+                type="button"
+                className={styles.videoPlayButton}
+                aria-label={copy.videoPlayLabel}
+                onClick={handleVideoPlay}
+              >
+                <span className={styles.videoPlayIcon} />
+              </button>
+            )}
           </div>
         </div>
       </section>
